@@ -80,7 +80,7 @@ var pins = [
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227821127687078030/image.png?ex=6629cc88&is=66175788&hm=72664b417d6f78540e5b9865c5082528f707810bcfb9d1fa3191de2bee18e342&"
   },
   {
-    "category": "Woman Statue",
+    "category": "Gold Woman Statue",
     "title": "West - Plaza",
     "coords": {
       "x": "18.631061598951508%",
@@ -90,7 +90,7 @@ var pins = [
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227784091219263488/image.png?ex=6629aa0a&is=6617350a&hm=7e74f441e6be794b441be8b74e283ab42f130812999f7690215c55d5156655a2&"
   },
   {
-    "category": "Glitch",
+    "category": "Glitches",
     "title": "North East - House",
     "coords": {
       "x": "62.51887534408179%",
@@ -130,7 +130,7 @@ var pins = [
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227825807099957290/image.png?ex=6629d0e4&is=66175be4&hm=01efa2c8e481d759979b9dc0e2fdb4b03f314bce450477cee1ad05afefb198dd&"
   },
   {
-    "category": "Glitch",
+    "category": "Glitches",
     "title": "South West - Hut",
     "coords": {
       "x": "10.69032638615808%",
@@ -170,7 +170,7 @@ var pins = [
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227820941523025990/image.png?ex=6629cc5c&is=6617575c&hm=1e4cc3e6b6dc42d3efdbca3d9c36aaa305cd28533c16a8a514e8cd24fd7b4f3a&"
   },
   {
-    "category": "Woman Statue",
+    "category": "Gold Woman Statue",
     "title": "South East - Park",
     "coords": {
       "x": "74.82717263075108%",
@@ -180,7 +180,7 @@ var pins = [
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227820917346926624/image.png?ex=6629cc56&is=66175756&hm=7a4e3fcccaf103fc85218cbad557d38050500dbfbf629cb2773f6d37def7ff2c&"
   },
   {
-    "category": "Woman Statue",
+    "category": "Gold Woman Statue",
     "title": "East - Pocket Park",
     "coords": {
       "x": "85.75914274478961%",
@@ -200,7 +200,7 @@ var pins = [
     "dataImg": ""
   },
   {
-    "category": "Woman Statue",
+    "category": "Gold Woman Statue",
     "title": "Center - Near Cathedral",
     "coords": {
       "x": "41.75599685410932%",
@@ -278,6 +278,16 @@ var pins = [
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787524643225642/poker.png?ex=6629ad3d&is=6617383d&hm=a0d53e4b8ecf993dc85fb72493fe171c1b389e767fcc4788d90b47d632c7c4ea&",
     "dataImg": "https://cdn.discordapp.com/attachments/1227968583112327198/1228034520121610361/image.png?ex=662a9345&is=66181e45&hm=59d4dc42d30b9b81cc87317dae0ef5afddc59231c404c7df94bfd1070fa750f1&"
+  },
+  {
+    "category": "Glitches",
+    "title": "South - by SR.!",
+    "coords": {
+      "x": "57.166666666666664%",
+      "y": "74.5%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227822170743242784/image.png?ex=6629cd81&is=66175881&hm=fee7b8b247879ae714a7c0a34d2f3cc8f66ac001828fa294360e2d9719310c10&",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228072176138191010/srglitch.png?ex=662ab657&is=66184157&hm=d074db4c83f2b2bd360e804b92e76a669f57958ec710d3874016948a005010bd&"
   }
 ];
 
