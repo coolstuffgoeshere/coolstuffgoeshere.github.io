@@ -140,7 +140,7 @@ input[type="text"] {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 101;
   background: black;
   color: white;
   padding: 0px 5px;
@@ -161,6 +161,7 @@ h3 {
   background: black;
   color: white;
   padding: 20px 5px;
+  padding-top: 40px;
 }
 
 .title {

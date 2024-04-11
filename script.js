@@ -6,7 +6,7 @@ var pins = [
       "x": "64.76746506986028%",
       "y": "57.44876912840985%"
     },
-    "pinImg": "https://assets.codepen.io/1533917/fried-egg.png",
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787235345170432/graffiti.png?ex=6629acf8&is=661737f8&hm=e1f7f24be97a3035e90131dd4f39f860bd0b750d2d78c52bcf5e03f185cb2509&",
     "dataImg": "https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/20230616171309_1.jpg"
   },
   {
@@ -40,8 +40,8 @@ var pins = [
     "dataImg": "https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/1339c.png"
   },
   {
-    "category": "Statues",
-    "title": "Fountain East",
+    "category": "Fountain",
+    "title": "East",
     "coords": {
       "x": "81.44444444444444%",
       "y": "44.63888888888889%"
@@ -50,8 +50,8 @@ var pins = [
     "dataImg": ""
   },
   {
-    "category": "Statues",
-    "title": "Fountain West",
+    "category": "Fountain",
+    "title": "West",
     "coords": {
       "x": "10.059633027522937%",
       "y": "37.69806684141546%"
@@ -77,11 +77,11 @@ var pins = [
       "y": "28.418905635648755%"
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787524643225642/poker.png?ex=6629ad3d&is=6617383d&hm=a0d53e4b8ecf993dc85fb72493fe171c1b389e767fcc4788d90b47d632c7c4ea&://assets.codepen.io/1533917/rabbit.png",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227821127687078030/image.png?ex=6629cc88&is=66175788&hm=72664b417d6f78540e5b9865c5082528f707810bcfb9d1fa3191de2bee18e342&"
   },
   {
-    "category": "Statues",
-    "title": "Lady 01 West",
+    "category": "Woman Statue",
+    "title": "West",
     "coords": {
       "x": "18.631061598951508%",
       "y": "27.396625163827%"
@@ -90,14 +90,134 @@ var pins = [
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227784091219263488/image.png?ex=6629aa0a&is=6617350a&hm=7e74f441e6be794b441be8b74e283ab42f130812999f7690215c55d5156655a2&"
   },
   {
-    "category": "Cannons",
-    "title": "NW 1",
+    "category": "Glitch",
+    "title": "NE House",
     "coords": {
-      "x": "13.991480996068152%",
-      "y": "25.771461336828306%"
+      "x": "62.51887534408179%",
+      "y": "27.927186138649603%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227822170743242784/image.png?ex=6629cd81&is=66175881&hm=fee7b8b247879ae714a7c0a34d2f3cc8f66ac001828fa294360e2d9719310c10&",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227819762285809674/image.png?ex=6629cb43&is=66175643&hm=57fd64828926873cf47cd004c8fb91e21651a157bbe4224edea03122a80ea454&"
+  },
+  {
+    "category": "Cannons",
+    "title": "NW 01",
+    "coords": {
+      "x": "20.010027526543453%",
+      "y": "25.567768128425456%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787011881173022/cannon.png?ex=6629acc2&is=661737c2&hm=5d03d04290e63a550a5d3eb8ae6a0af2fd7b3fbd608d9af16bdfde477f8f8f8f&",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227821112134467714/image.png?ex=6629cc84&is=66175784&hm=2cce4f764adadb450f808c2a9bc6b8d432bff4ab370824c4fd9ef180df1535af&"
+  },
+  {
+    "category": "Cannons",
+    "title": "W 02",
+    "coords": {
+      "x": "8.56685017695635%",
+      "y": "35.16273470333698%"
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787011881173022/cannon.png?ex=6629acc2&is=661737c2&hm=5d03d04290e63a550a5d3eb8ae6a0af2fd7b3fbd608d9af16bdfde477f8f8f8f&",
     "dataImg": ""
+  },
+  {
+    "category": "Cannons",
+    "title": "W 03",
+    "coords": {
+      "x": "7.229846637829336%",
+      "y": "38.97712715319934%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787011881173022/cannon.png?ex=6629acc2&is=661737c2&hm=5d03d04290e63a550a5d3eb8ae6a0af2fd7b3fbd608d9af16bdfde477f8f8f8f&",
+    "dataImg": ""
+  },
+  {
+    "category": "Glitch",
+    "title": "SW Under Hut",
+    "coords": {
+      "x": "10.69032638615808%",
+      "y": "58.67826873863301%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227822170743242784/image.png?ex=6629cd81&is=66175881&hm=fee7b8b247879ae714a7c0a34d2f3cc8f66ac001828fa294360e2d9719310c10&",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227821077217153044/image.png?ex=6629cc7c&is=6617577c&hm=ef3d6a4f5f05899b375fbfbfdc5dd50af051d4c67ca2671814a82464ff3a005b&"
+  },
+  {
+    "category": "Cannons",
+    "title": "W 04",
+    "coords": {
+      "x": "18.16181675186787%",
+      "y": "60.60512678031607%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787011881173022/cannon.png?ex=6629acc2&is=661737c2&hm=5d03d04290e63a550a5d3eb8ae6a0af2fd7b3fbd608d9af16bdfde477f8f8f8f&",
+    "dataImg": ""
+  },
+  {
+    "category": "Statue Non-Destructible",
+    "title": "Thinker",
+    "coords": {
+      "x": "37.07648446716477%",
+      "y": "79.4673613841919%"
+    },
+    "pinImg": "https://assets.codepen.io/1533917/easter-egg.png",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227821018257690684/image.png?ex=6629cc6e&is=6617576e&hm=3d71a3c96bfc56f51ba5106f3774d962841187005274872f6e2e741d006c8bd3&"
+  },
+  {
+    "category": "Fountain",
+    "title": "South",
+    "coords": {
+      "x": "74.39461266221%",
+      "y": "75.22040896578844%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227786563946283131/sculpture.png?ex=6629ac58&is=66173758&hm=eeedd3673f92be132b7abd5cdfa37ba3d9a251afad1e905a21f308be2ccdbfa4&",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227820941523025990/image.png?ex=6629cc5c&is=6617575c&hm=1e4cc3e6b6dc42d3efdbca3d9c36aaa305cd28533c16a8a514e8cd24fd7b4f3a&"
+  },
+  {
+    "category": "Woman Statue",
+    "title": "South",
+    "coords": {
+      "x": "74.82717263075108%",
+      "y": "82.7705465985057%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227786563946283131/sculpture.png?ex=6629ac58&is=66173758&hm=eeedd3673f92be132b7abd5cdfa37ba3d9a251afad1e905a21f308be2ccdbfa4&",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227820917346926624/image.png?ex=6629cc56&is=66175756&hm=7a4e3fcccaf103fc85218cbad557d38050500dbfbf629cb2773f6d37def7ff2c&"
+  },
+  {
+    "category": "Woman Statue",
+    "title": "East",
+    "coords": {
+      "x": "85.75914274478961%",
+      "y": "49.463429020841524%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227786563946283131/sculpture.png?ex=6629ac58&is=66173758&hm=eeedd3673f92be132b7abd5cdfa37ba3d9a251afad1e905a21f308be2ccdbfa4&",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227786563946283131/sculpture.png?ex=6629ac58&is=66173758&hm=eeedd3673f92be132b7abd5cdfa37ba3d9a251afad1e905a21f308be2ccdbfa4&"
+  },
+  {
+    "category": "Cannons",
+    "title": "East 1",
+    "coords": {
+      "x": "73.76543452615022%",
+      "y": "32.357648446716475%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787011881173022/cannon.png?ex=6629acc2&is=661737c2&hm=5d03d04290e63a550a5d3eb8ae6a0af2fd7b3fbd608d9af16bdfde477f8f8f8f&",
+    "dataImg": ""
+  },
+  {
+    "category": "Woman Statue",
+    "title": "Center",
+    "coords": {
+      "x": "41.75599685410932%",
+      "y": "63.86898836112613%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227786563946283131/sculpture.png?ex=6629ac58&is=66173758&hm=eeedd3673f92be132b7abd5cdfa37ba3d9a251afad1e905a21f308be2ccdbfa4&",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227820199772684418/image.png?ex=6629cbab&is=661756ab&hm=caa56192946592fef3b4707749a4e08adf9f2bac1b5226943d30a68c5aac72f8&"
+  },
+  {
+    "category": "Statue Non-Destructible",
+    "title": "Albert Plaque",
+    "coords": {
+      "x": "86.38832088084939%",
+      "y": "63.71169382711119%"
+    },
+    "pinImg": "https://assets.codepen.io/1533917/easter-egg.png",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227821045805875341/image.png?ex=6629cc75&is=66175775&hm=184343b0bda1d137ce7c98ae456d0cc2b86bb725d366bda318a230fc649841de&"
   }
 ];
 
@@ -210,7 +330,7 @@ function showPinEdit(pin, sidebar) {
     var editMode = document.getElementById('editMode');
     editMode.innerHTML = `
         <div id="editPin">
-            <h3>Editting Map Pin: ${pin.category} - ${pin.title}</h3>
+            <h3>Editing Map Pin: ${pin.category} - ${pin.title}</h3>
             <label for="editCategory">Category:</label>
             <input type="text" id="editCategory" value="${pin.category}"><br>
             <label for="editTitle">Title:</label>
