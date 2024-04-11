@@ -1,3 +1,36 @@
+var maps = [
+  {
+      name: "Monaco",
+      mapImage: "https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/MonacoOverview_Hi-Res.jpg",
+      fileName: "map_monaco.json",
+      defaultData: "https://coolstuffgoeshere.github.io/map_monaco.json"
+  },
+  {
+      name: "Seoul",
+      mapImage: "https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/SeoulOverview_Hi-Res.jpg",
+      fileName: "map_seoul.json",
+      defaultData: "https://coolstuffgoeshere.github.io/map_seoul.json"
+  },
+  {
+      name: "Skyway Stadium",
+      mapImage: "https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/Atsuhiro_Skyway-Stadium_Overview-Map.png",
+      fileName: "map_skyway.json",
+      defaultData: "https://coolstuffgoeshere.github.io/map_skyway.json"
+  },
+  {
+      name: "Las Vegas",
+      mapImage: "https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/Atsuhiro_Las-Vegas_Overview-MAp.png",
+      fileName: "map_vegas.json",
+      defaultData: "https://coolstuffgoeshere.github.io/map_vegas.json"
+  },
+  {
+      name: "SYS$Horizon",
+      mapImage: "https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/SYSHORIZON_mapOverview.jpg",
+      fileName: "map_syshorizon.json",
+      defaultData: "https://coolstuffgoeshere.github.io/map_syshorizon.json"
+  }
+];
+
 var pins =  [
   {
     "category": "Graffiti",
@@ -371,6 +404,9 @@ var pins =  [
   }
 ];
 
+var currentMap = "Monaco";
+var currentFile = "map_monaco.json";
+
 function createPin(pin) {
     var pinElement = document.createElement('div');
     pinElement.classList.add('pin');
@@ -589,17 +625,17 @@ function clearMap() {
 }
 
 function savePinsToFile() {
-    var json = JSON.stringify(pins, null, 2);
-    var blob = new Blob([json], {type: "application/json"});
-    var url = URL.createObjectURL(blob);
+  var json = JSON.stringify(pins, null, 2);
+  var blob = new Blob([json], {type: "application/json"});
+  var url = URL.createObjectURL(blob);
 
-    var a = document.createElement("a");
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.href = url;
-    a.download = "pins.json";
-    a.click();
-    window.URL.revokeObjectURL(url);
+  var a = document.createElement("a");
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.href = url;
+  a.download = currentFile;
+  a.click();
+  window.URL.revokeObjectURL(url);
 }
 
 function loadPins() {
@@ -636,4 +672,25 @@ document.getElementById('sidebarToggle').addEventListener('click', function() {
 document.getElementById('optionsToggle').addEventListener('click', function() {
     var optionsBar = document.getElementById('optionsBar');
     optionsBar.style.display = optionsBar.style.display === 'none' ? 'block' : 'none';
+});
+
+document.querySelectorAll('button').forEach(button => {
+  button.addEventListener('click', function() {
+      selectedLocation = this.textContent.trim(); // Set selectedLocation based on the button text
+      var selectedMap = maps.find(map => map.name === selectedLocation);
+
+      if (selectedMap) {
+          document.getElementById('map').style.backgroundImage = `url(${selectedMap.mapImage})`;
+          currentMap = selectedMap.name;
+          currentFile = selectedMap.fileName;
+          fetch(selectedMap.defaultData)
+              .then(response => response.json())
+              .then(data => {
+                  pins = data;
+                  clearMap();
+                  loadPins();
+              })
+              .catch(error => console.error('Error loading JSON:', error));
+      }
+  });
 });
