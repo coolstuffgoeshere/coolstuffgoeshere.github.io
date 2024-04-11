@@ -273,7 +273,7 @@ var pins =  [
     "category": "Diamonds",
     "title": "Sign Post 2",
     "coords": {
-      "x": "47.054913294797686%",
+      "x": "48%",
       "y": "34.33815028901734%"
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787524643225642/poker.png?ex=6629ad3d&is=6617383d&hm=a0d53e4b8ecf993dc85fb72493fe171c1b389e767fcc4788d90b47d632c7c4ea&",
@@ -288,6 +288,86 @@ var pins =  [
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227822170743242784/image.png?ex=6629cd81&is=66175881&hm=fee7b8b247879ae714a7c0a34d2f3cc8f66ac001828fa294360e2d9719310c10&",
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228072176138191010/srglitch.png?ex=662ab657&is=66184157&hm=d074db4c83f2b2bd360e804b92e76a669f57958ec710d3874016948a005010bd&"
+  },
+  {
+    "category": "Power Generator",
+    "title": "Residential",
+    "coords": {
+      "x": "55.55555555555556%",
+      "y": "45.05555555555556%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228078320000958524/flash.png?ex=662abc10&is=66184710&hm=6b3c807d3dcca2b6c22685a1f7e2964ccdb55b8a47e79f97118d2e325088ba78&",
+    "dataImg": ""
+  },
+  {
+    "category": "Power Generator",
+    "title": "Forest",
+    "coords": {
+      "x": "47%",
+      "y": "34%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228078320000958524/flash.png?ex=662abc10&is=66184710&hm=6b3c807d3dcca2b6c22685a1f7e2964ccdb55b8a47e79f97118d2e325088ba78&",
+    "dataImg": ""
+  },
+  {
+    "category": "Power Generator",
+    "title": "Construction",
+    "coords": {
+      "x": "61.22222222222222%",
+      "y": "57.111111111111114%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228078320000958524/flash.png?ex=662abc10&is=66184710&hm=6b3c807d3dcca2b6c22685a1f7e2964ccdb55b8a47e79f97118d2e325088ba78&",
+    "dataImg": ""
+  },
+  {
+    "category": "Power Generator",
+    "title": "Villas",
+    "coords": {
+      "x": "68.77777777777777%",
+      "y": "64%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228078320000958524/flash.png?ex=662abc10&is=66184710&hm=6b3c807d3dcca2b6c22685a1f7e2964ccdb55b8a47e79f97118d2e325088ba78&",
+    "dataImg": ""
+  },
+  {
+    "category": "Power Generator",
+    "title": "Park",
+    "coords": {
+      "x": "78.66666666666666%",
+      "y": "68.66666666666667%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228078320000958524/flash.png?ex=662abc10&is=66184710&hm=6b3c807d3dcca2b6c22685a1f7e2964ccdb55b8a47e79f97118d2e325088ba78&",
+    "dataImg": ""
+  },
+  {
+    "category": "Power Generator",
+    "title": "Cathedral",
+    "coords": {
+      "x": "48.77777777777778%",
+      "y": "66.44444444444444%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228078320000958524/flash.png?ex=662abc10&is=66184710&hm=6b3c807d3dcca2b6c22685a1f7e2964ccdb55b8a47e79f97118d2e325088ba78&",
+    "dataImg": ""
+  },
+  {
+    "category": "Power Generator",
+    "title": "Cliffside",
+    "coords": {
+      "x": "19.22222222222222%",
+      "y": "63.5%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228078320000958524/flash.png?ex=662abc10&is=66184710&hm=6b3c807d3dcca2b6c22685a1f7e2964ccdb55b8a47e79f97118d2e325088ba78&",
+    "dataImg": ""
+  },
+  {
+    "category": "Power Generator",
+    "title": "Royal Plaza",
+    "coords": {
+      "x": "12%",
+      "y": "38.77777777777778%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228078320000958524/flash.png?ex=662abc10&is=66184710&hm=6b3c807d3dcca2b6c22685a1f7e2964ccdb55b8a47e79f97118d2e325088ba78&",
+    "dataImg": ""
   }
 ];
 
