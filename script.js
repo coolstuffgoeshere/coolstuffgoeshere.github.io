@@ -277,25 +277,6 @@ function loadPins() {
     updateSidebar();
 }
 
-window.onload = function() {
-    document.getElementById('loadButton').addEventListener('click', function() {
-        var input = document.createElement('input');
-        input.type = 'file';
-        input.accept = '.json';
-        input.onchange = function(event) {
-            var file = event.target.files[0];
-            if (file) {
-                loadPinsFromFile(file);
-            }
-        };
-        input.click();
-    });
-
-    document.getElementById('saveButton').addEventListener('click', savePinsToFile);
-    document.getElementById('map').addEventListener('click', addPin);
-    loadPins();
-};
-
 document.getElementById('sidebarToggle').addEventListener('click', function() {
     var sidebar = document.getElementById('sidebar');
     sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
@@ -327,6 +308,23 @@ document.querySelectorAll('button').forEach(button => {
   });
 });
 
+
+document.getElementById('map').addEventListener('click', addPin);
+
+document.getElementById('loadButton').addEventListener('click', function() {
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = function(event) {
+      var file = event.target.files[0];
+      if (file) {
+          loadPinsFromFile(file);
+      }
+  };
+  input.click();
+});
+
+document.getElementById('saveButton').addEventListener('click', savePinsToFile);
 
 // Load map based on the URL hash route
 function loadMap() {
