@@ -241,23 +241,13 @@ var pins = [
   },
   {
     "category": "Diamonds",
-    "title": "Sign Post 2",
-    "coords": {
-      "x": "69.51848210774676%",
-      "y": "30.824026740070785%"
-    },
-    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787524643225642/poker.png?ex=6629ad3d&is=6617383d&hm=a0d53e4b8ecf993dc85fb72493fe171c1b389e767fcc4788d90b47d632c7c4ea&",
-    "dataImg": ""
-  },
-  {
-    "category": "Diamonds",
     "title": "Sign Post 4",
     "coords": {
       "x": "62.67616987809673%",
       "y": "33.53735745182855%"
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787524643225642/poker.png?ex=6629ad3d&is=6617383d&hm=a0d53e4b8ecf993dc85fb72493fe171c1b389e767fcc4788d90b47d632c7c4ea&",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1227968583112327198/1228034228344721550/image.png?ex=662a92ff&is=66181dff&hm=79c6505f017917a84420c8b417f79e1992016f765f7f90e944472eddae7988d0&"
   },
   {
     "category": "Diamonds",
@@ -267,19 +257,29 @@ var pins = [
       "y": "35.34624459300039%"
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787524643225642/poker.png?ex=6629ad3d&is=6617383d&hm=a0d53e4b8ecf993dc85fb72493fe171c1b389e767fcc4788d90b47d632c7c4ea&",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1227968583112327198/1228034520121610361/image.png?ex=662a9345&is=66181e45&hm=59d4dc42d30b9b81cc87317dae0ef5afddc59231c404c7df94bfd1070fa750f1&"
+  },
+  {
+    "category": "Diamonds",
+    "title": "Sign Post 5",
+    "coords": {
+      "x": "67.33867577509196%",
+      "y": "32.34130320546505%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787524643225642/poker.png?ex=6629ad3d&is=6617383d&hm=a0d53e4b8ecf993dc85fb72493fe171c1b389e767fcc4788d90b47d632c7c4ea&",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227968583112327198/1228033981220388915/20240411182442_1.jpg?ex=662a92c4&is=66181dc4&hm=dcc9a11515f76cdf7d4b26d655ad78754dab4ba995f4da45d3c75027d127ccf4&"
   },
   {
     "category": "Diamonds",
     "title": "Sign Post 2",
     "coords": {
-      "x": "48.95222178529296%",
-      "y": "34.63841918993315%"
+      "x": "47.054913294797686%",
+      "y": "34.33815028901734%"
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787524643225642/poker.png?ex=6629ad3d&is=6617383d&hm=a0d53e4b8ecf993dc85fb72493fe171c1b389e767fcc4788d90b47d632c7c4ea&",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1227968583112327198/1228034520121610361/image.png?ex=662a9345&is=66181e45&hm=59d4dc42d30b9b81cc87317dae0ef5afddc59231c404c7df94bfd1070fa750f1&"
   }
-]
+];
 
 function createPin(pin) {
     var pinElement = document.createElement('div');
