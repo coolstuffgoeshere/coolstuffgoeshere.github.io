@@ -123,7 +123,7 @@ input[type="text"] {
 }
 
 #sidebarToggle {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   z-index: 100;
@@ -137,7 +137,7 @@ input[type="text"] {
 }
 
 #editMode {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 101;
