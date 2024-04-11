@@ -207,9 +207,10 @@ function updateSidebar() {
 }
 
 function showPinEdit(pin, sidebar) {
-    sidebar.innerHTML += `
+    var editMode = document.getElementById('editMode');
+    editMode.innerHTML = `
         <div id="editPin">
-            <h3>Editting Selected Pin</h3>
+            <h3>Editting Map Pin: ${pin.category} - ${pin.title}</h3>
             <label for="editCategory">Category:</label>
             <input type="text" id="editCategory" value="${pin.category}"><br>
             <label for="editTitle">Title:</label>
@@ -260,7 +261,11 @@ function savePinEdit(index) {
     updateSidebar();
     clearMap(); // Clear existing pins from the map
     loadPins(); // Reload pins onto the map after modification
+
+    // Clear editMode div
+    document.getElementById('editMode').innerHTML = '';
 }
+
 
 
 function addPin(event) {
@@ -346,3 +351,8 @@ window.onload = function() {
     document.getElementById('map').addEventListener('click', addPin);
     loadPins();
 };
+
+document.getElementById('sidebarToggle').addEventListener('click', function() {
+    var sidebar = document.getElementById('sidebar');
+    sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+});
