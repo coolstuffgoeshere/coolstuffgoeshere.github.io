@@ -1,4 +1,4 @@
-var pins = [
+var pins =  [
   {
     "category": "Graffiti",
     "title": "S Lies",
@@ -47,7 +47,7 @@ var pins = [
       "y": "44.63888888888889%"
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227832825772773467/fountain.png?ex=6629d76d&is=6617626d&hm=b6f9cc04dc05b2186119e1d7344e62fc9f351a60668a9577d76418434201a32c&",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1228035039695208600/1228074242747404390/image.png?ex=662ab843&is=66184343&hm=932533db0b3e8db26192354f2d0b33d0c9dfd01ba8a781058cc0f4e832dac1d1&"
   },
   {
     "category": "Fountain",
@@ -147,7 +147,7 @@ var pins = [
       "y": "60.60512678031607%"
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787011881173022/cannon.png?ex=6629acc2&is=661737c2&hm=5d03d04290e63a550a5d3eb8ae6a0af2fd7b3fbd608d9af16bdfde477f8f8f8f&",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1228035039695208600/1228073278073995356/image.png?ex=662ab75d&is=6618425d&hm=56634f868b5edd99560c4f27c69d1ad59ba9204280067827009d0531e6d9e65d&"
   },
   {
     "category": "Statue Non-Destructible",
@@ -187,7 +187,7 @@ var pins = [
       "y": "49.463429020841524%"
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227786563946283131/sculpture.png?ex=6629ac58&is=66173758&hm=eeedd3673f92be132b7abd5cdfa37ba3d9a251afad1e905a21f308be2ccdbfa4&",
-    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227786563946283131/sculpture.png?ex=6629ac58&is=66173758&hm=eeedd3673f92be132b7abd5cdfa37ba3d9a251afad1e905a21f308be2ccdbfa4&"
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227820894404087929/image.png?ex=6629cc51&is=66175751&hm=9ddfd59dccd823e00fcb199fc49a04cfaee0638fba019e50e26597e616094465&"
   },
   {
     "category": "Cannons",
@@ -197,7 +197,7 @@ var pins = [
       "y": "32.357648446716475%"
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787011881173022/cannon.png?ex=6629acc2&is=661737c2&hm=5d03d04290e63a550a5d3eb8ae6a0af2fd7b3fbd608d9af16bdfde477f8f8f8f&",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1228035039695208600/1228074720822296656/image.png?ex=662ab8b5&is=661843b5&hm=de899b89ed6785f1e6199f820539df13472e7a2819fe9db022a1fb0f3e03598c&"
   },
   {
     "category": "Gold Woman Statue",
@@ -236,7 +236,7 @@ var pins = [
       "x": "76.24282343688557%",
       "y": "77.39631828641123%"
     },
-    "pinImg": "https://assets.codepen.io/1533917/fried-egg.png",
+    "pinImg": "https://assets.codepen.io/1533917/easter-egg.png",
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227830939938193519/image.png?ex=6629d5ac&is=661760ac&hm=4504da2da5b85f72e14866a3479b98104cd1e57f632bd219361d5aebde988d10&"
   },
   {
