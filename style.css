@@ -2,7 +2,6 @@
 
 body, html {
     margin: 0;
-    padding: 0;
     height: 100%;
     width: 100%;
     background: black;
@@ -10,11 +9,13 @@ body, html {
     font-weight: 300;
     font-size: 20px;
     line-height: 21px;
+    
 }
 
 #map {
     position: relative;
     width: 100%;
+    margin-top: 40px;
     padding-bottom: 100%; /* Adjust as needed for the aspect ratio */
     background: url('https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/MonacoOverview_Hi-Res.jpg') no-repeat;
     background-size: contain;
@@ -89,13 +90,13 @@ body, html {
 button {
   font-family: "Saira Extra Condensed";
   font-weight: 600;
-  width: 200px;
+  width: auto;
   border: 1px solid white;
   background: none;
   color: white;
   font-size: 20px;
   line-height: 20px;
-  padding: 2px 2px;
+  padding: 4px 10px;
   cursor: pointer;
 }
 
@@ -128,6 +129,13 @@ input[type="text"] {
   z-index: 100;
 }
 
+#optionsToggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
 #editMode {
   position: absolute;
   top: 0;
@@ -142,4 +150,23 @@ h3 {
   color: #D21F3C;
   font-size: 24px;
   text-transform: uppercase;
+}
+
+#optionsBar {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  background: black;
+  color: white;
+  padding: 20px 5px;
+}
+
+.title {
+  width: 100%;
+  color: white;
+  text-align: center;
+  line-height: 14px;
+  margin-top: 4px;
 }

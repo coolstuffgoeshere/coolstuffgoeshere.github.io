@@ -270,13 +270,18 @@ function savePinEdit(index) {
 
 function addPin(event) {
     var category = prompt('Enter the category for the new pin:');
+    
+    // Check if category is null or blank
+    if (!category) {
+        return; // Exit function without creating pin
+    }
+    
     var title = prompt('Enter the title for the new pin:');
     var dataImg = prompt('Enter the data image URL for the new pin (optional):');
     var coords = getCoordsFromClick(event);
     
-    // Check if category or title is null
-    // Check if category or title is null or blank
-    if (!category || !title) {
+    // Check if title is null or blank
+    if (!title) {
         return; // Exit function without creating pin
     }
     
@@ -285,6 +290,7 @@ function addPin(event) {
     createPin(pin);
     updateSidebar();
 }
+
 
 
 function getCoordsFromClick(event) {
@@ -355,4 +361,11 @@ window.onload = function() {
 document.getElementById('sidebarToggle').addEventListener('click', function() {
     var sidebar = document.getElementById('sidebar');
     sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+});
+
+// Add event listener to the optionsToggle button
+document.getElementById('optionsToggle').addEventListener('click', function() {
+    var optionsBar = document.getElementById('optionsBar');
+    // Toggle the display style of the optionsBar between 'block' and 'none'
+    optionsBar.style.display = optionsBar.style.display === 'none' ? 'block' : 'none';
 });
