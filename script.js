@@ -91,7 +91,7 @@ var pins = [
   },
   {
     "category": "Glitch",
-    "title": "NE House",
+    "title": "North East - House",
     "coords": {
       "x": "62.51887534408179%",
       "y": "27.927186138649603%"
@@ -101,7 +101,7 @@ var pins = [
   },
   {
     "category": "Cannons",
-    "title": "NW 01",
+    "title": "North - Plaza",
     "coords": {
       "x": "20.010027526543453%",
       "y": "25.567768128425456%"
@@ -111,7 +111,7 @@ var pins = [
   },
   {
     "category": "Cannons",
-    "title": "W 02",
+    "title": "West - Plaza 1",
     "coords": {
       "x": "8.56685017695635%",
       "y": "35.16273470333698%"
@@ -121,7 +121,7 @@ var pins = [
   },
   {
     "category": "Cannons",
-    "title": "W 03",
+    "title": "West - Plaza 2",
     "coords": {
       "x": "7.229846637829336%",
       "y": "38.97712715319934%"
@@ -131,7 +131,7 @@ var pins = [
   },
   {
     "category": "Glitch",
-    "title": "SW Under Hut",
+    "title": "South West - Hut",
     "coords": {
       "x": "10.69032638615808%",
       "y": "58.67826873863301%"
@@ -141,7 +141,7 @@ var pins = [
   },
   {
     "category": "Cannons",
-    "title": "W 04",
+    "title": "South West - Hotels",
     "coords": {
       "x": "18.16181675186787%",
       "y": "60.60512678031607%"
@@ -191,7 +191,7 @@ var pins = [
   },
   {
     "category": "Cannons",
-    "title": "East 1",
+    "title": "North East - Park",
     "coords": {
       "x": "73.76543452615022%",
       "y": "32.357648446716475%"
