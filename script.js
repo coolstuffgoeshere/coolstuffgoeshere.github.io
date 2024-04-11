@@ -702,15 +702,14 @@ document.querySelectorAll('button').forEach(button => {
 });
 
 
-// Load map based on the URL path ie /seoul
+// Load map based on the URL hash route
 function loadMap() {
-  const path = window.location.pathname;
-  const location = path.substring(1); // Remove the leading slash
+  const hash = window.location.hash.substring(1); // Extract the hash part of the URL
 
-  let selectedMap = maps.find(map => map.urlName.toLowerCase() === location.toLowerCase());
+  let selectedMap = maps.find(map => map.urlName.toLowerCase() === hash.toLowerCase());
 
   if (!selectedMap) {
-      // Set Monaco as the default map if no location is specified
+      // Set Monaco as the default map if no hash route is specified
       selectedMap = maps.find(map => map.urlName.toLowerCase() === 'monaco');
   }
 
@@ -727,5 +726,8 @@ function loadMap() {
       .catch(error => console.error('Error loading JSON:', error));
 }
 
-// Let the fun begin
+// Listen for hash changes to trigger map loading
+window.addEventListener('hashchange', loadMap);
+
+// Load map when the page loads
 window.onload = loadMap;
