@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@100;200;300;400;500;600;700;800;900&family=Saira:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background: black;
+    font-family: "Saira Extra Condensed";
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 21px;
+}
+
+#map {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* Adjust as needed for the aspect ratio */
+    background: url('https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/MonacoOverview_Hi-Res.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.pin {
+    position: absolute;
+    width: 2vw; /* Adjust based on pin image size */
+    height: 2vw; /* Adjust based on pin image size */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.pin img {
+    width: 100%;
+    height: 100%;
+/*     border-radius: 50%; */
+}
+
+.popup {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 300px;
+    display: none;
+    z-index: 100;
+}
+
+.popup.active {
+    display: block;
+}
+
+.popup .data-img {
+    display: none;
+}
+
+.popup.active .data-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.popup button {
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    z-index: 100;
+}
+
+#sidebar > h3 {
+  margin: 0;
+  color: #D21F3C;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+button {
+  font-family: "Saira Extra Condensed";
+  font-weight: 600;
+  width: 200px;
+  border: 1px solid white;
+  background: none;
+  color: white;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 2px 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: white;
+  color: black;
+}
+
+button:hover span {
+  display:none
+}
+
+/* input[type="checkbox"] {
+    height: 1.2vw;
+    width: 1.2vw;
+} */
+
+input[type="text"] {
+    height: auto;
+    width: 200px;
+    font-family: "Saira Extra Condensed";
+    font-weight: 300;
+    font-size: 14px;
+}
