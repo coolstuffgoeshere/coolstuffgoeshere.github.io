@@ -71,7 +71,7 @@ var pins = [
   },
   {
     "category": "Diamonds",
-    "title": "Sign Post",
+    "title": "Sign Post 1",
     "coords": {
       "x": "24.63368283093054%",
       "y": "28.418905635648755%"
@@ -238,8 +238,48 @@ var pins = [
     },
     "pinImg": "https://assets.codepen.io/1533917/fried-egg.png",
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227830939938193519/image.png?ex=6629d5ac&is=661760ac&hm=4504da2da5b85f72e14866a3479b98104cd1e57f632bd219361d5aebde988d10&"
+  },
+  {
+    "category": "Diamonds",
+    "title": "Sign Post 2",
+    "coords": {
+      "x": "69.51848210774676%",
+      "y": "30.824026740070785%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787524643225642/poker.png?ex=6629ad3d&is=6617383d&hm=a0d53e4b8ecf993dc85fb72493fe171c1b389e767fcc4788d90b47d632c7c4ea&",
+    "dataImg": ""
+  },
+  {
+    "category": "Diamonds",
+    "title": "Sign Post 4",
+    "coords": {
+      "x": "62.67616987809673%",
+      "y": "33.53735745182855%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787524643225642/poker.png?ex=6629ad3d&is=6617383d&hm=a0d53e4b8ecf993dc85fb72493fe171c1b389e767fcc4788d90b47d632c7c4ea&",
+    "dataImg": ""
+  },
+  {
+    "category": "Diamonds",
+    "title": "Sign Post 3",
+    "coords": {
+      "x": "54.496854109319706%",
+      "y": "35.34624459300039%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787524643225642/poker.png?ex=6629ad3d&is=6617383d&hm=a0d53e4b8ecf993dc85fb72493fe171c1b389e767fcc4788d90b47d632c7c4ea&",
+    "dataImg": ""
+  },
+  {
+    "category": "Diamonds",
+    "title": "Sign Post 2",
+    "coords": {
+      "x": "48.95222178529296%",
+      "y": "34.63841918993315%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787524643225642/poker.png?ex=6629ad3d&is=6617383d&hm=a0d53e4b8ecf993dc85fb72493fe171c1b389e767fcc4788d90b47d632c7c4ea&",
+    "dataImg": ""
   }
-];
+]
 
 function createPin(pin) {
     var pinElement = document.createElement('div');
@@ -399,7 +439,7 @@ function savePinEdit(index) {
     pins[index].dataImg = editDataImg;
 
     updateSidebar();
-    clearMap(); // Clear existing pins from the map
+    clearMap(); // Clear pins from the map
     loadPins(); // Reload pins onto the map after modification
 
     // Clear editMode div
@@ -411,18 +451,18 @@ function savePinEdit(index) {
 function addPin(event) {
     var category = prompt('Enter the category for the new pin:');
     
-    // Check if category is null or blank
+    // Check if category is null or blank then stop
     if (!category) {
-        return; // Exit function without creating pin
+        return;
     }
     
     var title = prompt('Enter the title for the new pin:');
     var dataImg = prompt('Enter the data image URL for the new pin (optional):');
     var coords = getCoordsFromClick(event);
     
-    // Check if title is null or blank
+    // Check if title is null or blank then stop
     if (!title) {
-        return; // Exit function without creating pin
+        return;
     }
     
     var pin = {category: category, title: title, coords: coords, pinImg: 'https://assets.codepen.io/1533917/fried-egg.png', dataImg: dataImg};
@@ -436,7 +476,7 @@ function addPin(event) {
 function getCoordsFromClick(event) {
     var map = document.getElementById('map');
     var rect = map.getBoundingClientRect();
-    var pinSize = 3; // Adjust based on pin size
+    var pinSize = 3; // Adjust based on pin size (3 works best)
     var x = ((event.clientX - rect.left) / map.offsetWidth * 100) - (pinSize / 2) + '%';
     var y = ((event.clientY - rect.top) / map.offsetHeight * 100) - (pinSize / 2) + '%';
     return {x: x, y: y};
@@ -448,7 +488,7 @@ function loadPinsFromFile(file) {
         var loadedPins = JSON.parse(event.target.result);
         pins = loadedPins;
         clearMap(); // Clear existing pins from the map
-        loadPins(); // Load newly loaded pins onto the map
+        loadPins(); // Load the new pins onto the map
     };
     reader.readAsText(file);
 }
@@ -503,9 +543,7 @@ document.getElementById('sidebarToggle').addEventListener('click', function() {
     sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
 });
 
-// Add event listener to the optionsToggle button
 document.getElementById('optionsToggle').addEventListener('click', function() {
     var optionsBar = document.getElementById('optionsBar');
-    // Toggle the display style of the optionsBar between 'block' and 'none'
     optionsBar.style.display = optionsBar.style.display === 'none' ? 'block' : 'none';
 });
