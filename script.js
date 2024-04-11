@@ -41,22 +41,22 @@ var pins = [
   },
   {
     "category": "Fountain",
-    "title": "East",
+    "title": "East - Pocket Park",
     "coords": {
       "x": "81.44444444444444%",
       "y": "44.63888888888889%"
     },
-    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227786563946283131/sculpture.png?ex=6629ac58&is=66173758&hm=eeedd3673f92be132b7abd5cdfa37ba3d9a251afad1e905a21f308be2ccdbfa4&",
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227832825772773467/fountain.png?ex=6629d76d&is=6617626d&hm=b6f9cc04dc05b2186119e1d7344e62fc9f351a60668a9577d76418434201a32c&",
     "dataImg": ""
   },
   {
     "category": "Fountain",
-    "title": "West",
+    "title": "West - Plaza",
     "coords": {
       "x": "10.059633027522937%",
       "y": "37.69806684141546%"
     },
-    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227786563946283131/sculpture.png?ex=6629ac58&is=66173758&hm=eeedd3673f92be132b7abd5cdfa37ba3d9a251afad1e905a21f308be2ccdbfa4&",
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227832825772773467/fountain.png?ex=6629d76d&is=6617626d&hm=b6f9cc04dc05b2186119e1d7344e62fc9f351a60668a9577d76418434201a32c&",
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227782477058412585/image.png?ex=6629a889&is=66173389&hm=1b45dacc290191c48038d22db26f82514664661ac20a359f2918d93f3aa8d132&"
   },
   {
@@ -81,7 +81,7 @@ var pins = [
   },
   {
     "category": "Woman Statue",
-    "title": "West",
+    "title": "West - Plaza",
     "coords": {
       "x": "18.631061598951508%",
       "y": "27.396625163827%"
@@ -117,7 +117,7 @@ var pins = [
       "y": "35.16273470333698%"
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787011881173022/cannon.png?ex=6629acc2&is=661737c2&hm=5d03d04290e63a550a5d3eb8ae6a0af2fd7b3fbd608d9af16bdfde477f8f8f8f&",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227825807099957290/image.png?ex=6629d0e4&is=66175be4&hm=01efa2c8e481d759979b9dc0e2fdb4b03f314bce450477cee1ad05afefb198dd&"
   },
   {
     "category": "Cannons",
@@ -127,7 +127,7 @@ var pins = [
       "y": "38.97712715319934%"
     },
     "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227787011881173022/cannon.png?ex=6629acc2&is=661737c2&hm=5d03d04290e63a550a5d3eb8ae6a0af2fd7b3fbd608d9af16bdfde477f8f8f8f&",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227825807099957290/image.png?ex=6629d0e4&is=66175be4&hm=01efa2c8e481d759979b9dc0e2fdb4b03f314bce450477cee1ad05afefb198dd&"
   },
   {
     "category": "Glitch",
@@ -161,17 +161,17 @@ var pins = [
   },
   {
     "category": "Fountain",
-    "title": "South",
+    "title": "South East - Park",
     "coords": {
       "x": "74.39461266221%",
       "y": "75.22040896578844%"
     },
-    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227786563946283131/sculpture.png?ex=6629ac58&is=66173758&hm=eeedd3673f92be132b7abd5cdfa37ba3d9a251afad1e905a21f308be2ccdbfa4&",
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227832825772773467/fountain.png?ex=6629d76d&is=6617626d&hm=b6f9cc04dc05b2186119e1d7344e62fc9f351a60668a9577d76418434201a32c&",
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227820941523025990/image.png?ex=6629cc5c&is=6617575c&hm=1e4cc3e6b6dc42d3efdbca3d9c36aaa305cd28533c16a8a514e8cd24fd7b4f3a&"
   },
   {
     "category": "Woman Statue",
-    "title": "South",
+    "title": "South East - Park",
     "coords": {
       "x": "74.82717263075108%",
       "y": "82.7705465985057%"
@@ -181,7 +181,7 @@ var pins = [
   },
   {
     "category": "Woman Statue",
-    "title": "East",
+    "title": "East - Pocket Park",
     "coords": {
       "x": "85.75914274478961%",
       "y": "49.463429020841524%"
@@ -201,7 +201,7 @@ var pins = [
   },
   {
     "category": "Woman Statue",
-    "title": "Center",
+    "title": "Center - Near Cathedral",
     "coords": {
       "x": "41.75599685410932%",
       "y": "63.86898836112613%"
@@ -218,6 +218,26 @@ var pins = [
     },
     "pinImg": "https://assets.codepen.io/1533917/easter-egg.png",
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227821045805875341/image.png?ex=6629cc75&is=66175775&hm=184343b0bda1d137ce7c98ae456d0cc2b86bb725d366bda318a230fc649841de&"
+  },
+  {
+    "category": "Fountain",
+    "title": "Center - Shopping",
+    "coords": {
+      "x": "38.96401887534408%",
+      "y": "50.69557113737465%"
+    },
+    "pinImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227832825772773467/fountain.png?ex=6629d76d&is=6617626d&hm=b6f9cc04dc05b2186119e1d7344e62fc9f351a60668a9577d76418434201a32c&",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227832150158741554/image.png?ex=6629d6cc&is=661761cc&hm=737ebfeb1494a86f4c4e002d5e1d0d8e595948d66f9e63857b0ffe85198d2ef8&"
+  },
+  {
+    "category": "Statue Non-Destructible",
+    "title": "Lovers",
+    "coords": {
+      "x": "76.24282343688557%",
+      "y": "77.39631828641123%"
+    },
+    "pinImg": "https://assets.codepen.io/1533917/fried-egg.png",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1227830939938193519/image.png?ex=6629d5ac&is=661760ac&hm=4504da2da5b85f72e14866a3479b98104cd1e57f632bd219361d5aebde988d10&"
   }
 ];
 
