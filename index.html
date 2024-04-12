@@ -10,19 +10,17 @@
   <meta property="og:url" content="coolstuffgoeshere.github.io">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="Maps for EE-Hunt3rs">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style.css?v=0023">
   <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
-
 </head>
 <body>
-<!-- partial:index.partial.html -->
 
 <div id="app">
   <div class="header">
     <div class="logo">
       <div class="title">THE FINALS</div>
       <div class="subtitle">INTERACTIVE MAP</div>
-      <div class="version">v0.016 4.11.24</div>
+      <div class="version">v0.023 4.13.24</div>
     </div>
     <div class="menu">
       <div class="menu-button">
@@ -42,6 +40,7 @@
           <div id="saveButton">Save data as JSON</div>
         </div>
       </div>
+      MAP MODE:<div class="toggle-button">VIEW MAP</div><div class="toggle-button">ADD PINS</div>
     </div>
 
     <!-- <span style="font-size: 16px; line-height: 16px;">ADD PIN - Click anywhere on the map<br>EDIT PIN - Click pin title on the sidebar<span></span> -->
@@ -54,7 +53,14 @@
   <div id="details"></div>
 </div>
 
-  <script  src="./script.js"></script>
+  <div class="namatamaContainer">
+    <div id="namatamaText">Hover or tap on a pin and I'll show you more details. </div>
+    <img id="namatamaImg" src="https://coolstuffgoeshere.github.io/MapaTama.svg" alt="" />
+    <div id="namatamaReflection">  <img id="namatamaImg" src="https://coolstuffgoeshere.github.io/MapaTama.svg" alt="" /> </div>
+  </div>
+
+  <script  src="./script.js?v=0023"></script>
+
 
 </body>
 </html>

@@ -45,6 +45,47 @@ const zoomData = {
     y: 0
 };
 
+let isAddPinMode = false;
+
+// Set the default mode to VIEW MAP and set active buttons
+document.querySelectorAll('.toggle-button').forEach(function(button, index) {
+    if (index === 0) {
+        button.classList.add('active');
+    }
+    button.addEventListener('click', function() {
+        if (index === 0) {
+            isAddPinMode = false; // VIEW MAP mode
+        } else {
+            isAddPinMode = true; // ADD PINS mode
+        }
+
+        // Update button styles based on the selected mode
+        document.querySelectorAll('.toggle-button').forEach(function(btn, idx) {
+            if (idx === index) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    });
+});
+
+document.getElementById('map').addEventListener('click', function(event) {
+    if (isAddPinMode) {
+        addPin(event);
+    }
+});
+
+// Show/Hide Namatama Text
+// function toggleText() {
+//     var text = document.getElementById("namatamaText");
+//     if (text.style.display === "none") {
+//       text.style.display = "block";
+//     } else {
+//       text.style.display = "none";
+//     }
+//   }
+
 function createPin(pin) {
   var pinElement = document.createElement('div');
   pinElement.classList.add('pin');
@@ -63,12 +104,14 @@ function createPin(pin) {
   document.getElementById('map').appendChild(pinElement);
 
   pinElement.addEventListener('mouseenter', function() {
-      popup.classList.add('active');
-  });
+    popup.classList.add('active');
+    updateNamatamaText(pin);
+});
 
-  pinElement.addEventListener('mouseleave', function() {
-      popup.classList.remove('active');
-  });
+pinElement.addEventListener('mouseleave', function() {
+    popup.classList.remove('active');
+    clearNamatamaText();
+});
 
   pinElement.addEventListener('click', function() {
       togglePopup(popup);
@@ -95,7 +138,6 @@ function createPopup(pin) {
 
     return popup;
 }
-
 
 function deletePin(index) {
   if (confirm("Are you sure you want to delete this pin?")) {
@@ -172,15 +214,6 @@ function showPinEdit(pin, sidebar) {
             <button onclick="savePinEdit(${pins.indexOf(pin)})">Save & Close</button>
             <button onclick="deletePin(${pins.indexOf(pin)}); document.getElementById('editMode').innerHTML = '';">Delete & Close</button>
         </div>`;
-}
-
-function deletePin(index) {
-    if (confirm("Are you sure you want to delete this pin?")) {
-        pins.splice(index, 1);
-        updateSidebar();
-        clearMap(); 
-        loadPins(); 
-    }
 }
 
 
@@ -308,7 +341,6 @@ for (let map of maps) {
     mapChoices.appendChild(choice);
 }
 
-
 const map = document.getElementById('map');
 
 // Event Listeners
@@ -329,7 +361,6 @@ document.addEventListener('click', function(event) {
   }
 });
 
-document.getElementById('map').addEventListener('click', addPin);
 
 document.getElementById('loadButton').addEventListener('click', function() {
   var input = document.createElement('input');
@@ -483,3 +514,19 @@ const filterPanel = document.getElementById('sidebar');
 function toggleFilter() {
     filterPanel.classList.toggle('disabled');
 }
+
+
+
+
+function updateNamatamaText(pin) {
+    var namatamaText = document.getElementById('namatamaText');
+    namatamaText.innerHTML = '<strong>Category:</strong> ' + pin.category + '<br>' +
+                             '<strong>Title:</strong> ' + pin.title + '<br>' +
+                             '<strong>Image:</strong> <img src="' + pin.dataImg + '" style="">';
+}
+
+function clearNamatamaText() {
+    var namatamaText = document.getElementById('namatamaText');
+    namatamaText.innerHTML = 'Nice work! Now go find an easter egg. ❤️';
+}
+
