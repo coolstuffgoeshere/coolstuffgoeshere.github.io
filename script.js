@@ -40,6 +40,37 @@ var pins = [];
 var currentMap = "Monaco";
 var currentFile = "map_monaco.json";
 
+let isAddPinMode = false;
+
+// Set the default mode to VIEW MAP and update button styles
+document.querySelectorAll('.toggle-button').forEach(function(button, index) {
+    if (index === 0) {
+        button.classList.add('active');
+    }
+    button.addEventListener('click', function() {
+        if (index === 0) {
+            isAddPinMode = false; // VIEW MAP mode
+        } else {
+            isAddPinMode = true; // ADD PINS mode
+        }
+
+        // Update button styles based on the selected mode
+        document.querySelectorAll('.toggle-button').forEach(function(btn, idx) {
+            if (idx === index) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    });
+});
+
+document.getElementById('map').addEventListener('click', function(event) {
+    if (isAddPinMode) {
+        addPin(event);
+    }
+});
+
 function toggleText() {
     var text = document.getElementById("namatamaText");
     if (text.style.display === "none") {
@@ -339,7 +370,6 @@ document.addEventListener('click', function(event) {
   }
 });
 
-document.getElementById('map').addEventListener('click', addPin);
 
 document.getElementById('loadButton').addEventListener('click', function() {
   var input = document.createElement('input');

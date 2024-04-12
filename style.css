@@ -99,6 +99,31 @@ html {
   color: #D21F3C;
 }
 
+.toggle-button {
+  background-color: none;
+  outline: none;
+  font-family: "Saira Extra Condensed";
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  height: 20px; 
+  padding: 4px 10px 4px 8px;
+  margin: 0 5px;
+  transition: color 100ms ease-in-out;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.toggle-button:hover {
+  color: black;
+  background: white;
+}
+
+.toggle-button.active {
+  color: white;
+  background: #D21F3C;
+}
+
 #mapContainer {
   width: 100vw;
   height: 100vh;
