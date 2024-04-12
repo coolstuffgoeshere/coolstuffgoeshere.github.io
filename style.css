@@ -334,6 +334,10 @@ h3 {
   animation-delay: 1.5s; /* Delay before animation starts */
 }
 
+#namatamaText > img {
+  width: 100%;
+}
+
 #namatamaImg {
   cursor: pointer; /* Add cursor style to indicate clickable */
   animation: 2s idleSwing ease-in infinite;

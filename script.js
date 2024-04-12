@@ -42,7 +42,7 @@ var currentFile = "map_monaco.json";
 
 let isAddPinMode = false;
 
-// Set the default mode to VIEW MAP and update button styles
+// Set the default mode to VIEW MAP and set active buttons
 document.querySelectorAll('.toggle-button').forEach(function(button, index) {
     if (index === 0) {
         button.classList.add('active');
@@ -71,15 +71,15 @@ document.getElementById('map').addEventListener('click', function(event) {
     }
 });
 
-function toggleText() {
-    var text = document.getElementById("namatamaText");
-    if (text.style.display === "none") {
-      text.style.display = "block";
-    } else {
-      text.style.display = "none";
-    }
-  }
-  
+// Show/Hide Namatama Text
+// function toggleText() {
+//     var text = document.getElementById("namatamaText");
+//     if (text.style.display === "none") {
+//       text.style.display = "block";
+//     } else {
+//       text.style.display = "none";
+//     }
+//   }
 
 function createPin(pin) {
   var pinElement = document.createElement('div');
@@ -99,12 +99,14 @@ function createPin(pin) {
   document.getElementById('map').appendChild(pinElement);
 
   pinElement.addEventListener('mouseenter', function() {
-      popup.classList.add('active');
-  });
+    popup.classList.add('active');
+    updateNamatamaText(pin);
+});
 
-  pinElement.addEventListener('mouseleave', function() {
-      popup.classList.remove('active');
-  });
+pinElement.addEventListener('mouseleave', function() {
+    popup.classList.remove('active');
+    clearNamatamaText();
+});
 
   pinElement.addEventListener('click', function() {
       togglePopup(popup);
@@ -339,7 +341,6 @@ for (let map of maps) {
     mapChoices.appendChild(choice);
 }
 
-
 const zoomRange = document.getElementById('zoomRange');
 const map = document.getElementById('map');
 
@@ -422,3 +423,20 @@ window.addEventListener('hashchange', loadMap);
 
 // Load map when the page loads
 window.onload = loadMap;
+
+
+
+
+
+function updateNamatamaText(pin) {
+    var namatamaText = document.getElementById('namatamaText');
+    namatamaText.innerHTML = '<strong>Category:</strong> ' + pin.category + '<br>' +
+                             '<strong>Title:</strong> ' + pin.title + '<br>' +
+                             '<strong>Image:</strong> <img src="' + pin.dataImg + '" style="">';
+}
+
+function clearNamatamaText() {
+    var namatamaText = document.getElementById('namatamaText');
+    namatamaText.innerHTML = 'Nice work! Now go find an easter egg. ❤️';
+}
+
