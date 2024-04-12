@@ -257,5 +257,9 @@ h3 {
   .menu-button .name {
     margin: 0 10px;
   }
+  .pin {
+    width: 4vw;
+    height: 4vw;
+  }
 }
 
