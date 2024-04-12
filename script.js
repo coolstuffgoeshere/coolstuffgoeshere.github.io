@@ -389,7 +389,6 @@ window.addEventListener('hashchange', loadMap);
 window.onload = loadMap;
 
 let mapContainer = document.getElementById('map-container');
-let map = document.getElementById('map');
 const r = mapContainer.getBoundingClientRect();
 const min = Math.min(r.width, r.height);
 map.style.width = min + 'px';
