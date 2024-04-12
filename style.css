@@ -28,24 +28,26 @@ html {
   display: block;
   background-color: #D21F3C;
   color: white;
-  padding: 20px 50px 10px 30px;
-  margin-right: 20px;
+  padding: 10px 50px 0px 30px;
+  /* margin-right: 20px; */
   font-family: "Saira Extra Condensed";
   font-weight: 600;
 }
 
 .logo .title {
   font-size: 40px;
+  line-height: 28px;
 }
 
 .logo .subtitle {
   font-size: 25px;
-  padding-top: 10px;
+  /* padding-top: 10px; */
   font-weight: 400;
 }
 
 .logo .version {
   font-size: 15px;
+  line-height: 10px;
   font-weight: 200;
 }
 
@@ -61,7 +63,7 @@ html {
   font-weight: 600;
   color: white;
   margin: 0 30px;
-  padding: 36px 0;
+  padding: 28px 0;
   transition: color 100ms ease-in-out;
 }
 
@@ -97,15 +99,28 @@ html {
   color: #D21F3C;
 }
 
+#mapContainer {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 15%;
+  left: 0;
+}
+
 #map {
   position: relative;
   width: 100%;
-  margin: 40px;
+  height: auto;
+  max-width: 100%;
   padding-bottom: 100%;
-  /* Adjust as needed for the aspect ratio */
   background: url('https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/MonacoOverview_Hi-Res.jpg') no-repeat;
   background-size: contain;
-  background-position: center;
+  margin-top: auto;
+  transform-origin: top left;
 }
 
 .pin {

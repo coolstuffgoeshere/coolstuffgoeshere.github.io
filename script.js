@@ -42,34 +42,36 @@ var currentMap = "Monaco";
 var currentFile = "map_monaco.json";
 
 function createPin(pin) {
-    var pinElement = document.createElement('div');
-    pinElement.classList.add('pin');
-    pinElement.style.left = pin.coords.x;
-    pinElement.style.top = pin.coords.y;
-    pinElement.title = pin.title;
+  var pinElement = document.createElement('div');
+  pinElement.classList.add('pin');
+  pinElement.style.left = pin.coords.x;
+  pinElement.style.top = pin.coords.y;
+  pinElement.title = pin.title;
 
-    var pinImage = document.createElement('img');
-    pinImage.src = pin.pinImg; // Use pinImg property for pin image
-    pinImage.alt = pin.title;
+  var pinImage = document.createElement('img');
+  pinImage.src = pin.pinImg; // Use pinImg property for pin image
+  pinImage.alt = pin.title;
 
-    var popup = createPopup(pin);
+  var popup = createPopup(pin);
 
-    pinElement.appendChild(pinImage);
-    pinElement.appendChild(popup);
-    document.getElementById('map').appendChild(pinElement);
+  pinElement.appendChild(pinImage);
+  pinElement.appendChild(popup);
+  document.getElementById('map').appendChild(pinElement);
 
-    pinElement.addEventListener('mouseenter', function() {
-        popup.classList.add('active');
-    });
+  pinElement.addEventListener('mouseenter', function() {
+      popup.classList.add('active');
+  });
 
-    pinElement.addEventListener('mouseleave', function() {
-        popup.classList.remove('active');
-    });
+  pinElement.addEventListener('mouseleave', function() {
+      popup.classList.remove('active');
+  });
 
-    pinElement.addEventListener('click', function() {
-        togglePopup(popup);
-        updateSidebar(); // Update the sidebar when pin visibility changes
-    });
+  pinElement.addEventListener('click', function() {
+      togglePopup(popup);
+      updateSidebar(); // Update the sidebar when pin visibility changes
+  });
+
+ 
 }
 
 function togglePopup(popup) {
@@ -306,6 +308,21 @@ for (let map of maps) {
     };
     mapChoices.appendChild(choice);
 }
+
+
+const zoomRange = document.getElementById('zoomRange');
+const map = document.getElementById('map');
+
+zoomRange.addEventListener('input', function() {
+    map.style.transform = `scale(${this.value / 100})`;
+     // Adjust pin size based on map zoom level
+     var pins = document.getElementsByClassName('pin');
+     for (var i = 0; i < pins.length; i++) {
+         pins[i].style.transform = `scale(${1 / (this.value / 100)})`;
+     }
+});
+
+// Event Listeners
 
 document.getElementById('map').addEventListener('click', addPin);
 

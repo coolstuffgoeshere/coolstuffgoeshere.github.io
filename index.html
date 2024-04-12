@@ -21,7 +21,7 @@
   <div class="logo">
     <div class="title">THE FINALS</div>
     <div class="subtitle">INTERACTIVE MAP</div>
-    <div class="version">v0.016 4.11.24</div>
+    <div class="version">v0.017 4.11.24</div>
   </div>
   <div class="menu">
     <div class="menu-button">
@@ -38,6 +38,7 @@
         <div id="saveButton">Save data as JSON</div>
       </div>
     </div>
+    <input style="width:200px" type="range" id="zoomRange" min="100" max="300" value="100">
   </div>
 
   <button id="sidebarToggle">Toggle Sidebar</button>
@@ -45,7 +46,7 @@
 </div>
 
 <div class="content">
-  <div id="map"></div>
+  <div id="mapContainer"><div id="map"></div></div>
   <div id="sidebar"></div>
 </div>
 
