@@ -36,7 +36,6 @@ var maps = [
   }
 ];
 
-
 var pins = [];
 var currentMap = "Monaco";
 var currentFile = "map_monaco.json";
