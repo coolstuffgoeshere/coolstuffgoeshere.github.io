@@ -669,28 +669,24 @@ document.getElementById('sidebarToggle').addEventListener('click', function() {
     sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
 });
 
-document.getElementById('optionsToggle').addEventListener('click', function() {
-    var optionsBar = document.getElementById('optionsBar');
-    optionsBar.style.display = optionsBar.style.display === 'none' ? 'block' : 'none';
-});
-
-document.querySelectorAll('button').forEach(button => {
-  button.addEventListener('click', function() {
-      selectedLocation = this.textContent.trim(); // Set selectedLocation based on the button text
-      var selectedMap = maps.find(map => map.name === selectedLocation);
-
-      if (selectedMap) {
-          document.getElementById('map').style.backgroundImage = `url(${selectedMap.mapImage})`;
-          currentMap = selectedMap.name;
-          currentFile = selectedMap.fileName;
-          fetch(selectedMap.defaultData)
-              .then(response => response.json())
-              .then(data => {
-                  pins = data;
-                  clearMap();
-                  loadPins();
-              })
-              .catch(error => console.error('Error loading JSON:', error));
-      }
-  });
-});
+// Inject map choices in the menu.
+const mapChoices = document.getElementById('map-choices');
+for (let map of maps) {
+    const choice = document.createElement('div');
+    choice.textContent = map.name;
+    choice.onclick = function() {
+        selectedLocation = map.name;
+        document.getElementById('map').style.backgroundImage = `url(${map.mapImage})`;
+        currentMap = map.name;
+        currentFile = map.fileName;
+        fetch(map.defaultData)
+            .then(response => response.json())
+            .then(data => {
+                pins = data;
+                clearMap();
+                loadPins();
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+    };
+    mapChoices.appendChild(choice);
+}

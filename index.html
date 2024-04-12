@@ -17,27 +17,36 @@
 <!-- partial:index.partial.html -->
 
 
+<div class="header">
+  <div class="logo">
+    <div class="title">THE FINALS</div>
+    <div class="subtitle">INTERACTIVE MAP</div>
+    <div class="version">v0.011 4.11.24</div>
+  </div>
+  <div class="menu">
+    <div class="menu-button">
+      <div class="name">MAPS</div>
+      <div class="choices" id="map-choices">
+        <!-- Map choices are injected dynamically -->
+      </div>
+    </div>
+    <div class="menu-button">
+      <div class="name">DATA</div>
+      <div class="choices">
+        <div id="loadButton">Load JSON data</div>
+        <div id="saveButton">Save data as JSON</div>
+      </div>
+    </div>
+  </div>
 
-<div class="title">FINALS INTERACTIVE WEB MAP (v0.011 4.11.24)<br><br><span style="font-size: 16px; line-height: 16px;">ADD PIN - Click anywhere on the map<br>EDIT PIN - Click pin title on the sidebar<span></div>
-<div id="map"></div>
-<div id="sidebar"></div>
-<button id="sidebarToggle">Toggle Sidebar</button>
-<div id="editMode"></div>
-<button id="optionsToggle">Toggle Maps & Options</button>
-<div id="optionsBar"><h3>OPTIONS</h3>
-
-  <h2>MAPS</h2>
-  <button>Monaco</button><br>
-  <button>Seoul</button><br>
-  <button>Skyway Stadium</button><br>
-  <button>Las Vegas</button><br>
-  <button>SYS$Horizon</button><br>
-
-  <h2>CUSTOM MAP DATA</h2>
-  <button id="loadButton">Load Your Own Data JSON</button><br>
-  <button id="saveButton">Save Current Data JSON</button>
-  
+  <button id="sidebarToggle">Toggle Sidebar</button>
 </div>
+
+<div class="content">
+  <div id="map"></div>
+  <div id="sidebar"></div>
+</div>
+
 <!-- partial -->
   <script  src="./script.js"></script>
 
