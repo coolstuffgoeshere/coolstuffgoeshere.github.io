@@ -506,7 +506,7 @@ mapContainer.addEventListener('wheel', function(event) {
     const y = (event.clientY - rect.top) / rect.height;
    
     // Determine the direction of the scroll and adjust the zoom level.
-    const sign = event.deltaY < 0 ? -1 : 1;
+    const sign = event.deltaY < 0 ? 1 : -1;
     changeZoom(x, y, 1 + sign * 0.05);
 });
 
