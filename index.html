@@ -17,36 +17,38 @@
 <!-- partial:index.partial.html -->
 
 
-<div class="header">
-  <div class="logo">
-    <div class="title">THE FINALS</div>
-    <div class="subtitle">INTERACTIVE MAP</div>
-    <div class="version">v0.016 4.11.24</div>
-  </div>
-  <div class="menu">
-    <div class="menu-button">
-      <div class="name">MAPS</div>
-      <div class="choices" id="map-choices">
-        <!-- Map choices are injected dynamically -->
+<div id="app">
+  <div class="header">
+    <div class="logo">
+      <div class="title">THE FINALS</div>
+      <div class="subtitle">INTERACTIVE MAP</div>
+      <div class="version">v0.016 4.11.24</div>
+    </div>
+    <div class="menu">
+      <div class="menu-button">
+        <div class="name">MAPS</div>
+        <div class="choices" id="map-choices">
+          <!-- Map choices are injected dynamically -->
+        </div>
+      </div>
+      <div class="menu-button">
+        <div class="name">DATA</div>
+        <div class="choices">
+          <div id="clearButton">Reset changes</div>
+          <div id="loadButton">Load JSON data</div>
+          <div id="saveButton">Save data as JSON</div>
+        </div>
       </div>
     </div>
-    <div class="menu-button">
-      <div class="name">DATA</div>
-      <div class="choices">
-        <div id="clearButton">Reset changes</div>
-        <div id="loadButton">Load JSON data</div>
-        <div id="saveButton">Save data as JSON</div>
-      </div>
-    </div>
+
+    <!-- <span style="font-size: 16px; line-height: 16px;">ADD PIN - Click anywhere on the map<br>EDIT PIN - Click pin title on the sidebar<span></span> -->
   </div>
 
-  <button id="sidebarToggle">Toggle Sidebar</button>
-  <!-- <span style="font-size: 16px; line-height: 16px;">ADD PIN - Click anywhere on the map<br>EDIT PIN - Click pin title on the sidebar<span></span> -->
-</div>
-
-<div class="content">
-  <div id="map"></div>
   <div id="sidebar"></div>
+  <div id="map-container">
+    <div id="map"></div>
+  </div>
+  <div id="details"></div>
 </div>
 
 <!-- partial -->

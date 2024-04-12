@@ -280,11 +280,6 @@ function loadPins() {
     updateSidebar();
 }
 
-document.getElementById('sidebarToggle').addEventListener('click', function() {
-    var sidebar = document.getElementById('sidebar');
-    sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
-});
-
 // Inject map choices in the menu.
 const mapChoices = document.getElementById('map-choices');
 for (let map of maps) {
@@ -360,3 +355,19 @@ window.addEventListener('hashchange', loadMap);
 
 // Load map when the page loads
 window.onload = loadMap;
+
+let mapContainer = document.getElementById('map-container');
+let map = document.getElementById('map');
+const r = mapContainer.getBoundingClientRect();
+const min = Math.min(r.width, r.height);
+map.style.width = min + 'px';
+map.style.height = min + 'px';
+
+let observer = new ResizeObserver(function(mutations) {
+    const r = mapContainer.getBoundingClientRect();
+    const min = Math.min(r.width, r.height);
+    map.style.width = min + 'px';
+    map.style.height = min + 'px';
+});
+
+observer.observe(mapContainer);
