@@ -129,7 +129,7 @@ html {
   height: 2vw;
   border-radius: 50%;
   cursor: pointer;
-  transform-origin: top left;
+  transform-origin: center;
   
 }
 
@@ -260,6 +260,9 @@ h3 {
   .pin {
     width: 4vw;
     height: 4vw;
+  }
+  .logo {
+    padding: 6px 10px 6px 10px;
   }
 }
 
