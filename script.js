@@ -39,6 +39,11 @@ var maps = [
 var pins = [];
 var currentMap = "Monaco";
 var currentFile = "map_monaco.json";
+const zoomData = {
+    zoom: 1.0,
+    x: 0,
+    y: 0
+};
 
 function createPin(pin) {
   var pinElement = document.createElement('div');
@@ -307,15 +312,6 @@ for (let map of maps) {
 const zoomRange = document.getElementById('zoomRange');
 const map = document.getElementById('map');
 
-zoomRange.addEventListener('input', function() {
-    map.style.transform = `scale(${this.value / 100})`;
-     // Adjust pin size based on map zoom level
-     var pins = document.getElementsByClassName('pin');
-     for (var i = 0; i < pins.length; i++) {
-         pins[i].style.transform = `scale(${1 / (this.value / 100)})`;
-     }
-});
-
 // Event Listeners
 
 // Update the event listeners for MENU-BUTTONS to toggle the display of choices
@@ -402,3 +398,31 @@ let observer = new ResizeObserver(function(mutations) {
 });
 
 observer.observe(mapContainer);
+
+function updateZoom() {
+    const r = mapContainer.getBoundingClientRect();
+    const min = Math.min(r.width, r.height);
+    zoomData.x = Math.min(Math.max(-1, zoomData.x), 1);
+    zoomData.y = Math.min(Math.max(-1, zoomData.y), 1);
+    zoomData.zoom = Math.min(Math.max(0.5, zoomData.zoom), 10.0);
+    map.style.transform = `translate(${zoomData.x*min}, ${zoomData.y*min}) scale(${zoomData.zoom})`;
+    // Adjust pin size based on map zoom level
+    var pins = document.getElementsByClassName('pin');
+    for (var i = 0; i < pins.length; i++) {
+        pins[i].style.transform = `scale(${1 / zoomData.zoom})`;
+    }
+}
+
+zoomRange.addEventListener('input', function() {
+    zoomData.zoom = this.value/100;
+    updateZoom();
+});
+
+window.addEventListener('wheel', function(event) {
+    if (event.deltaY < 0) {
+        zoomData.zoom -= 0.1;
+    } else {
+        zoomData.zoom += 0.1;
+    }
+    updateZoom();
+});

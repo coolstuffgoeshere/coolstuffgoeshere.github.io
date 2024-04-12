@@ -111,6 +111,7 @@ html {
 
 #map-container {
   grid-area: map;
+  overflow: hidden;
 }
 
 #map {
@@ -118,6 +119,7 @@ html {
   background-position: center;
   background-size: contain;
   position: relative;
+  transition: transform 100ms ease-out;
 }
 
 /* #mapContainer {
