@@ -254,6 +254,9 @@ function loadPinsFromFile(file) {
 function clearMap() {
     var map = document.getElementById('map');
     map.innerHTML = ''; // Clear all child elements (pins) from the map
+
+    var sidebar = document.getElementById('sidebar');
+    sidebar.innerHTML = ''; // Clear the sidebar content
 }
 
 function savePinsToFile() {
@@ -308,7 +311,6 @@ document.querySelectorAll('button').forEach(button => {
   });
 });
 
-
 document.getElementById('map').addEventListener('click', addPin);
 
 document.getElementById('loadButton').addEventListener('click', function() {
@@ -325,6 +327,11 @@ document.getElementById('loadButton').addEventListener('click', function() {
 });
 
 document.getElementById('saveButton').addEventListener('click', savePinsToFile);
+
+document.getElementById('clearButton').addEventListener('click', function() {
+  pins = []; // Clear all pins
+  clearMap(); // Clear pins from the map
+});
 
 // Load map based on the URL hash route
 function loadMap() {
