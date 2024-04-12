@@ -28,24 +28,26 @@ html {
   display: block;
   background-color: #D21F3C;
   color: white;
-  padding: 20px 50px 10px 30px;
-  margin-right: 20px;
+  padding: 10px 50px 5px 30px;
+  /* margin-right: 20px; */
   font-family: "Saira Extra Condensed";
   font-weight: 600;
 }
 
 .logo .title {
   font-size: 40px;
+  line-height: 28px;
 }
 
 .logo .subtitle {
   font-size: 25px;
-  padding-top: 10px;
+  /* padding-top: 10px; */
   font-weight: 400;
 }
 
 .logo .version {
   font-size: 15px;
+  line-height: 10px;
   font-weight: 200;
 }
 
@@ -60,8 +62,8 @@ html {
   font-size: 40px;
   font-weight: 600;
   color: white;
-  margin: 0 30px;
-  padding: 36px 0;
+  margin: 0 50px;
+  padding: 28px 0px;
   transition: color 100ms ease-in-out;
 }
 
@@ -82,7 +84,7 @@ html {
   position: absolute;
   background-color: #D21F3C;
   color: white;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 #app {
@@ -118,6 +120,30 @@ html {
   position: relative;
 }
 
+/* #mapContainer {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 15%;
+  left: 0;
+} */
+
+#map {
+  position: relative;
+  /* width: 100%; */
+  /* height: auto;
+  max-width: 100%; */
+  /* padding-bottom: 100%; */
+  /* background: url('https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/MonacoOverview_Hi-Res.jpg') no-repeat;
+  background-size: contain;
+  margin-top: auto; */
+  transform-origin: top left;
+}
+
 #details {
   grid-area: details;
   width: 300px;
@@ -142,16 +168,17 @@ html {
 .pin {
   position: absolute;
   width: 2vw;
-  /* Adjust based on pin image size */
   height: 2vw;
-  /* Adjust based on pin image size */
   border-radius: 50%;
   cursor: pointer;
+  transform-origin: center;
+
 }
 
 .pin img {
   width: 100%;
   height: 100%;
+  z-index: 99;
 }
 
 .popup {
@@ -188,6 +215,11 @@ html {
   color: #D21F3C;
   font-size: 24px;
   text-transform: uppercase;
+  padding: 6px 5px 0px 5px;
+}
+
+#sidebar>div {
+  padding: 0px 5px 0px 5px;
 }
 
 button {
@@ -212,10 +244,6 @@ button:hover span {
   display: none
 }
 
-/* input[type="checkbox"] {
-    height: 1.2vw;
-    width: 1.2vw;
-} */
 
 input[type="text"] {
   height: auto;
@@ -229,4 +257,27 @@ h3 {
   color: #D21F3C;
   font-size: 24px;
   text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .menu {
+    flex-direction: row;
+  }
+
+  .menu-button .name {
+    margin: 0 10px;
+  }
+
+  .pin {
+    width: 4vw;
+    height: 4vw;
+  }
+
+  .logo {
+    padding: 6px 10px 6px 10px;
+  }
 }
