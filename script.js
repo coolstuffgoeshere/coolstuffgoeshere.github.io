@@ -40,6 +40,16 @@ var pins = [];
 var currentMap = "Monaco";
 var currentFile = "map_monaco.json";
 
+function toggleText() {
+    var text = document.getElementById("namatamaText");
+    if (text.style.display === "none") {
+      text.style.display = "block";
+    } else {
+      text.style.display = "none";
+    }
+  }
+  
+
 function createPin(pin) {
   var pinElement = document.createElement('div');
   pinElement.classList.add('pin');
@@ -90,7 +100,6 @@ function createPopup(pin) {
 
     return popup;
 }
-
 
 function deletePin(index) {
   if (confirm("Are you sure you want to delete this pin?")) {
@@ -167,15 +176,6 @@ function showPinEdit(pin, sidebar) {
             <button onclick="savePinEdit(${pins.indexOf(pin)})">Save & Close</button>
             <button onclick="deletePin(${pins.indexOf(pin)}); document.getElementById('editMode').innerHTML = '';">Delete & Close</button>
         </div>`;
-}
-
-function deletePin(index) {
-    if (confirm("Are you sure you want to delete this pin?")) {
-        pins.splice(index, 1);
-        updateSidebar();
-        clearMap(); 
-        loadPins(); 
-    }
 }
 
 
