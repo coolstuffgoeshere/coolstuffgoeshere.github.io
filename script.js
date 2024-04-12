@@ -91,14 +91,14 @@ function createPopup(pin) {
 }
 
 
-function deletePin(pin) {
-    var index = pins.indexOf(pin);
-    if (index !== -1) {
-        pins.splice(index, 1);
-        clearMap();
-        loadPins();
-        updateSidebar();
-    }
+function deletePin(index) {
+  if (confirm("Are you sure you want to delete this pin?")) {
+      pins.splice(index, 1);
+      updateSidebar();
+      clearMap(); // Clear existing pins from the map
+      loadPins(); // Reload pins onto the map after deletion
+      document.getElementById('editMode').innerHTML = ''; // Clear the editMode section
+  }
 }
 
 function updateSidebar() {
@@ -164,7 +164,7 @@ function showPinEdit(pin, sidebar) {
             <label for="editDataImg">Data Image URL:</label>
             <input type="text" id="editDataImg" value="${pin.dataImg}"><br>
             <button onclick="savePinEdit(${pins.indexOf(pin)})">Save & Close</button>
-            <button onclick="deletePin(${pins.indexOf(pin)})">Delete</button>
+            <button onclick="deletePin(${pins.indexOf(pin)}); document.getElementById('editMode').innerHTML = '';">Delete & Close</button>
         </div>`;
 }
 
@@ -172,8 +172,8 @@ function deletePin(index) {
     if (confirm("Are you sure you want to delete this pin?")) {
         pins.splice(index, 1);
         updateSidebar();
-        clearMap(); // Clear existing pins from the map
-        loadPins(); // Reload pins onto the map after deletion
+        clearMap(); 
+        loadPins(); 
     }
 }
 
@@ -199,8 +199,8 @@ function savePinEdit(index) {
     pins[index].dataImg = editDataImg;
 
     updateSidebar();
-    clearMap(); // Clear pins from the map
-    loadPins(); // Reload pins onto the map after modification
+    clearMap(); 
+    loadPins();
 
     // Clear editMode div
     document.getElementById('editMode').innerHTML = '';
