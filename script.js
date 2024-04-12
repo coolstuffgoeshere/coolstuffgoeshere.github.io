@@ -402,10 +402,7 @@ observer.observe(mapContainer);
 function updateZoom() {
     const r = mapContainer.getBoundingClientRect();
     const min = Math.min(r.width, r.height);
-    zoomData.x = Math.min(Math.max(-1, zoomData.x), 1);
-    zoomData.y = Math.min(Math.max(-1, zoomData.y), 1);
-    zoomData.zoom = Math.min(Math.max(0.5, zoomData.zoom), 10.0);
-    map.style.transform = `translate(${zoomData.x*min}, ${zoomData.y*min}) scale(${zoomData.zoom})`;
+    map.style.transform = `translate(${zoomData.x*min}px, ${zoomData.y*min}px) scale(${zoomData.zoom})`;
     // Adjust pin size based on map zoom level
     var pins = document.getElementsByClassName('pin');
     for (var i = 0; i < pins.length; i++) {
@@ -418,11 +415,27 @@ zoomRange.addEventListener('input', function() {
     updateZoom();
 });
 
-window.addEventListener('wheel', function(event) {
-    if (event.deltaY < 0) {
-        zoomData.zoom -= 0.1;
-    } else {
-        zoomData.zoom += 0.1;
-    }
+mapContainer.addEventListener('wheel', function(event) {
+    // Compute the cursor position as a percentage of the map size.
+    const rect = map.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+   
+    // Determine the direction of the scroll and adjust the zoom level.
+    const sign = event.deltaY < 0 ? -1 : 1;
+    const oldZoom = zoomData.zoom;
+    zoomData.zoom *= 1 + sign * 0.05;
+
+    // Clamp zoom between a minimum and maximum value.
+    zoomData.zoom = Math.min(Math.max(0.5, zoomData.zoom), 8.0);
+    
+    // Apply translation to keep the zoom centered on the cursor.
+    zoomData.x -= (zoomData.zoom - oldZoom) * x;
+    zoomData.y -= (zoomData.zoom - oldZoom) * y;
+    
+    // Clamp translation to keep the zoomed map within the viewport.
+    zoomData.x = Math.min(Math.max(-zoomData.zoom, zoomData.x), zoomData.zoom);
+    zoomData.y = Math.min(Math.max(-zoomData.zoom, zoomData.y), zoomData.zoom);
+
     updateZoom();
 });
