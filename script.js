@@ -323,6 +323,22 @@ zoomRange.addEventListener('input', function() {
 
 // Event Listeners
 
+// Update the event listeners for MENU-BUTTONS to toggle the display of choices
+document.querySelectorAll('.menu-button').forEach(function(button) {
+  button.addEventListener('click', function() {
+      this.classList.toggle('active');
+  });
+});
+
+// Close the choices when clicking outside of the buttons
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('.menu-button')) {
+      document.querySelectorAll('.menu-button').forEach(function(button) {
+          button.classList.remove('active');
+      });
+  }
+});
+
 document.getElementById('map').addEventListener('click', addPin);
 
 document.getElementById('loadButton').addEventListener('click', function() {
