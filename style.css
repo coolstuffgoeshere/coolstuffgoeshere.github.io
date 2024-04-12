@@ -173,16 +173,16 @@ html {
 
 #sidebar {
   position: fixed;
-  top: 5%;
-  right: 0;
+  top: 8%;
+  left: 0;
   width: auto;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 0px 10px 10px 0px;
   z-index: 100;
-  height: 95%;
+  height: 92%;
   overflow-y: scroll;
-  border-radius: 5px 0 0 5px;
+
 }
 
 #sidebar>h3 {
@@ -241,6 +241,8 @@ h3 {
   text-transform: uppercase;
 }
 
+
+
 @media (max-width: 768px) {
   #map {
     margin-top: 0%;
@@ -266,3 +268,101 @@ h3 {
   }
 }
 
+/* Namatama */
+
+.namatamaContainer {
+  cursor: pointer;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 10%; /* Adjust initial width as needed */
+  transition: transform 0.5s ease; /* Smooth transition for scale */
+  transform-origin: bottom right; /* Scale from the bottom right corner */
+  animation: 2s rollIn forwards;
+
+}
+
+@media (max-width: 600px) {
+.namatamaContainer {width: 25%;}
+}
+
+.namatamaContainer:hover {
+  cursor: pointer;
+}
+
+#namatamaText {
+  float: right;
+  cursor: pointer;
+  z-index: 99;
+  position: relative;
+  border-radius: 30px;
+  width: 200%;
+  border: 4px solid white;
+  padding: 20px 20px;
+  background: black;
+  color: white;
+  top: 10px;
+  right: 50px;
+  text-align: center;
+  opacity: 0;
+  animation: 1s fadeIn forwards;
+  animation-delay: 1.5s; /* Delay before animation starts */
+}
+
+#namatamaImg {
+  cursor: pointer; /* Add cursor style to indicate clickable */
+  animation: 2s idleSwing ease-in infinite;
+  transform-origin: bottom;
+}
+
+@keyframes fadeIn {
+0% {
+  opacity: 0;
+}
+100% {
+  opacity: 100%;
+}
+}
+
+@keyframes rollIn {
+0% {
+  transform: translateY(-100vh) rotate(360deg);
+}
+100% {
+  transform: translateY(0%) rotate(-360deg);
+}
+}
+
+@keyframes idleSwing {
+0% {
+  transform: rotate(2deg);
+}
+50% {
+  transform: rotate(-2deg);
+}
+100% {
+  transform: rotate(2deg);
+}
+}
+
+#namatamaReflection {
+  position: absolute;
+  filter: blur(3px);
+  bottom: -10px; /* Adjust as needed */
+  right: 0;
+  width: 100%;
+  transform: scaleY(-1);
+  opacity: 0; /* Adjust opacity as needed */
+  z-index: -1; /* Place the reflection behind the image */
+  animation: 0.2s fadeInShort forwards;
+  animation-delay: 1.8s;
+}
+
+@keyframes fadeInShort {
+0% {
+  opacity: 0;
+}
+100% {
+  opacity: 20%;
+}
+}
