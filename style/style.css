@@ -11,6 +11,7 @@ html {
   font-size: 20px;
   line-height: 21px;
   font-style: italic;
+  overflow: hidden;
 }
 
 .header {
@@ -61,7 +62,9 @@ html {
 
 .menu {
   display: flex;
+  flex-wrap: wrap;
 }
+
 
 .menu-button .name {
   background-color: none;
@@ -209,7 +212,7 @@ html {
 }
 
 .popup.active {
-  display: block;
+  display: none;   /* Namatama is better*/
 }
 
 .popup .data-img {
@@ -297,7 +300,9 @@ h3 {
   .menu-button .name {
     margin: 0 10px;
     font-size: 20px;
+    padding: 8px 0px;
   }
+
 
   #map-container {
     grid-column: 1 / 3;
@@ -315,7 +320,12 @@ h3 {
 
   .logo {
     padding: 6px 30px 6px 10px;
+    width: 50%;
   }
+
+  .logo .title {font-size: 36px; line-height: 26px;}
+  .logo .subtitle {font-size: 23px; line-height: 20px;}
+  .logo .version {font-size: 18px; line-height: 14px;}
 
   .toggle-button {
     font-size: 12px;

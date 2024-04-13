@@ -58,9 +58,12 @@ for (let map of maps) {
 // Load map based on the URL hash route
 function loadMap() {
   const hash = window.location.hash.substring(1); // Extract the hash part of the URL
-  console.log(hash);
+  const hashMap = hash.split('?')[0];
+  console.log(hashMap);
+  const hashParams = hash.split('?')[1];
+  console.log(hashParams);
 
-  let selectedMap = maps.find(map => map.urlName.toLowerCase() === hash.toLowerCase());
+  let selectedMap = maps.find(map => map.urlName.toLowerCase() === hashMap.toLowerCase());
 
   if (!selectedMap) {
       // Set Monaco as the default map if no hash route is specified
@@ -71,13 +74,41 @@ function loadMap() {
   document.getElementById('map').style.backgroundImage = `url(${selectedMap.mapImage})`;
   currentMap = selectedMap.name;
   currentFile = selectedMap.fileName;
-
   fetch(selectedMap.fileName)
       .then(response => response.json())
       .then(data => {
           pins = data;
           clearMap();
           loadPins();
+
+          // Extract pin data from the URL
+          const urlParams = hashParams.replace(/%25/g, '%').replace(/%3A/g, ':').replace(/%2F/g, '/').replace(/%26/g, '&');            
+          const category = urlParams.split('&')[0].split('=')[1];
+          const title = urlParams.split('&')[1].split('=')[1];
+          const x = urlParams.split('&')[2].split('=')[1];
+          const y = urlParams.split('&')[3].split('=')[1];
+          const pinImg = urlParams.split('&')[4].split('=')[1];
+          const dataImg = urlParams.split('&')[5].split('=')[1];
+          console.log(category);
+          console.log(title);
+          console.log(x);
+          console.log(y);
+          console.log(pinImg);
+          console.log(dataImg);
+
+          if (category && title && x && y && pinImg && dataImg) {
+              const newPinData = {
+                  category,
+                  title,
+                  coords: { x, y },
+                  pinImg,
+                  dataImg
+              };
+              
+              createPin(newPinData); // Add a new pin directly
+              updateSidebar(); // Update the sidebar with the new pin
+              console.log(newPinData);
+          }
       })
       .catch(error => console.error('Error loading JSON:', error));
 }

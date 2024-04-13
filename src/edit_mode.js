@@ -6,14 +6,16 @@ document.getElementById('map').addEventListener('click', function(event) {
 });
 
 function createPin(pin) {
+  console.log(pin)
   var pinElement = document.createElement('div');
   pinElement.classList.add('pin');
-  pinElement.style.left = pin.coords.x;
-  pinElement.style.top = pin.coords.y;
+  pinElement.style.left = pin.coords.x.replace('%%', '%');
+  pinElement.style.top = pin.coords.y.replace('%%', '%');
   pinElement.title = pin.title;
 
   var pinImage = document.createElement('img');
   pinImage.src = pin.pinImg; // Use pinImg property for pin image
+  
   pinImage.alt = pin.title;
 
   var popup = createPopup(pin);
@@ -25,6 +27,31 @@ function createPin(pin) {
   pinElement.addEventListener('mouseenter', function() {
     popup.classList.add('active');
     updateNamatamaText(pin);
+  });
+
+  pinElement.addEventListener('mouseleave', function() {
+      popup.classList.remove('active');
+      clearNamatamaText();
+  });
+
+  pinElement.addEventListener('click', function() {
+      togglePopup(popup);
+      updateSidebar(); // Update the sidebar when pin visibility changes
+  });
+
+  // Create URL for the pin and replace unwanted characters
+  var pinUrl = window.location.origin + window.location.pathname + '#' + currentMap.toLowerCase() + '?category=' + encodeURIComponent(pin.category) + '&title=' + encodeURIComponent(pin.title) + '&x=' + encodeURIComponent(pin.coords.x + '%') + '&y=' + encodeURIComponent(pin.coords.y + '%') + '&pinImg=' + encodeURIComponent(pin.pinImg) + '&dataImg=' + encodeURIComponent(pin.dataImg);
+
+  // Add a click event listener to copy the URL to clipboard
+  pinElement.addEventListener('click', function() {
+      navigator.clipboard.writeText(pinUrl)
+          .then(function() {
+              console.log('URL copied to clipboard: ' + pinUrl);
+              // alert('URL copied to clipboard: ' + pinUrl);
+          })
+          .catch(function(err) {
+              console.error('Failed to copy URL to clipboard: ', err);
+          });
   });
 }
 
@@ -99,7 +126,6 @@ function addPin(event) {
   }
   
   var title = prompt('Enter the title for the new pin:');
-  var dataImg = prompt('Enter the data image URL for the new pin (optional):');
   var coords = getCoordsFromClick(event);
   
   // Check if title is null or blank then stop
@@ -107,7 +133,13 @@ function addPin(event) {
       return;
   }
   
-  var pin = {category: category, title: title, coords: coords, pinImg: 'https://coolstuffgoeshere.github.io/icons/fried-egg.png', dataImg: dataImg};
+  var pin = {
+    category: category,
+    title: title,
+    coords: coords,
+    pinImg: 'assets/icons/fried-egg.png',
+    dataImg: 'assets/icons/fried-egg.png',
+  };
   pins.push(pin);
   createPin(pin);
   updateSidebar();
