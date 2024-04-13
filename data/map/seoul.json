@@ -7,7 +7,7 @@
       "y": "50.833333333333336%"
     },
     "pinImg": "assets/icons/wr.png",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228579429312102421/WR-S.png?ex=662c8ec1&is=661a19c1&hm=3e11298127e5ebb07e525c2367d25f04e49f44e957281cd88acdf8dc0e11e4ae&"
   },
   {
     "category": "WR",
@@ -17,7 +17,7 @@
       "y": "63.83333333333333%"
     },
     "pinImg": "assets/icons/wr.png",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228579430327124108/WR-L.png?ex=662c8ec2&is=661a19c2&hm=5ea4f3a8596d8830f40828f5083c3d515a23534d1ec259b08cf2af983974a857&"
   },
   {
     "category": "WR",
@@ -27,7 +27,7 @@
       "y": "15%"
     },
     "pinImg": "assets/icons/wr.png",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228579431401132073/WR-I.png?ex=662c8ec2&is=661a19c2&hm=67f6e5b7feb8665665f72482f338a27352e47e6747d4dac2cea516f78088a9a3&"
   },
   {
     "category": "WR",
@@ -37,7 +37,7 @@
       "y": "54.55555555555556%"
     },
     "pinImg": "assets/icons/wr.png",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228579429824073768/WR-E.png?ex=662c8ec1&is=661a19c1&hm=3e2f6282a60299039e297eb0e7b3505c351969c96ad0e71d305e228ce5737a2c&"
   },
   {
     "category": "WR",
@@ -47,6 +47,6 @@
       "y": "28.11111111111111%"
     },
     "pinImg": "assets/icons/wr.png",
-    "dataImg": ""
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228579430792826910/WR-S2.png?ex=662c8ec2&is=661a19c2&hm=e2f934af7bb4fcce4105ac96c2311e092028417d5ef90fc4e232337cfccc6f8d&"
   }
 ]
