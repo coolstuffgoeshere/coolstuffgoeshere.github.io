@@ -31,6 +31,7 @@ var maps = [
   }
 ];
 var currentMap = "Monaco";
+var currentMapUrl = "monaco";
 var currentFile = "data/map/monaco.json";
 
 // Inject map choices in the menu.
@@ -42,6 +43,7 @@ for (let map of maps) {
         selectedLocation = map.name;
         document.getElementById('map').style.backgroundImage = `url(${map.mapImage})`;
         currentMap = map.name;
+        currentMapUrl = map.urlName;
         currentFile = map.fileName;
         fetch(map.fileName)
             .then(response => response.json())
@@ -73,7 +75,8 @@ function loadMap() {
 
   document.getElementById('map').style.backgroundImage = `url(${selectedMap.mapImage})`;
   currentMap = selectedMap.name;
-  currentFile = selectedMap.fileName;
+    currentMapUrl = selectedMap.urlName;
+    currentFile = selectedMap.fileName;
   fetch(selectedMap.fileName)
       .then(response => response.json())
       .then(data => {
