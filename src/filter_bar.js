@@ -1,6 +1,8 @@
 const filterDrawer = document.getElementById('filter-drawer');
 
 function clearFilterDrawer() {
+  filterDrawer.innerHTML = '';
+
   const items = filterDrawer.children;
   for (const i in items) {
     if (i > 1) {
