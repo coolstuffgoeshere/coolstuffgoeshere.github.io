@@ -39,6 +39,7 @@ const mapChoices = document.getElementById('map-choices');
 for (let map of maps) {
     const choice = document.createElement('div');
     choice.textContent = map.name;
+    choice.classList.add('item');
     choice.onclick = function() {
         selectedLocation = map.name;
         document.getElementById('map').style.backgroundImage = `url(${map.mapImage})`;
