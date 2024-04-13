@@ -5,6 +5,7 @@
 .drawer-container {
   height: 100%;
   overflow-y: auto;
+  pointer-events: none; /* Stops the drawer container from blocking the map */
 }
 
 .drawer {
@@ -12,6 +13,7 @@
   min-height: calc(100% - 40px);
   padding: 20px;
   color: white;
+  pointer-events: all; /* Allows for clicking the items in the drawer once open */
 }
 
 .drawer .title {
