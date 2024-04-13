@@ -156,11 +156,20 @@ function getCoordsFromClick(event) {
   var x = ((event.clientX - rect.left) / map.offsetWidth * 100) - (pinSize / 2) + '%';
   var y = ((event.clientY - rect.top) / map.offsetHeight * 100) - (pinSize / 2) + '%';
 
+// Calculate the correction value based on the zoom level
+var correctionValue = 0.1 + zoomData.zoom / 10; // Adjust the formula based on the zoom range
+
+
+
+  // Adjust coordinates based on zoom level and correction value
+  x = ((parseFloat(x) + zoomData.x) / zoomData.zoom - correctionValue) + '%';
+  y = ((parseFloat(y) + zoomData.y) / zoomData.zoom - correctionValue) + '%';
+
+  console.log(correctionValue);
   console.log(x);
   console.log(y);
   
   return {x: x, y: y};
-
 }
 
 function loadPinsFromFile(file) {

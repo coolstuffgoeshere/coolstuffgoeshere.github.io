@@ -32,6 +32,9 @@ function changeZoom(x, y, scale) {
     zoomData.y = Math.min(Math.max(-zoomData.zoom, zoomData.y), zoomData.zoom);
 
     updateZoom();
+    console.log("Zoom Value: " + zoomData.zoom);
+    console.log("X Value: " + zoomData.x);
+    console.log("Y Value: " + zoomData.y);
 }
 
 // Touchscreen events.
