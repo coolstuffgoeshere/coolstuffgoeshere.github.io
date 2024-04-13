@@ -17,6 +17,11 @@ nav {
     border-top: 1px solid #29262B;
     justify-content: center;
     gap: 20px;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   .nav-divider {
