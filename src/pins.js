@@ -27,14 +27,14 @@ function togglePopup(popup) {
 
 function createPopup(pin) {
     var popup = document.createElement('div');
-    popup.classList.add('popup');
+    // popup.classList.add('popup');
 
-    var pinData = document.createElement('div');
-    pinData.innerHTML = '<strong>Category:</strong> ' + pin.category + '<br>' +
-                     '<strong>Title:</strong> ' + pin.title + '<br>' +
-                     '<strong>Image:</strong> <img src="' + pin.dataImg + '" style="">';
+    // var pinData = document.createElement('div');
+    // pinData.innerHTML = '<strong>Category:</strong> ' + pin.category + '<br>' +
+    //                  '<strong>Title:</strong> ' + pin.title + '<br>' +
+    //                  '<strong>Image:</strong> <img src="' + pin.dataImg + '" style="">';
 
-    popup.appendChild(pinData);
+    // popup.appendChild(pinData);
 
     return popup;
 }
