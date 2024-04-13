@@ -1,7 +1,7 @@
 nav {
   background-color: #1D1A20;
   /* color: white; */
-  overflow-y: auto;
+  overflow-y: hidden;
 
   display: grid;
   align-items: center;
@@ -84,6 +84,7 @@ nav {
   transition: color 80ms ease-out;
 }
 
-.menu-button:hover svg {
+.menu-button:hover svg,
+.menu-button.active svg {
   color: var(--color-primary);
 }

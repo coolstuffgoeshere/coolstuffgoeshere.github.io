@@ -6,6 +6,14 @@ for (const item of menuItems) {
 }
 
 function toggleMenuDrawer(name) {
+  for (const item of menuItems) {
+    if (item.getAttribute('name') === name) {
+      item.classList.toggle('active');
+    } else {
+      item.classList.remove('active');
+    }
+  }
+
   for (const drawer of drawers) {
     if (drawer.getAttribute('name') === name) {
       drawer.classList.toggle('active');
