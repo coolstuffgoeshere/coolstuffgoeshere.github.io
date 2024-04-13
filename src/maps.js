@@ -51,6 +51,7 @@ for (let map of maps) {
             .then(data => {
                 pins = data;
                 clearMap();
+                
                 loadPins();
             })
             .catch(error => console.error('Error loading JSON:', error));
@@ -83,6 +84,7 @@ function loadMap() {
       .then(data => {
           pins = data;
           clearMap();
+          console.log("map cleared");
           loadPins();
 
           // Extract pin data from the URL

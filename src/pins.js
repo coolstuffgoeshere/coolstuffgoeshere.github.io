@@ -1,14 +1,6 @@
 var pins = [];
 
-// Show/Hide Namatama Text
-// function toggleText() {
-//     var text = document.getElementById("namatamaText");
-//     if (text.style.display === "none") {
-//       text.style.display = "block";
-//     } else {
-//       text.style.display = "none";
-//     }
-//   }
+
 
 pinElement.addEventListener('mouseleave', function() {
     popup.classList.remove('active');

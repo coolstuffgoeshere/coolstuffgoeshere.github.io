@@ -10,6 +10,7 @@ function clearFilterDrawer() {
 }
 
 function updateSidebar() {
+  filterDrawer.innerHTML = '';
   var categories = {}; // Object to store pins by category
 
   pins.forEach(function(pin) {
