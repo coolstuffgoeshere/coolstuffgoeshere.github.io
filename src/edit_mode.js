@@ -6,8 +6,8 @@ document.getElementById('map').addEventListener('click', function(event) {
 });
 
 function createPin(pin) {
-  console.log(pin)
-  console.log(currentMapUrl)
+  // console.log(pin)
+  // console.log(currentMapUrl)
   var pinElement = document.createElement('div');
   pinElement.classList.add('pin');
   pinElement.style.left = pin.coords.x.replace('%%', '%');

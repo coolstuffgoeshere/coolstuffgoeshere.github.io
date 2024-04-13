@@ -75,7 +75,7 @@ html {
 #map {
   margin: auto;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   position: relative;
   transition: transform 50ms ease-out;
 }

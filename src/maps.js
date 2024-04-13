@@ -63,9 +63,9 @@ for (let map of maps) {
 function loadMap() {
   const hash = window.location.hash.substring(1); // Extract the hash part of the URL
   const hashMap = hash.split('?')[0];
-  console.log(hashMap);
+//   console.log(hashMap);
   const hashParams = hash.split('?')[1];
-  console.log(hashParams);
+//   console.log(hashParams);
 
   let selectedMap = maps.find(map => map.urlName.toLowerCase() === hashMap.toLowerCase());
 
@@ -73,7 +73,7 @@ function loadMap() {
       // Set Monaco as the default map if no hash route is specified
       selectedMap = maps.find(map => map.urlName.toLowerCase() === 'monaco');
   }
-  console.log(selectedMap);
+//   console.log(selectedMap);
 
   document.getElementById('map').style.backgroundImage = `url(${selectedMap.mapImage})`;
   currentMap = selectedMap.name;
@@ -84,7 +84,6 @@ function loadMap() {
       .then(data => {
           pins = data;
           clearMap();
-          console.log("map cleared");
           loadPins();
 
           // Extract pin data from the URL
@@ -95,12 +94,12 @@ function loadMap() {
           const y = urlParams.split('&')[3].split('=')[1];
           const pinImg = urlParams.split('&')[4].split('=')[1];
           const dataImg = urlParams.split('&')[5].split('=')[1];
-          console.log(category);
-          console.log(title);
-          console.log(x);
-          console.log(y);
-          console.log(pinImg);
-          console.log(dataImg);
+        //   console.log(category);
+        //   console.log(title);
+        //   console.log(x);
+        //   console.log(y);
+        //   console.log(pinImg);
+        //   console.log(dataImg);
 
           if (category && title && x && y && pinImg && dataImg) {
               const newPinData = {
@@ -113,7 +112,7 @@ function loadMap() {
               
               createPin(newPinData); // Add a new pin directly
               updateSidebar(); // Update the sidebar with the new pin
-              console.log(newPinData);
+            //   console.log(newPinData);
           }
       })
       .catch(error => console.error('Error loading JSON:', error));
