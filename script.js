@@ -426,7 +426,7 @@ function loadMap() {
             loadPins();
   
             // Extract pin data from the URL
-            const urlParams = hashParams.replace(/%25/g, '%').replace(/%3A/g, ':').replace(/%2F/g, '/');            
+            const urlParams = hashParams.replace(/%25/g, '%').replace(/%3A/g, ':').replace(/%2F/g, '/').replace(/%26/g, '&');            
             const category = urlParams.split('&')[0].split('=')[1];
             const title = urlParams.split('&')[1].split('=')[1];
             const x = urlParams.split('&')[2].split('=')[1];
