@@ -168,11 +168,10 @@ function loadPinsFromFile(file) {
 }
 
 function clearMap() {
-  var map = document.getElementById('map');
+  const map = document.getElementById('map');
   map.innerHTML = ''; // Clear all child elements (pins) from the map
 
-  var sidebar = document.getElementById('sidebar');
-  sidebar.innerHTML = ''; // Clear the sidebar content
+  clearFilterDrawer();
 }
 
 function savePinsToFile() {

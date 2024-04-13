@@ -2,9 +2,14 @@
   display: none;
 }
 
+.drawer-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
 .drawer {
   background-color: rgba(13, 12, 14, 0.9);
-  height: 100%;
+  min-height: calc(100% - 40px);
   padding: 20px;
   color: white;
 }

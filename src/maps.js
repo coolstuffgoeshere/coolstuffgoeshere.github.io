@@ -35,7 +35,7 @@ var currentMapUrl = "monaco";
 var currentFile = "data/map/monaco.json";
 
 // Inject map choices in the menu.
-const mapChoices = document.getElementById('map-choices');
+const mapChoices = document.getElementById('map-drawer');
 for (let map of maps) {
     const choice = document.createElement('div');
     choice.textContent = map.name;

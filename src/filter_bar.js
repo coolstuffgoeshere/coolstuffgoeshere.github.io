@@ -1,7 +1,15 @@
-function updateSidebar() {
-  var sidebar = document.getElementById('sidebar');
-  sidebar.innerHTML = ''; // Clear previous content
+const filterDrawer = document.getElementById('filter-drawer');
 
+function clearFilterDrawer() {
+  const items = filterDrawer.children;
+  for (const i in items) {
+    if (i > 1) {
+      items[i].remove();
+    }
+  }
+}
+
+function updateSidebar() {
   var categories = {}; // Object to store pins by category
 
   pins.forEach(function(pin) {
@@ -14,7 +22,7 @@ function updateSidebar() {
   for (var category in categories) {
       var categoryHeader = document.createElement('h3');
       categoryHeader.textContent = category;
-      sidebar.appendChild(categoryHeader);
+      filterDrawer.appendChild(categoryHeader);
 
       categories[category].forEach(function(pin) {
           var pinCheckbox = document.createElement('input');
@@ -32,13 +40,13 @@ function updateSidebar() {
               var pinElement = document.querySelector('.pin[title="' + pin.title + '"]');
               var popup = pinElement.querySelector('.popup');
               togglePopup(popup);
-              showPinEdit(pin, sidebar);
+              showPinEdit(pin, filterDrawer);
           });
 
           var pinItem = document.createElement('div');
           pinItem.appendChild(pinCheckbox);
           pinItem.appendChild(pinLabel);
-          sidebar.appendChild(pinItem);
+          filterDrawer.appendChild(pinItem);
       });
   }
 }
