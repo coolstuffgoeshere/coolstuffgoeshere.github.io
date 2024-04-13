@@ -23,7 +23,7 @@
       <div class="version">v0.023 4.13.24</div>
     </div>
     <div class="menu">
-      <div class="menu-button">
+      <div class="menu-button mobile-only">
         <div class="name" onclick="toggleFilter()">FILTERS</div>
       </div>
       <div class="menu-button">
@@ -35,12 +35,15 @@
       <div class="menu-button">
         <div class="name">EDIT</div>
         <div class="choices">
+          <div>
+            <input id="edit-mode" type="checkbox">
+            <label for="edit-mode">Toggle Edit mode</label>
+          </div>
           <div id="clearButton">Reset changes</div>
           <div id="loadButton">Load JSON data</div>
           <div id="saveButton">Save data as JSON</div>
         </div>
       </div>
-      MAP MODE:<div class="toggle-button">VIEW MAP</div><div class="toggle-button">ADD PINS</div>
     </div>
 
     <!-- <span style="font-size: 16px; line-height: 16px;">ADD PIN - Click anywhere on the map<br>EDIT PIN - Click pin title on the sidebar<span></span> -->

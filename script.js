@@ -36,6 +36,7 @@ var maps = [
   }
 ];
 
+const app = document.getElementById('app');
 var pins = [];
 var currentMap = "Monaco";
 var currentFile = "map_monaco.json";
@@ -45,33 +46,9 @@ const zoomData = {
     y: 0
 };
 
-let isAddPinMode = false;
-
-// Set the default mode to VIEW MAP and set active buttons
-document.querySelectorAll('.toggle-button').forEach(function(button, index) {
-    if (index === 0) {
-        button.classList.add('active');
-    }
-    button.addEventListener('click', function() {
-        if (index === 0) {
-            isAddPinMode = false; // VIEW MAP mode
-        } else {
-            isAddPinMode = true; // ADD PINS mode
-        }
-
-        // Update button styles based on the selected mode
-        document.querySelectorAll('.toggle-button').forEach(function(btn, idx) {
-            if (idx === index) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-    });
-});
-
+const editModeToggle =  document.getElementById('edit-mode');
 document.getElementById('map').addEventListener('click', function(event) {
-    if (isAddPinMode) {
+    if (editModeToggle.checked) {
         addPin(event);
     }
 });
@@ -514,9 +491,6 @@ const filterPanel = document.getElementById('sidebar');
 function toggleFilter() {
     filterPanel.classList.toggle('disabled');
 }
-
-
-
 
 function updateNamatamaText(pin) {
     var namatamaText = document.getElementById('namatamaText');
