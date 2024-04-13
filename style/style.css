@@ -288,6 +288,10 @@ h3 {
   .toggle-button {
     font-size: 12px;
   }
+
+  .namatamaContainer {
+    margin-bottom: 60px;
+  }
 }
 
 /* Namatama */
