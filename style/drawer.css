@@ -1,0 +1,34 @@
+.drawer:not(.active) {
+  display: none;
+}
+
+.drawer-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.drawer {
+  background-color: rgba(13, 12, 14, 0.9);
+  min-height: calc(100% - 40px);
+  padding: 20px;
+  color: white;
+}
+
+.drawer .title {
+  font-size: 60px;
+  font-weight: 600;
+  padding: 30px 0;
+  /* margin-bottom: 30px; */
+}
+
+.drawer .item {
+  font-size: 30px;
+  font-weight: 100;
+  padding: 15px 0;
+  font-style: normal;
+}
+
+.drawer .item:hover {
+  color: var(--color-primary);
+  cursor: pointer;
+}

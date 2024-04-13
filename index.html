@@ -10,48 +10,70 @@
   <meta property="og:url" content="coolstuffgoeshere.github.io">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="Maps for EE-Hunt3rs">
+
+  <link rel="stylesheet" href="style/colors.css?v=0026">
   <link rel="stylesheet" href="style/style.css?v=0026">
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="stylesheet" href="style/map.css?v=0026">
+  <link rel="stylesheet" href="style/navbar.css?v=0026">
+  <link rel="stylesheet" href="style/drawer.css?v=0026">
 
   <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
 </head>
 <body>
 
 <div id="app">
-  <div class="header">
-    <div class="logo">
-      <div class="title">THE FINALS</div>
-      <div class="subtitle">INTERACTIVE MAP</div>
-      <div class="version">v0.026 4.13.24</div>
-    </div>
-    <div class="menu">
-      <div class="menu-button mobile-only">
-        <div class="name" onclick="toggleFilter()">FILTERS</div>
-      </div>
-      <div class="menu-button">
-        <div class="name">MAPS</div>
-        <div class="choices" id="map-choices">
-          <!-- Map choices are injected dynamically -->
-        </div>
-      </div>
-      <div class="menu-button">
-        <div class="name">EDIT</div>
-        <div class="choices">
-          <div>
-            <input id="edit-mode" type="checkbox">
-            <label for="edit-mode">Toggle Edit mode</label>
-          </div>
-          <div id="clearButton">Reset changes</div>
-          <div id="loadButton">Load JSON data</div>
-          <div id="saveButton">Save data as JSON</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <!-- Putting map first so that other UI stay above it -->
   <div id="map-container">
     <div id="map"></div>
   </div>
-  <div id="sidebar" class="disabled"></div>
+  
+  <div class="drawer-container">
+    <div name="maps" class="drawer" id="map-drawer">
+      <div class="title">MAPS</div>
+      <!-- Map choices are injected dynamically -->
+    </div>
+    <div name="filters" class="drawer menu-filters active" id="filter-drawer">
+      <div class="title">FILTERS</div>
+      <!-- Filters are injected dynamically -->
+    </div>
+    <div name="settings" class="drawer">
+      <div class="title">SETTINGS</div>
+      <div class="item">
+        <input id="edit-mode" type="checkbox">
+        <label for="edit-mode">Toggle Edit mode</label>
+      </div>
+      <div class="item" id="clearButton">Reset changes</div>
+      <div class="item" id="loadButton">Load JSON data</div>
+      <div class="item" id="saveButton">Save data as JSON</div>
+    </div>
+  </div>
+  <nav>
+    <div class="logo">
+      <svg alt="The Finals logo" title="The Finals Interactive Map">
+        <use xlink:href='assets/icons/tf-logo.svg#img' href="assets/icons/tf-logo.svg#img"></use>
+      </svg>
+    </div>
+    <div class="nav-divider"></div>
+    <div class="menu">
+      <div class="menu-button" name="maps">
+        <svg alt="Maps" title="Maps">
+          <use xlink:href='assets/icons/map.svg#img' href="assets/icons/map.svg#img"></use>
+        </svg>
+      </div>
+      <div class="menu-button" name="filters">
+        <svg alt="Filters" title="Filters">
+          <use xlink:href='assets/icons/filter.svg#img' href="assets/icons/filter.svg#img"></use>
+        </svg>
+      </div>
+      <div class="menu-button" name="settings">
+        <svg alt="Settings" title="Settings">
+          <use xlink:href='assets/icons/settings.svg#img' href="assets/icons/settings.svg#img"></use>
+        </svg>
+      </div>
+    </div>
+  </nav>
+
   <div id="details"></div>
 </div>
 
@@ -61,12 +83,13 @@
     <div id="namatamaReflection">  <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" /> </div>
   </div>
 
-  <script  src="src/pins.js?v=0026"></script>
-  <script  src="src/maps.js?v=0026"></script>
-  <script  src="src/edit_mode.js?v=0026"></script>
-  <script  src="src/filter_bar.js?v=0026"></script>
-  <script  src="src/layout.js?v=0026"></script>
-  <script  src="src/map_movements.js?v=0026"></script>
-  <script  src="src/main.js?v=0026"></script>
+  <script src="src/pins.js?v=0026"></script>
+  <script src="src/maps.js?v=0026"></script>
+  <script src="src/edit_mode.js?v=0026"></script>
+  <script src="src/filter_bar.js?v=0026"></script>
+  <script src="src/layout.js?v=0026"></script>
+  <script src="src/navbar.js?v=0026"></script>
+  <script src="src/map_movements.js?v=0026"></script>
+  <script src="src/main.js?v=0026"></script>
 </body>
 </html>
