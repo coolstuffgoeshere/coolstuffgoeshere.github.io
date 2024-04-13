@@ -61,7 +61,9 @@ html {
 
 .menu {
   display: flex;
+  flex-wrap: wrap;
 }
+
 
 .menu-button .name {
   background-color: none;
