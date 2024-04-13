@@ -1,18 +1,13 @@
 const filterDrawer = document.getElementById('filter-drawer');
 
 function clearFilterDrawer() {
+  const first = filterDrawer.firstElementChild;
   filterDrawer.innerHTML = '';
-
-  const items = filterDrawer.children;
-  for (const i in items) {
-    if (i > 1) {
-      items[i].remove();
-    }
-  }
+  filterDrawer.appendChild(first);
 }
 
 function updateSidebar() {
-  filterDrawer.innerHTML = '';
+  clearFilterDrawer();
   var categories = {}; // Object to store pins by category
 
   pins.forEach(function(pin) {
