@@ -4,7 +4,7 @@
     "title": "S - sign",
     "coords": {
       "x": "89.5%",
-      "y": "52.833333333333336%"
+      "y": "50.833333333333336%"
     },
     "pinImg": "assets/icons/wr.png",
     "dataImg": ""
@@ -14,7 +14,7 @@
     "title": "L - light",
     "coords": {
       "x": "46.27777777777778%",
-      "y": "65.83333333333333%"
+      "y": "63.83333333333333%"
     },
     "pinImg": "assets/icons/wr.png",
     "dataImg": ""
@@ -24,7 +24,7 @@
     "title": "I - VE(I)N sign",
     "coords": {
       "x": "33.5%",
-      "y": "17%"
+      "y": "15%"
     },
     "pinImg": "assets/icons/wr.png",
     "dataImg": ""
@@ -34,7 +34,7 @@
     "title": "E - escalator",
     "coords": {
       "x": "16.61111111111111%",
-      "y": "56.55555555555556%"
+      "y": "54.55555555555556%"
     },
     "pinImg": "assets/icons/wr.png",
     "dataImg": ""
@@ -44,7 +44,7 @@
     "title": "S - stairs",
     "coords": {
       "x": "35.72222222222222%",
-      "y": "30.11111111111111%"
+      "y": "28.11111111111111%"
     },
     "pinImg": "assets/icons/wr.png",
     "dataImg": ""
