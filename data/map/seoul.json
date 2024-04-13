@@ -48,5 +48,35 @@
     },
     "pinImg": "assets/icons/wr.png",
     "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228579430792826910/WR-S2.png?ex=662c8ec2&is=661a19c2&hm=e2f934af7bb4fcce4105ac96c2311e092028417d5ef90fc4e232337cfccc6f8d&"
+  },
+  {
+    "category": "Glitches",
+    "title": "1. Data Center",
+    "coords": {
+      "x": "39.923570595099186%",
+      "y": "16.936406067677947%"
+    },
+    "pinImg": "assets/icons/glitch.png",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228580516224045146/Seoul-Glitch-3.png?ex=662c8fc4&is=661a1ac4&hm=e73b939ee05d367891d9aca41631ffe6f1bf214720f929c5f36444cf9d758b01&"
+  },
+  {
+    "category": "Glitches",
+    "title": "2. Apartments",
+    "coords": {
+      "x": "28.02158693115519%",
+      "y": "77.02975495915986%"
+    },
+    "pinImg": "assets/icons/glitch.png",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228580516727357512/Seoul-Glitch-2.png?ex=662c8fc5&is=661a1ac5&hm=2315eafe62f05a18dd99feb3cf3690aca76af69e2ccef47a73f2b9d9603054ef&"
+  },
+  {
+    "category": "Glitches",
+    "title": "3. Hospital",
+    "coords": {
+      "x": "93.59918319719954%",
+      "y": "52.17561260210035%"
+    },
+    "pinImg": "assets/icons/glitch.png",
+    "dataImg": "https://cdn.discordapp.com/attachments/1227782293129793656/1228580517113364523/Seoul-Glitch-1.png?ex=662c8fc5&is=661a1ac5&hm=c9a8f311ad4f52b78f76bcefaf8bbd48df9e5203db61af2acf83adb4b7587286&"
   }
 ]
