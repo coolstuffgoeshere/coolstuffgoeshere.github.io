@@ -1,13 +1,11 @@
 var pins = [];
 
-
-
 pinElement.addEventListener('mouseleave', function() {
     popup.classList.remove('active');
     clearNamatamaText();
 });
 
-  pinElement.addEventListener('click', function() {
+pinElement.addEventListener('click', function() {
       togglePopup(popup);
       updateSidebar(); // Update the sidebar when pin visibility changes
   });
