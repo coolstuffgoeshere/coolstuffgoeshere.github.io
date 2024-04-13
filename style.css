@@ -234,7 +234,7 @@ html {
 }
 
 .popup.active {
-  display: block;
+  display: none;   /* Namatama is better*/
 }
 
 .popup .data-img {
