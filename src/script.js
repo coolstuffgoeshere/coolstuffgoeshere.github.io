@@ -3,43 +3,38 @@ var maps = [
       name: "Monaco",
       urlName: "monaco",
       mapImage: "https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/MonacoOverview_Hi-Res.jpg",
-      fileName: "map_monaco.json",
-      defaultData: "https://coolstuffgoeshere.github.io/map_monaco.json"
+      fileName: "data/map/monaco.json",
   },
   {
       name: "Seoul",
       urlName: "seoul",
       mapImage: "https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/SeoulOverview_Hi-Res.jpg",
-      fileName: "map_seoul.json",
-      defaultData: "https://coolstuffgoeshere.github.io/map_seoul.json"
+      fileName: "data/map/seoul.json",
   },
   {
       name: "Skyway Stadium",
       urlName: "skywaystadium",
       mapImage: "https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/Atsuhiro_Skyway-Stadium_Overview-Map.png",
-      fileName: "map_skyway.json",
-      defaultData: "https://coolstuffgoeshere.github.io/map_skyway.json"
+      fileName: "data/map/skyway.json",
   },
   {
       name: "Las Vegas",
       urlName: "lasvegas",
       mapImage: "https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/Atsuhiro_Las-Vegas_Overview-MAp.png",
-      fileName: "map_vegas.json",
-      defaultData: "https://coolstuffgoeshere.github.io/map_vegas.json"
+      fileName: "data/map/vegas.json",
   },
   {
       name: "SYS$Horizon",
       urlName: "syshorizon",
       mapImage: "https://mywikis-eu-wiki-media.s3.eu-central-2.wasabisys.com/thefinals/SYSHORIZON_mapOverview.jpg",
-      fileName: "map_syshorizon.json",
-      defaultData: "https://coolstuffgoeshere.github.io/map_syshorizon.json"
+      fileName: "data/map/syshorizon.json",
   }
 ];
 
 const app = document.getElementById('app');
 var pins = [];
 var currentMap = "Monaco";
-var currentFile = "map_monaco.json";
+var currentFile = "data/map/monaco.json";
 const zoomData = {
     zoom: 1.0,
     x: 0,
@@ -306,7 +301,7 @@ for (let map of maps) {
         document.getElementById('map').style.backgroundImage = `url(${map.mapImage})`;
         currentMap = map.name;
         currentFile = map.fileName;
-        fetch(map.defaultData)
+        fetch(map.fileName)
             .then(response => response.json())
             .then(data => {
                 pins = data;
@@ -375,7 +370,8 @@ function loadMap() {
   document.getElementById('map').style.backgroundImage = `url(${selectedMap.mapImage})`;
   currentMap = selectedMap.name;
   currentFile = selectedMap.fileName;
-  fetch(selectedMap.defaultData)
+
+  fetch(selectedMap.fileName)
       .then(response => response.json())
       .then(data => {
           pins = data;
