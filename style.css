@@ -281,14 +281,6 @@ h3 {
   display: none;
 }
 
-input::not(:checked) .checked {
-  display: none;
-}
-
-input:checked .unchecked {
-  display: none;
-}
-
 @media (max-width: 768px) {
   .mobile-only {
     display: block;
