@@ -59,7 +59,7 @@ document.querySelectorAll('.toggle-button').forEach(function(button, index) {
             isAddPinMode = true; // ADD PINS mode
         }
 
-        // Update button styles based on the selected mode
+        // Update button styles based on the selected 
         document.querySelectorAll('.toggle-button').forEach(function(btn, idx) {
             if (idx === index) {
                 btn.classList.add('active');
@@ -272,7 +272,6 @@ function addPin(event) {
     }
     
     var title = prompt('Enter the title for the new pin:');
-    var dataImg = prompt('Enter the data image URL for the new pin (optional):');
     var coords = getCoordsFromClick(event);
     
     // Check if title is null or blank then stop
@@ -280,7 +279,7 @@ function addPin(event) {
         return;
     }
     
-    var pin = {category: category, title: title, coords: coords, pinImg: 'https://coolstuffgoeshere.github.io/icons/fried-egg.png', dataImg: dataImg};
+    var pin = {category: category, title: title, coords: coords, pinImg: 'https://coolstuffgoeshere.github.io/icons/fried-egg.png', dataImg: 'https://coolstuffgoeshere.github.io/icons/fried-egg.png'};
     pins.push(pin);
     createPin(pin);
     updateSidebar();
