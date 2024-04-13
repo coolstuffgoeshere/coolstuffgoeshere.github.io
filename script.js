@@ -128,7 +128,7 @@ function createPin(pin) {
             navigator.clipboard.writeText(pinUrl)
                 .then(function() {
                     console.log('URL copied to clipboard: ' + pinUrl);
-                    alert('URL copied to clipboard: ' + pinUrl);
+                    // alert('URL copied to clipboard: ' + pinUrl);
                 })
                 .catch(function(err) {
                     console.error('Failed to copy URL to clipboard: ', err);
