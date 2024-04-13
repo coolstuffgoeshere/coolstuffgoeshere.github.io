@@ -3,6 +3,8 @@ document.getElementById('map').addEventListener('click', function(event) {
     if (editModeToggle.checked) {
         addPin(event);
     }
+
+    getCoordsFromClick(event); // This is here so I can see the X & Y coordinates on a map click in console.log for debugging purposes.
 });
 
 function createPin(pin) {
@@ -153,7 +155,12 @@ function getCoordsFromClick(event) {
   var pinSize = 3; // Adjust based on pin size (3 works best)
   var x = ((event.clientX - rect.left) / map.offsetWidth * 100) - (pinSize / 2) + '%';
   var y = ((event.clientY - rect.top) / map.offsetHeight * 100) - (pinSize / 2) + '%';
+
+  console.log(x);
+  console.log(y);
+  
   return {x: x, y: y};
+
 }
 
 function loadPinsFromFile(file) {
