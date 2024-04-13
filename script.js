@@ -38,6 +38,7 @@ var maps = [
 
 var pins = [];
 var currentMap = "Monaco";
+var currentMapUrl = "monaco";
 var currentFile = "map_monaco.json";
 const zoomData = {
     zoom: 1.0,
@@ -88,6 +89,7 @@ document.getElementById('map').addEventListener('click', function(event) {
 
 function createPin(pin) {
     console.log(pin)
+    console.log(currentMapUrl)
       var pinElement = document.createElement('div');
       pinElement.classList.add('pin');
       pinElement.style.left = pin.coords.x.replace('%%', '%');
@@ -121,7 +123,7 @@ function createPin(pin) {
       });
     
         // Create URL for the pin and replace unwanted characters
-        var pinUrl = window.location.origin + window.location.pathname + '#' + currentMap.toLowerCase() + '?category=' + encodeURIComponent(pin.category) + '&title=' + encodeURIComponent(pin.title) + '&x=' + encodeURIComponent(pin.coords.x + '%') + '&y=' + encodeURIComponent(pin.coords.y + '%') + '&pinImg=' + encodeURIComponent(pin.pinImg) + '&dataImg=' + encodeURIComponent(pin.dataImg);
+        var pinUrl = window.location.origin + window.location.pathname + '#' + currentMapUrl.toLowerCase() + '?category=' + encodeURIComponent(pin.category) + '&title=' + encodeURIComponent(pin.title) + '&x=' + encodeURIComponent(pin.coords.x + '%') + '&y=' + encodeURIComponent(pin.coords.y + '%') + '&pinImg=' + encodeURIComponent(pin.pinImg) + '&dataImg=' + encodeURIComponent(pin.dataImg);
     
         // Add a click event listener to copy the URL to clipboard
         pinElement.addEventListener('click', function() {
@@ -344,6 +346,7 @@ for (let map of maps) {
         selectedLocation = map.name;
         document.getElementById('map').style.backgroundImage = `url(${map.mapImage})`;
         currentMap = map.name;
+        currentMapUrl = map.urlName;
         currentFile = map.fileName;
         fetch(map.defaultData)
             .then(response => response.json())
@@ -416,6 +419,8 @@ function loadMap() {
   
     document.getElementById('map').style.backgroundImage = `url(${selectedMap.mapImage})`;
     currentMap = selectedMap.name;
+    currentMapUrl = selectedMap.urlName;
+
     currentFile = selectedMap.fileName;
     fetch(selectedMap.defaultData)
         .then(response => response.json())
