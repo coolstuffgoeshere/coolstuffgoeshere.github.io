@@ -87,39 +87,56 @@ document.getElementById('map').addEventListener('click', function(event) {
 //   }
 
 function createPin(pin) {
-  var pinElement = document.createElement('div');
-  pinElement.classList.add('pin');
-  pinElement.style.left = pin.coords.x;
-  pinElement.style.top = pin.coords.y;
-  pinElement.title = pin.title;
-
-  var pinImage = document.createElement('img');
-  pinImage.src = pin.pinImg; // Use pinImg property for pin image
-  pinImage.alt = pin.title;
-
-  var popup = createPopup(pin);
-
-  pinElement.appendChild(pinImage);
-  pinElement.appendChild(popup);
-  document.getElementById('map').appendChild(pinElement);
-
-  pinElement.addEventListener('mouseenter', function() {
-    popup.classList.add('active');
-    updateNamatamaText(pin);
-});
-
-pinElement.addEventListener('mouseleave', function() {
-    popup.classList.remove('active');
-    clearNamatamaText();
-});
-
-  pinElement.addEventListener('click', function() {
-      togglePopup(popup);
-      updateSidebar(); // Update the sidebar when pin visibility changes
-  });
-
- 
-}
+    console.log(pin)
+      var pinElement = document.createElement('div');
+      pinElement.classList.add('pin');
+      pinElement.style.left = pin.coords.x.replace('%%', '%');
+      pinElement.style.top = pin.coords.y.replace('%%', '%');
+      pinElement.title = pin.title;
+    
+      var pinImage = document.createElement('img');
+      pinImage.src = pin.pinImg; // Use pinImg property for pin image
+      
+      pinImage.alt = pin.title;
+    
+      var popup = createPopup(pin);
+    
+      pinElement.appendChild(pinImage);
+      pinElement.appendChild(popup);
+      document.getElementById('map').appendChild(pinElement);
+    
+      pinElement.addEventListener('mouseenter', function() {
+        popup.classList.add('active');
+        updateNamatamaText(pin);
+    });
+    
+    pinElement.addEventListener('mouseleave', function() {
+        popup.classList.remove('active');
+        clearNamatamaText();
+    });
+    
+      pinElement.addEventListener('click', function() {
+          togglePopup(popup);
+          updateSidebar(); // Update the sidebar when pin visibility changes
+      });
+    
+        // Create URL for the pin and replace unwanted characters
+        var pinUrl = window.location.origin + window.location.pathname + '#' + currentMap.toLowerCase() + '?category=' + encodeURIComponent(pin.category) + '&title=' + encodeURIComponent(pin.title) + '&x=' + encodeURIComponent(pin.coords.x + '%') + '&y=' + encodeURIComponent(pin.coords.y + '%') + '&pinImg=' + encodeURIComponent(pin.pinImg) + '&dataImg=' + encodeURIComponent(pin.dataImg);
+    
+        // Add a click event listener to copy the URL to clipboard
+        pinElement.addEventListener('click', function() {
+            navigator.clipboard.writeText(pinUrl)
+                .then(function() {
+                    console.log('URL copied to clipboard: ' + pinUrl);
+                    alert('URL copied to clipboard: ' + pinUrl);
+                })
+                .catch(function(err) {
+                    console.error('Failed to copy URL to clipboard: ', err);
+                });
+        });
+    
+     
+    }
 
 function togglePopup(popup) {
     popup.classList.toggle('active');
@@ -384,29 +401,61 @@ document.getElementById('clearButton').addEventListener('click', function() {
 
 // Load map based on the URL hash route
 function loadMap() {
-  const hash = window.location.hash.substring(1); // Extract the hash part of the URL
-  console.log(hash);
+    const hash = window.location.hash.substring(1); // Extract the hash part of the URL
+    const hashMap = hash.split('?')[0];
+    console.log(hashMap);
+    const hashParams = hash.split('?')[1];
+    console.log(hashParams);
+  
+    let selectedMap = maps.find(map => map.urlName.toLowerCase() === hashMap.toLowerCase());
+  
+    if (!selectedMap) {
+        // Set Monaco as the default map if no hash route is specified
+        selectedMap = maps.find(map => map.urlName.toLowerCase() === 'monaco');
+    }
+    console.log(selectedMap);
+  
+    document.getElementById('map').style.backgroundImage = `url(${selectedMap.mapImage})`;
+    currentMap = selectedMap.name;
+    currentFile = selectedMap.fileName;
+    fetch(selectedMap.defaultData)
+        .then(response => response.json())
+        .then(data => {
+            pins = data;
+            clearMap();
+            loadPins();
+  
+            // Extract pin data from the URL
+            const urlParams = hashParams.replace(/%25/g, '%').replace(/%3A/g, ':').replace(/%2F/g, '/');            
+            const category = urlParams.split('&')[0].split('=')[1];
+            const title = urlParams.split('&')[1].split('=')[1];
+            const x = urlParams.split('&')[2].split('=')[1];
+            const y = urlParams.split('&')[3].split('=')[1];
+            const pinImg = urlParams.split('&')[4].split('=')[1];
+            const dataImg = urlParams.split('&')[5].split('=')[1];
+            console.log(category);
+            console.log(title);
+            console.log(x);
+            console.log(y);
+            console.log(pinImg);
+            console.log(dataImg);
 
-  let selectedMap = maps.find(map => map.urlName.toLowerCase() === hash.toLowerCase());
-
-  if (!selectedMap) {
-      // Set Monaco as the default map if no hash route is specified
-      selectedMap = maps.find(map => map.urlName.toLowerCase() === 'monaco');
+            if (category && title && x && y && pinImg && dataImg) {
+                const newPinData = {
+                    category,
+                    title,
+                    coords: { x, y },
+                    pinImg,
+                    dataImg
+                };
+                
+                createPin(newPinData); // Add a new pin directly
+                updateSidebar(); // Update the sidebar with the new pin
+                console.log(newPinData);
+            }
+        })
+        .catch(error => console.error('Error loading JSON:', error));
   }
-  console.log(selectedMap);
-
-  document.getElementById('map').style.backgroundImage = `url(${selectedMap.mapImage})`;
-  currentMap = selectedMap.name;
-  currentFile = selectedMap.fileName;
-  fetch(selectedMap.defaultData)
-      .then(response => response.json())
-      .then(data => {
-          pins = data;
-          clearMap();
-          loadPins();
-      })
-      .catch(error => console.error('Error loading JSON:', error));
-}
 
 // Listen for hash changes to trigger map loading
 window.addEventListener('hashchange', loadMap);
