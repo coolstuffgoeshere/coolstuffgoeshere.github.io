@@ -1,0 +1,7 @@
+.drawer:not(.active) {
+  display: none;
+}
+
+.drawer.active {
+  background-color: green;
+}

@@ -34,11 +34,16 @@
   }
 }
 
-nav {
-  grid-area: navbar;
+#map-container {
+  z-index: 1;
 }
 
-.drawer {
+nav {
+  grid-area: navbar;
+  z-index: 11;
+}
+
+.drawer-container {
   grid-area: drawer;
-  display: none;
+  z-index: 10;
 }
