@@ -32,34 +32,6 @@ html {
   font-weight: 600;
 }
 
-.logo {
-  display: block;
-  background-color: #D21F3C;
-  color: white;
-  padding: 10px 50px 5px 30px;
-  /* margin-right: 20px; */
-  font-family: "Saira Extra Condensed";
-  font-weight: 600;
-}
-
-.logo .title {
-  font-size: 40px;
-  line-height: 28px;
-}
-
-.logo .subtitle {
-  font-size: 25px;
-  /* padding-top: 10px; */
-  font-weight: 400;
-}
-
-.logo .version {
-  font-size: 15px;
-  line-height: 10px;
-  font-weight: 200;
-  font-family: "Arial" !important;
-}
-
 .menu {
   display: flex;
   flex-wrap: wrap;
@@ -98,33 +70,7 @@ html {
   margin-top: 0px;
 }
 
-#app {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-template-columns: auto 1fr auto;
-  grid-template-areas:
-    "header header header"
-    "sidebar map details";
-  width: 100vw;
-  height: 100vh !important;
-}
 
-#sidebar {
-  grid-area: sidebar;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 10px;
-  padding-top: 40px;
-  overflow-y: auto;
-  width: 200px;
-  border-right: 1px solid #111;
-  z-index: 200;
-}
-
-#map-container {
-  grid-area: map;
-  overflow: hidden;
-}
 
 #map {
   margin: auto;
@@ -212,7 +158,8 @@ html {
 }
 
 .popup.active {
-  display: none;   /* Namatama is better*/
+  display: none;
+  /* Namatama is better*/
 }
 
 .popup .data-img {
@@ -323,12 +270,27 @@ h3 {
     width: 50%;
   }
 
-  .logo .title {font-size: 36px; line-height: 26px;}
-  .logo .subtitle {font-size: 23px; line-height: 20px;}
-  .logo .version {font-size: 18px; line-height: 14px;}
+  .logo .title {
+    font-size: 36px;
+    line-height: 26px;
+  }
+
+  .logo .subtitle {
+    font-size: 23px;
+    line-height: 20px;
+  }
+
+  .logo .version {
+    font-size: 18px;
+    line-height: 14px;
+  }
 
   .toggle-button {
     font-size: 12px;
+  }
+
+  .namatamaContainer {
+    margin-bottom: 60px;
   }
 }
 
@@ -346,6 +308,7 @@ h3 {
   transform-origin: bottom right;
   /* Scale from the bottom right corner */
   animation: 2s rollIn forwards;
+  z-index: 9;
 
 }
 

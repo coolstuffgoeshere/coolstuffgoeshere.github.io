@@ -1,0 +1,89 @@
+nav {
+  background-color: #1D1A20;
+  /* color: white; */
+  overflow-y: auto;
+
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  nav {
+    grid-template-columns: auto auto auto;
+    grid-template-areas: "logo divider menu";
+
+    border-top: 1px solid #29262B;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .nav-divider {
+    width: 1px;
+    height: 70%;
+  }
+
+  .menu {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 769px) {
+  nav {
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      "logo"
+      "divider"
+      "menu"
+      "zoom-ui";
+
+    border-right: 1px solid #29262B;
+  }
+
+  .nav-divider {
+    width: 70%;
+    height: 1px;
+  }
+
+  .menu {
+    flex-direction: column;
+  }
+}
+
+.logo {
+  grid-area: logo;
+  padding: 7px;
+  fill: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.logo svg {
+  width: 40px;
+  height: 40px;
+}
+
+
+.nav-divider {
+  grid-area: divider;
+
+  background-color: #29262B;
+}
+
+.menu {
+  grid-area: menu;
+  display: flex;
+  /* padding: 10px; */
+}
+
+.menu-button svg {
+  color: white;
+  padding: 10px;
+  width: 18px;
+  height: 18px;
+  transition: color 80ms ease-out;
+}
+
+.menu-button:hover svg {
+  color: var(--color-primary);
+}
