@@ -161,7 +161,7 @@ function getCoordsFromClick(event) {
   var y = ((event.clientY - rect.top) / map.offsetHeight * 100) - (pinSize / 2) + '%';
 
 // Calculate the correction value based on the zoom level
-var correctionValue = 0.1 + zoomData.zoom / 10; // Adjust the formula based on the zoom range
+var correctionValue = 1.8; // I guess not needed anymore.
 
 
 

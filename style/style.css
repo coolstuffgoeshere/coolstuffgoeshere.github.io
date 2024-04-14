@@ -133,8 +133,8 @@ html {
 
 .pin {
   position: absolute;
-  width: 2vw;
-  height: 2vw;
+  width: 40px; /* has to be px or breaks placement */
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
   transform-origin: center;
