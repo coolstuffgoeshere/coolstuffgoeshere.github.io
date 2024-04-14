@@ -17,7 +17,9 @@
   <link rel="stylesheet" href="style/map.css?v=0027">
   <link rel="stylesheet" href="style/navbar.css?v=0027">
   <link rel="stylesheet" href="style/drawer.css?v=0027">
+  <link rel="stylesheet" href="style/filters.css?v=0027">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
   <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
 </head>
 <body>
@@ -36,6 +38,43 @@
     <div name="filters" class="drawer menu-filters active" id="filter-drawer">
       <div class="title">FILTERS</div>
       <!-- Filters are injected dynamically -->
+      <div class="category">
+        <div class="category-header">
+          <div class="toggle-icon mdi mdi-eye"></div>
+          <div class="category-title">Easter Eggs</div>
+        </div>
+        <div class="group">
+          <div class="toggle-icon mdi mdi-eye"></div>
+          <img class="group-icon" src="assets/icons/wr.png">
+          <div class="group-title">White Rabbits</div>
+        </div>
+        <div class="group">
+          <div class="toggle-icon mdi mdi-eye-off-outline"></div>
+          <img class="group-icon" src="assets/icons/graffiti.png">
+          <div class="group-title">Graffitis</div>
+        </div>
+      </div>
+      <div class="category">
+        <div class="category-header">
+          <div class="toggle-icon mdi mdi-eye"></div>
+          <div class="category-title">Other</div>
+        </div>
+        <div class="group">
+          <div class="toggle-icon mdi mdi-eye"></div>
+          <img class="group-icon" src="assets/icons/wr.png">
+          <div class="group-title">Spawns</div>
+        </div>
+        <div class="group">
+          <div class="toggle-icon mdi mdi-eye"></div>
+          <img class="group-icon" src="assets/icons/graffiti.png">
+          <div class="group-title">Cashouts</div>
+        </div>
+        <div class="group">
+          <div class="toggle-icon mdi mdi-eye"></div>
+          <img class="group-icon" src="assets/icons/graffiti.png">
+          <div class="group-title">Jumppads</div>
+        </div>
+      </div>
     </div>
     <div name="settings" class="drawer">
       <div class="title">SETTINGS</div>

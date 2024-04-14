@@ -1,13 +1,16 @@
 const filterDrawer = document.getElementById('filter-drawer');
 
 function clearFilterDrawer() {
+  return;
   const first = filterDrawer.firstElementChild;
   filterDrawer.innerHTML = '';
   filterDrawer.appendChild(first);
 }
 
 function updateSidebar() {
+  return;
   clearFilterDrawer();
+  
   var categories = {}; // Object to store pins by category
 
   pins.forEach(function(pin) {

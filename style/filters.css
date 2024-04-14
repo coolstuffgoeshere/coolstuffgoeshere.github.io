@@ -1,0 +1,44 @@
+.menu-filters .category {
+  margin-bottom: 45px;
+}
+
+.menu-filters .category-header {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.menu-filters .category-title {
+  color: var(--color-primary);
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.menu-filters .group {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0px;
+  padding-left: 30px;
+}
+
+.menu-filters .group-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.menu-filters .group-title {
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.menu-filters .toggle-icon {
+  color: #666;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  margin-right: 4px;
+  align-self: center;
+}
