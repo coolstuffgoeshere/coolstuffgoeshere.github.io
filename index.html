@@ -39,30 +39,28 @@
     </div>
     <div name="settings" class="drawer">
       <div class="title">SETTINGS</div>
+      <div class="item" id="load-community-map">Load data from Community Maps</div>
       <div class="item">
         <input id="add-pins-mode" type="checkbox">
-        <label for="add-pins-mode">Allow Adding New Pins To Map</label>
+        <label for="add-pins-mode">Enable adding new pins when clicking on map</label>
       </div>
       <div class="item">
         <input id="edit-pins-mode" type="checkbox">
-        <label for="edit-pins-mode">Enable Editing Pins From Menu</label>
+        <label for="edit-pins-mode">Enable editing pins by clicking them in the Filter menu</label>
       </div>
-      <div class="item" id="submitPins">Submit Pins To Community</div>
-      <div class="item">
-        <input id="community-pins" type="checkbox">
-        <label for="community-pins">Display Community Pins</label>
-      </div>
-      <div class="item" id="resetZoom">Reset Map Zoom</div>
+      <div class="item" id="submitPins">Submit edited data to Community Maps</div>
+      <hr>
+
+
       <div class="item" id="loadFromFile">
         <label for="fileInput">Load your own .JSON map data</label>
         <input type="file" id="fileInput" style="display: none;" onchange="loadPinsFromFile(event)">
-    </div>
+      </div>
           <div class="item" onClick="savePinsToFile()" id="saveToFile">Save current map data to .JSON file</div>
+          <hr>
+          <div class="item" id="resetZoom">Reset Map Zoom</div>
+          <div class="item" onClick="blankMap()">Blank Map</div>
 
-<!-- 
-      <div class="item" id="clearButton">Reset changes</div>
-      <div class="item" id="loadButton">Load JSON data</div>
-      <div class="item" id="saveButton">Save data as JSON</div> -->
     </div>
   </div>
   <nav>

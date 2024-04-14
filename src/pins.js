@@ -4,7 +4,6 @@ let pins = [];
 const editPinsToggle = document.getElementById('edit-pins-mode');
 
 
-
 function togglePopup(popup) {
     popup.classList.toggle('active');
 }

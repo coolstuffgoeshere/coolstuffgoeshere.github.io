@@ -296,3 +296,12 @@ function savePinEdit(index) {
     document.getElementById('pinEditDiv').innerHTML = '';
   }
 
+  function blankMap() {
+    data = [];
+    clearMap();
+    data.forEach(pin => {
+        createPinOnMap(pin);
+    });
+    clearFilterDrawer()
+    createPinsAndCategoriesInMenu(data);
+  }
