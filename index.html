@@ -40,6 +40,8 @@
     <div name="settings" class="drawer">
       <div class="title">SETTINGS</div>
       <div class="item" id="load-community-map">Load data from Community Maps</div>
+      <div class="item" onClick="blankMap()">Start a new blank map</div>
+      <hr>
       <div class="item">
         <input id="add-pins-mode" type="checkbox">
         <label for="add-pins-mode">Enable adding new pins when clicking on map</label>
@@ -59,7 +61,7 @@
           <div class="item" onClick="savePinsToFile()" id="saveToFile">Save current map data to .JSON file</div>
           <hr>
           <div class="item" id="resetZoom">Reset Map Zoom</div>
-          <div class="item" onClick="blankMap()">Blank Map</div>
+ 
 
     </div>
   </div>
