@@ -87,3 +87,11 @@ mapContainer.addEventListener('wheel', function(event) {
     const sign = event.deltaY < 0 ? 1 : -1;
     changeZoom(x, y, 1 + sign * 0.05);
 });
+
+// Add an event listener to the "Reset Map Zoom" button
+document.getElementById('resetZoom').addEventListener('click', function() {
+    zoomData.zoom = 1.0;
+    zoomData.x = 0;
+    zoomData.y = 0;
+    updateZoom();
+});
