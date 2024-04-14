@@ -1,14 +1,16 @@
-var pins = [];
+// Additional functionality for PINS such as shows it's data in popups or Namatama currently
 
-pinElement.addEventListener('mouseleave', function() {
-    popup.classList.remove('active');
-    clearNamatamaText();
-});
+let pins = [];
 
-pinElement.addEventListener('click', function() {
-      togglePopup(popup);
-      updateSidebar(); // Update the sidebar when pin visibility changes
-  });
+// pinElement.addEventListener('mouseleave', function() {
+//     popup.classList.remove('active');
+//     clearNamatamaText();
+// });
+
+// pinElement.addEventListener('click', function() {
+//       togglePopup(popup);
+//       updateSidebar(); // Update the sidebar when pin visibility changes
+//   });
 
 
 function togglePopup(popup) {

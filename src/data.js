@@ -1,4 +1,4 @@
-// Data.js is Step #1 of Loading & Drawing the App.  Keep the functions tied to setup in one script. 
+// Data.js is Step #1 of Loading & Drawing the App from its' data.  These functions call each other and the rest of the app depends on them from here.
 
 console.log('Begin Loading Maps')
 
@@ -8,65 +8,74 @@ supabase = createClient(
 );
 // console.log(supabase); // Log data of succesful connection
 
-var maps = []; 
-var data = [];
-var currentMap = "";
-var currentMapUrl = "monaco";
-var currentMapData = [];
+let maps = []; 
+let data = [];
+let currentMap = "Monaco";
+let currentMapUrl = "monaco";
+let currentMapData = [];
+const filterDrawer = document.getElementById('filter-drawer');
 
-// 1. Fetch all the Maps from the database and then tell the app to get to work!
+// -----------------------------THE MAPS--------------------------------------------------------
+// 1. Fetch all the Maps from the database and then tell the app to show the correct one.
+
 async function fetchMapsFromSupabase() {
     // Get the "Maps" table and select everything inside, then map it to an array of maps like before. Simple!
     let supaFiles = await supabase.from("Maps").select("*");
-    console.log(supaFiles.data);
+    // console.log(supaFiles.data);
     maps = supaFiles.data.map(item => ({
         name: item.name,
         urlName: item.urlName,
         mapImage: item.mapImage,
     }));
-    console.log("Maps Loaded:" + maps);
-    createMapMenu(maps);
-    showMap(maps);
+    // console.log("Maps Loaded:" + maps);
+    createMapMenu();
+    showMap();
 
 }
 fetchMapsFromSupabase();
 
-// 2. Create the Map Menu of all Maps & give them the functions needed when clicked on.
-async function createMapMenu(maps){
+// Create the Map Menu of those Maps & give them the functions needed when clicked on.
+function createMapMenu(){
     const mapChoices = document.getElementById('map-drawer');
+
     for (let map of maps) {
-        console.log(map)
+        // console.log(map)
         const choice = document.createElement('div');
         choice.textContent = map.name;
         choice.classList.add('item');
         choice.onclick = function() {
-            selectedLocation = map.name;
-            console.log(selectedLocation);
-            document.getElementById('map').style.backgroundImage = `url(${map.mapImage})`;
             currentMap = map.name;
-            currentMapUrl = map.urlName;
-            clearMap();
-            fetchMapDataFromSupabase(currentMap);
+            console.log("currentMap is: " + currentMap);
+            showMap();
         };
         mapChoices.appendChild(choice);
     }
 }
 
-// 3. Display the map image & set the currentMap we're on.
-async function showMap(maps){
-    const mapImageDiv = document.getElementById('map');
-    const mapToShow = maps.find(map => map.urlName === currentMapUrl);
+// Display the Map
+function showMap(){
+    console.log(maps);
+    const mapToShow = maps.find(map => map.name === currentMap);
     
     if (mapToShow) {
-        mapImageDiv.style.backgroundImage = `url(${mapToShow.mapImage})`;
+        document.getElementById('map').style.backgroundImage = `url(${mapToShow.mapImage})`;
         currentMap = mapToShow.name;
         currentMapUrl = mapToShow.urlName;
+        clearMap();
         fetchMapDataFromSupabase(currentMap);
     }
 }
 
-// 4. Now, based on selected map fetch all the Available Data for that map.
-// This means it will load multiple data sets (if there are more than one). I just have it load the one named 'default' for that map for now as the starting point.
+// Clear the Map
+function clearMap() {
+    const map = document.getElementById('map');
+    console.log(map);
+    map.innerHTML = ''; // Clear all child elements (pins) from the map
+}
+
+// ----------------------------MAP DATA---------------------------------------------------------
+// 2. Fetch All Map Data available and then tell the app to show the correct one.
+// Multiple Data Sets possible.  Currently just loads 'default' for that map for now as the starting point.
 
 async function fetchMapDataFromSupabase(currentMap) {
     let supaFiles = await supabase.from("MapData").select("*");
@@ -85,18 +94,19 @@ async function fetchMapDataFromSupabase(currentMap) {
     if (displayData) {
         data = displayData.mapData;
         console.log("Data Picked To Show: ", data);
-
+        createPinsAndCategoriesInMenu(data);
         data.forEach(pin => {
-            createNewPin(pin);
+            createPinOnMap(pin);
+   
         });
     }
 
 
 }
 
-// 5. Take the data we want and creates all the pins.  Easy!
-async function createNewPin(pin) {
-        // console.log(pin)
+// Create the Pins at correct places
+function createPinOnMap(pin) {
+        console.log(pin)
         // console.log(currentMapUrl)
         var pinElement = document.createElement('div');
         pinElement.classList.add('pin');
@@ -144,13 +154,62 @@ async function createNewPin(pin) {
                     console.error('Failed to copy URL to clipboard: ', err);
                 });
         });
-      }
 
- function clearMap() {
-        const map = document.getElementById('map');
-        console.log(map);
-        map.innerHTML = ''; // Clear all child elements (pins) from the map
+}
 
-      }
+// Create Pin Menu items for list
+function createPinsAndCategoriesInMenu(allpins) {
+    clearFilterDrawer()
+    console.log(allpins)
+    // clearFilterDrawer();
+    var categories = {}; // Object to store pins by category
+  
+    allpins.forEach(function(pin) {
+        if (!categories[pin.category]) {
+            categories[pin.category] = [];
+        }
+        categories[pin.category].push(pin);
+        
+    });
+    console.log(categories);
+
+    for (var category in categories) {
+        var categoryHeader = document.createElement('h3');
+        categoryHeader.textContent = category;
+        filterDrawer.appendChild(categoryHeader);
+  
+        categories[category].forEach(function(pin) {
+            var pinCheckbox = document.createElement('input');
+            pinCheckbox.type = 'checkbox';
+            pinCheckbox.checked = true; // By default, pins are visible
+            pinCheckbox.addEventListener('change', function() {
+                var pinElement = document.querySelector('.pin[title="' + pin.title + '"]');
+                pinElement.style.display = this.checked ? 'block' : 'none';
+            });
+  
+            var pinLabel = document.createElement('label');
+            pinLabel.textContent = pin.title;
+            pinLabel.style.cursor = 'pointer';
+            pinLabel.addEventListener('click', function() {
+                var pinElement = document.querySelector('.pin[title="' + pin.title + '"]');
+                var popup = pinElement.querySelector('.popup');
+                togglePopup(popup);
+                showPinEdit(pin, filterDrawer);
+            });
+  
+            var pinItem = document.createElement('div');
+            pinItem.appendChild(pinCheckbox);
+            pinItem.appendChild(pinLabel);
+            filterDrawer.appendChild(pinItem);
+        });
+    }
+}
+
+function clearFilterDrawer() {
+    const first = filterDrawer.firstElementChild;
+    filterDrawer.innerHTML = '';
+    filterDrawer.appendChild(first);
+  }
 
 
+  // ------NOTHING ELSE SHOULD GO IN THIS SCRIPT---------------------------------------------
