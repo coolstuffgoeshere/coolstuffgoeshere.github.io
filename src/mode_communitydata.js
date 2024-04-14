@@ -52,7 +52,7 @@ function createSelectBox(availableDataForMap) {
 
 
     const pinEditDiv = document.getElementById('pinEditDiv'); // use that pin edit div to display this info.
-    pinEditDiv.innerHTML = 'SELECT FROM COMMUNITY MAP DATA OPTIONS:<br><br>'; // Clear it to be sure
+    pinEditDiv.innerHTML = 'SELECT MAP DATA TO LOAD:'; // Clear it to be sure
 
     selectBox = document.createElement("select");
     selectBox.setAttribute("id", "dataSelect");

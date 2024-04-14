@@ -424,8 +424,18 @@ h3 {
   color: white;
   z-index: 100;
   font-size: 24px;
+  padding: 4px 4px;
 }
 
 #editPin > input {
   font-size: 24px;
+}
+
+#dataSelect {
+  display: block;
+  background: black;
+  font-family: "Saira Extra Condensed";
+  font-size: 18px;
+  margin: 20px 0px;
+  color: white;
 }
