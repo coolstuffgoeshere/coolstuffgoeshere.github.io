@@ -14,6 +14,8 @@
   padding: 20px;
   color: white;
   pointer-events: all; /* Allows for clicking the items in the drawer once open */
+
+
 }
 
 .drawer .title {
@@ -33,4 +35,8 @@
 .drawer .item:hover {
   color: var(--color-primary);
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  
 }

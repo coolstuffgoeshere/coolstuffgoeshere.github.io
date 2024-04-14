@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="style/filters.css?v=0027">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
 </head>
 <body>
@@ -79,12 +80,21 @@
     <div name="settings" class="drawer">
       <div class="title">SETTINGS</div>
       <div class="item">
-        <input id="edit-mode" type="checkbox">
-        <label for="edit-mode">Toggle Edit mode</label>
+        <input id="add-pins-mode" type="checkbox">
+        <label for="add-pins-mode">Allow Adding New Pins To Map</label>
       </div>
+      <div class="item" id="submitPins">Submit Pins To Community</div>
+      <div class="item">
+        <input id="community-pins" type="checkbox">
+        <label for="community-pins">Display Community Pins</label>
+      </div>
+      <div class="item" id="resetZoom">Reset Map Zoom</div>
+
+
+<!-- 
       <div class="item" id="clearButton">Reset changes</div>
       <div class="item" id="loadButton">Load JSON data</div>
-      <div class="item" id="saveButton">Save data as JSON</div>
+      <div class="item" id="saveButton">Save data as JSON</div> -->
     </div>
   </div>
   <nav>
@@ -122,13 +132,14 @@
     <div id="namatamaReflection">  <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" /> </div>
   </div>
 
+  <script src="src/data.js?v=0027"></script>
   <script src="src/pins.js?v=0027"></script>
-  <script src="src/maps.js?v=0027"></script>
-  <script src="src/edit_mode.js?v=0027"></script>
-  <script src="src/filter_bar.js?v=0027"></script>
+  <script src="src/mode_addpins.js?v=0027"></script>
+  <script src="src/mode_communitydata.js"></script>
   <script src="src/layout.js?v=0027"></script>
   <script src="src/navbar.js?v=0027"></script>
   <script src="src/map_movements.js?v=0027"></script>
-  <script src="src/main.js?v=0027"></script>
+  <script src="src/submit_data.js?v=0027"></script>
+
 </body>
 </html>
