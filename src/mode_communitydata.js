@@ -4,6 +4,7 @@ document.getElementById('community-pins').addEventListener('change', function() 
     } else {
         clearFilterDrawer();
         clearMap();
+        
     }
 });
 
@@ -32,10 +33,4 @@ async function fetchCommunityPinsForCurrentMap() {
             
         });
     }
-}
-
-
-function clearCommunityPins() {
-    // Clear the displayed community pins from the map
-    // Implement this function based on how pins are displayed
 }
