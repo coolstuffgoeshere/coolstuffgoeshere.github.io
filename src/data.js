@@ -9,11 +9,13 @@ supabase = createClient(
 // console.log(supabase); // Log data of succesful connection
 
 let maps = []; 
-let data = [];
+let data = []; // Data contains all the pins to put on map & menu
 let currentMap = "Monaco";
 let currentMapUrl = "monaco";
 let currentMapData = [];
 const filterDrawer = document.getElementById('filter-drawer');
+const editPinsModeToggle =  document.getElementById('edit-pins-mode');
+
 
 // -----------------------------THE MAPS--------------------------------------------------------
 // 1. Fetch all the Maps from the database and then tell the app to show the correct one.
@@ -69,11 +71,10 @@ function showMap(){
 // Clear the Map
 function clearMap() {
     const map = document.getElementById('map');
-    console.log(map);
     map.innerHTML = ''; // Clear all child elements (pins) from the map
 }
 
-// ----------------------------MAP DATA---------------------------------------------------------
+// ----------------------------MAP DATA FUNCTIONS------------------------------------------------------
 // 2. Fetch All Map Data available and then tell the app to show the correct one.
 // Multiple Data Sets possible.  Currently just loads 'default' for that map for now as the starting point.
 
@@ -94,19 +95,17 @@ async function fetchMapDataFromSupabase(currentMap) {
     if (displayData) {
         data = displayData.mapData;
         console.log("Data Picked To Show: ", data);
+
         createPinsAndCategoriesInMenu(data);
         data.forEach(pin => {
             createPinOnMap(pin);
-   
         });
     }
-
-
 }
 
-// Create the Pins at correct places
+// Create a SINGLE PIN at correct places. So when you update need to get them all again, should fix that.
 function createPinOnMap(pin) {
-        console.log(pin)
+        // console.log(pin)
         // console.log(currentMapUrl)
         var pinElement = document.createElement('div');
         pinElement.classList.add('pin');
@@ -136,8 +135,8 @@ function createPinOnMap(pin) {
         });
       
         pinElement.addEventListener('click', function() {
-            togglePopup(popup);
-            updateSidebar(); // Update the sidebar when pin visibility changes
+            // togglePopup(popup);
+            // updateSidebar(); // Update the sidebar when pin visibility changes
         });
       
         // Create URL for the pin and replace unwanted characters
@@ -157,7 +156,7 @@ function createPinOnMap(pin) {
 
 }
 
-// Create Pin Menu items for list
+// Create Pin Menu items from all Pins in data. Also used to Update / Rebuild
 function createPinsAndCategoriesInMenu(allpins) {
     clearFilterDrawer()
     console.log(allpins)
@@ -193,8 +192,10 @@ function createPinsAndCategoriesInMenu(allpins) {
             pinLabel.addEventListener('click', function() {
                 var pinElement = document.querySelector('.pin[title="' + pin.title + '"]');
                 var popup = pinElement.querySelector('.popup');
-                togglePopup(popup);
-                showPinEdit(pin, filterDrawer);
+                // togglePopup(popup);
+                if (editPinsModeToggle.checked) {
+                    showPinEdit(pin);
+                }
             });
   
             var pinItem = document.createElement('div');
@@ -211,5 +212,87 @@ function clearFilterDrawer() {
     filterDrawer.appendChild(first);
   }
 
+function showPinEdit(pin) {
+    const pinIndex = data.indexOf(pin);
+    const pinEditDiv = document.getElementById('pinEditDiv');
 
-  // ------NOTHING ELSE SHOULD GO IN THIS SCRIPT---------------------------------------------
+    console.log(pin);
+    console.log("Pins in Data");
+    console.log(data);
+    console.log("Pin index");
+    console.log(pinIndex);
+
+    pinEditDiv.innerHTML = `
+        <div id="editPin">
+            <h3>Editing Map Pin: ${pin.category} - ${pin.title}</h3>
+            <label for="editCategory">Category:</label>
+            <input type="text" id="editCategory" value="${pin.category}"><br>
+            <label for="editTitle">Title:</label>
+            <input type="text" id="editTitle" value="${pin.title}"><br>
+            <label for="editCoordsX">Coordinates (X):</label>
+            <input type="text" id="editCoordsX" value="${pin.coords.x}"><br>
+            <label for="editCoordsY">Coordinates (Y):</label>
+            <input type="text" id="editCoordsY" value="${pin.coords.y}"><br>
+            <label for="editPinImg">Pin Image URL:</label>
+            <input type="text" id="editPinImg" value="${pin.pinImg}"><br>
+            <label for="editDataImg">Data Image URL:</label>
+            <input type="text" id="editDataImg" value="${pin.dataImg}"><br>
+            <button onclick="savePinEdit(${pinIndex})">Save & Close</button>
+            <button onclick="deletePin(${pinIndex})">Delete & Close</button>
+
+        </div>`;
+  }
+
+function deletePin(pinIndex) {
+    console.log("Begin Delete");
+    console.log(pinIndex);
+    
+    if (pinIndex > -1) {
+        data.splice(pinIndex, 1); // Remove one element at pinIndex
+        console.log("Pin deleted successfully.");
+        clearMap();
+        data.forEach(pin => {
+            createPinOnMap(pin);
+        });
+        clearFilterDrawer()
+        createPinsAndCategoriesInMenu(data);
+
+            // Clear pinEditDiv div
+    document.getElementById('pinEditDiv').innerHTML = '';
+
+    } else {
+        console.log("Pin not found in array.");
+    }
+}
+
+function savePinEdit(index) {
+    var editCategory = document.getElementById('editCategory').value;
+    var editTitle = document.getElementById('editTitle').value;
+    var editCoordsX = document.getElementById('editCoordsX').value;
+    var editCoordsY = document.getElementById('editCoordsY').value;
+    var editPinImg = document.getElementById('editPinImg').value;
+    var editDataImg = document.getElementById('editDataImg').value;
+  
+    if (!editCategory || !editTitle) {
+        alert("Category and Title cannot be empty!");
+        return;
+    }
+  
+    data[index].category = editCategory;
+    data[index].title = editTitle;
+    data[index].coords.x = editCoordsX;
+    data[index].coords.y = editCoordsY;
+    data[index].pinImg = editPinImg;
+    data[index].dataImg = editDataImg;
+  
+    clearMap();
+    data.forEach(pin => {
+        createPinOnMap(pin);
+    });
+    clearFilterDrawer()
+    createPinsAndCategoriesInMenu(data);
+  
+    // Clear pinEditDiv div
+    document.getElementById('pinEditDiv').innerHTML = '';
+  }
+

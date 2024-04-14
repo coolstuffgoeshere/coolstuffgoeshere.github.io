@@ -412,3 +412,20 @@ h3 {
     opacity: 20%;
   }
 }
+
+
+/* New Pin Edit */
+
+#pinEditDiv {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: black;
+  color: white;
+  z-index: 100;
+  font-size: 24px;
+}
+
+#editPin > input {
+  font-size: 24px;
+}

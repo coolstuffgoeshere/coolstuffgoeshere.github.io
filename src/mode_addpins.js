@@ -68,8 +68,8 @@ function createLocalPin(pin) {
   });
 
   pinElement.addEventListener('click', function() {
-      togglePopup(popup);
-      updateSidebar(); // Update the sidebar when pin visibility changes
+      // togglePopup(popup);
+      // updateSidebar(); // Update the sidebar when pin visibility changes
   });
 
   // Create URL for the pin and replace unwanted characters
@@ -109,8 +109,8 @@ function addLocalPinAndCategoryToMenu(pin) {
       pinLabel.addEventListener('click', function() {
           var pinElement = document.querySelector('.pin[title="' + pin.title + '"]');
           var popup = pinElement.querySelector('.popup');
-          togglePopup(popup);
-          showPinEdit(pin, filterDrawer);
+        //   togglePopup(popup);
+          showPinEdit(pin);
       });
 
       var pinItem = document.createElement('div');
