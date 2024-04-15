@@ -79,22 +79,30 @@
     </div>
     <div name="settings" class="drawer">
       <div class="title">SETTINGS</div>
+      <div class="item" id="load-community-map">Load data from Community Maps</div>
+      <div class="item" onClick="blankMap()">Start a new blank map</div>
+      <hr>
       <div class="item">
         <input id="add-pins-mode" type="checkbox">
-        <label for="add-pins-mode">Allow Adding New Pins To Map</label>
+        <label for="add-pins-mode">Enable adding new pins when clicking on map</label>
       </div>
-      <div class="item" id="submitPins">Submit Pins To Community</div>
       <div class="item">
-        <input id="community-pins" type="checkbox">
-        <label for="community-pins">Display Community Pins</label>
+        <input id="edit-pins-mode" type="checkbox">
+        <label for="edit-pins-mode">Enable editing pins by clicking them in the Filter menu</label>
       </div>
-      <div class="item" id="resetZoom">Reset Map Zoom</div>
+      <div class="item" id="submitPins">Submit edited data to Community Maps</div>
+      <hr>
 
 
-<!-- 
-      <div class="item" id="clearButton">Reset changes</div>
-      <div class="item" id="loadButton">Load JSON data</div>
-      <div class="item" id="saveButton">Save data as JSON</div> -->
+      <div class="item" id="loadFromFile">
+        <label for="fileInput">Load your own .JSON map data</label>
+        <input type="file" id="fileInput" style="display: none;" onchange="loadPinsFromFile(event)">
+      </div>
+          <div class="item" onClick="savePinsToFile()" id="saveToFile">Save current map data to .JSON file</div>
+          <hr>
+          <div class="item" id="resetZoom">Reset Map Zoom</div>
+ 
+
     </div>
   </div>
   <nav>
@@ -132,6 +140,8 @@
     <div id="namatamaReflection">  <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" /> </div>
   </div>
 
+  <div id="pinEditDiv"></div>
+
   <script src="src/data.js?v=0027"></script>
   <script src="src/pins.js?v=0027"></script>
   <script src="src/mode_addpins.js?v=0027"></script>
@@ -140,6 +150,7 @@
   <script src="src/navbar.js?v=0027"></script>
   <script src="src/map_movements.js?v=0027"></script>
   <script src="src/submit_data.js?v=0027"></script>
+  <script src="src/saveloadjson.js"></script>
 
 </body>
 </html>

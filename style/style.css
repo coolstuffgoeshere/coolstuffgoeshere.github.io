@@ -133,8 +133,8 @@ html {
 
 .pin {
   position: absolute;
-  width: 2vw;
-  height: 2vw;
+  width: 40px; /* has to be px or breaks placement */
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
   transform-origin: center;
@@ -411,4 +411,31 @@ h3 {
   100% {
     opacity: 20%;
   }
+}
+
+
+/* New Pin Edit */
+
+#pinEditDiv {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: black;
+  color: white;
+  z-index: 100;
+  font-size: 24px;
+  padding: 4px 4px;
+}
+
+#editPin > input {
+  font-size: 24px;
+}
+
+#dataSelect {
+  display: block;
+  background: black;
+  font-family: "Saira Extra Condensed";
+  font-size: 18px;
+  margin: 20px 0px;
+  color: white;
 }

@@ -1,16 +1,7 @@
 // Additional functionality for PINS such as shows it's data in popups or Namatama currently
 
 let pins = [];
-
-// pinElement.addEventListener('mouseleave', function() {
-//     popup.classList.remove('active');
-//     clearNamatamaText();
-// });
-
-// pinElement.addEventListener('click', function() {
-//       togglePopup(popup);
-//       updateSidebar(); // Update the sidebar when pin visibility changes
-//   });
+const editPinsToggle = document.getElementById('edit-pins-mode');
 
 
 function togglePopup(popup) {
@@ -54,3 +45,70 @@ function clearNamatamaText() {
   var randomIndex = Math.floor(Math.random() * textOptions.length);
   namatamaText.innerHTML = textOptions[randomIndex];
 }
+
+
+// function updateSidebar(pin) {
+//   console.log(pin);
+//   if (!pin) {
+//       return;
+//   }
+
+//   var existingCategory = document.querySelector('.category[title="' + pin.category + '"]');
+//   if (existingCategory) {
+//       var pinCheckbox = document.createElement('input');
+//       pinCheckbox.type = 'checkbox';
+//       pinCheckbox.checked = true;
+//       pinCheckbox.addEventListener('change', function() {
+//           var pinElement = document.querySelector('.pin[title="' + pin.title + '"]');
+//           pinElement.style.display = this.checked ? 'block' : 'none';
+//       });
+
+//       var pinLabel = document.createElement('label');
+//       pinLabel.textContent = pin.title;
+//       pinLabel.style.cursor = 'pointer';
+//       pinLabel.addEventListener('click', function() {
+//           var pinElement = document.querySelector('.pin[title="' + pin.title + '"]');
+//           var popup = pinElement.querySelector('.popup');
+//         //   togglePopup(popup);
+//           showPinEdit(pin);
+//       });
+
+//       var pinItem = document.createElement('div');
+//       pinItem.appendChild(pinCheckbox);
+//       pinItem.appendChild(pinLabel);
+//       existingCategory.appendChild(pinItem);
+//   } else {
+//       var newCategory = document.createElement('div');
+//       newCategory.classList.add('category');
+//       newCategory.title = pin.category;
+
+//       var categoryTitle = document.createElement('h4');
+//       categoryTitle.textContent = pin.category;
+//       newCategory.appendChild(categoryTitle);
+
+//       var pinCheckbox = document.createElement('input');
+//       pinCheckbox.type = 'checkbox';
+//       pinCheckbox.checked = true;
+//       pinCheckbox.addEventListener('change', function() {
+//           var pinElement = document.querySelector('.pin[title="' + pin.title + '"]');
+//           pinElement.style.display = this.checked ? 'block' : 'none';
+//       });
+
+//       var pinLabel = document.createElement('label');
+//       pinLabel.textContent = pin.title;
+//       pinLabel.style.cursor = 'pointer';
+//       pinLabel.addEventListener('click', function() {
+//           var pinElement = document.querySelector('.pin[title="' + pin.title + '"]');
+//           var popup = pinElement.querySelector('.popup');
+//           togglePopup(popup);
+//           showPinEdit(pin, filterDrawer);
+//       });
+
+//       var pinItem = document.createElement('div');
+//       pinItem.appendChild(pinCheckbox);
+//       pinItem.appendChild(pinLabel);
+//       newCategory.appendChild(pinItem);
+
+//       filterDrawer.appendChild(newCategory);
+//   }
+// }
