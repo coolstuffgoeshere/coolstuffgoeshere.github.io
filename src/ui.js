@@ -76,7 +76,7 @@ function buildFiltersMenu () {
 
       const groupIcon = document.createElement('img');
       groupIcon.classList.add('group-icon');
-      groupIcon.src = group.icon; // TODO: use a default icon if null
+      groupIcon.src = group.icon || 'assets/icons/fried-egg.png';
 
       const groupTitle = document.createElement('div');
       groupTitle.classList.add('group-title');
@@ -153,7 +153,7 @@ function createPinOnMap (category, group, pin) {
   pinElement.title = pin.name;
 
   const pinImage = document.createElement('img');
-  pinImage.src = group.icon;
+  pinImage.src = group.icon || 'assets/icons/fried-egg.png';
 
   pinImage.alt = pin.name;
 
