@@ -4,6 +4,7 @@ const state = {
   maps: [],
   currentMap: null,
   mapData: null,
+  userMapData: null,
   display: {
     categories: [],
   },
@@ -11,10 +12,21 @@ const state = {
 
 function setMap (map) {
   state.currentMap = map;
+  clearMap();
+  document.getElementById('map').style.backgroundImage = `url(${map.mapImage})`;
+  fetchMapDataFromSupabase(map.name);
 }
 
 function setMapData (data) {
+  clearMap();
+  clearFilterMenu();
+  state.display = {
+    categories: [],
+  }
+
   state.mapData = data;
+  state.userMapData = JSON.parse(JSON.stringify(data)); // Deep copy.
+
   for (const category of data.categories) {
     const c = {
       visible: true,
@@ -142,4 +154,31 @@ function savePinEdit (index) {
 
   // Clear pinEditDiv div
   document.getElementById('pinEditDiv').innerHTML = '';
+}
+
+function addPin (category, group, name, coords) {
+  const c = state.display.categories.find(c => c.name === category);
+  if (!c) {
+    console.error('couldn\'t find category:', category);
+    return;
+  }
+
+  const g = c.groups.find(g => g.name === group);
+  if (!g) {
+    console.error('couldn\'t find group:', group);
+    return;
+  }
+
+  const p = {
+    focused: false,
+    name: name,
+    description: '',
+    type: 'point',
+    points: [[coords.x, coords.y]],
+    category: c,
+    group: g,
+  };
+
+  g.data.push(p);
+  createPinOnMap(c, g, p);
 }

@@ -30,18 +30,11 @@ async function fetchMapsFromSupabase () {
 }
 fetchMapsFromSupabase();
 
-
 // Display the Map
 function showMap () {
     // console.log(state.maps);
     const mapToShow = state.maps.find(map => map.urlName === defaultMapUrl);
-
-    if (mapToShow) {
-        document.getElementById('map').style.backgroundImage = `url(${mapToShow.mapImage})`;
-        state.currentMap = mapToShow;
-        clearMap();
-        fetchMapDataFromSupabase(state.currentMap.name);
-    }
+    setMap(mapToShow || state.maps[0]);
 }
 
 // ----------------------------MAP DATA FUNCTIONS------------------------------------------------------
