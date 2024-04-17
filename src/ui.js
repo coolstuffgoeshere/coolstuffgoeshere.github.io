@@ -61,8 +61,14 @@ function buildFiltersMenu () {
     const categoryTitle = document.createElement('div');
     categoryTitle.classList.add('category-title');
     categoryTitle.textContent = category.name;
+    const categoryEdit = document.createElement('div');
+    categoryEdit.classList.add('mdi', 'mdi-pencil', 'category-edit-button', 'edit-mode');
+    if (!state.editMode) categoryEdit.classList.add('hidden');
+    categoryEdit.onclick = () => editCategoryPopup(category);
+
     categoryHeader.appendChild(categoryEye);
     categoryHeader.appendChild(categoryTitle);
+    categoryHeader.appendChild(categoryEdit);
 
     // Groups
     for (const group of category.groups) {
@@ -82,9 +88,15 @@ function buildFiltersMenu () {
       groupTitle.classList.add('group-title');
       groupTitle.textContent = group.name;
 
+      const groupEdit = document.createElement('div');
+      groupEdit.classList.add('mdi', 'mdi-pencil', 'group-edit-button', 'edit-mode');
+      if (!state.editMode) groupEdit.classList.add('hidden');
+      groupEdit.onclick = () => editGroupPopup(group);
+
       group.el.appendChild(groupEye);
       group.el.appendChild(groupIcon);
       group.el.appendChild(groupTitle);
+      group.el.appendChild(groupEdit);
     }
 
     // categories[category].forEach(function(pin) {
@@ -221,4 +233,18 @@ function showPinEdit (pin) {
           <button onclick="deletePin(${pinIndex})">Delete & Close</button>
 
       </div>`;
+}
+
+function editCategoryPopup (category) {
+  const name = prompt(`Modify category name`, category.name);
+  if (!name) return;
+
+  editCategoryName(category, name);
+}
+
+function editGroupPopup (group) {
+  const name = prompt(`Modify group name`, group.name);
+  if (!name) return;
+
+  editGroupName(group, name);
 }

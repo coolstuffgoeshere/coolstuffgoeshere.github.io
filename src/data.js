@@ -263,7 +263,7 @@ const rawData = {
                 },
                 {
                     "name": "Statues (Gold Woman)",
-                    "icon": "/assets/icons/statue.png",
+                    "icon": "/assets/icons/sculpture.png",
                     "description": "",
                     "data": [
                         {

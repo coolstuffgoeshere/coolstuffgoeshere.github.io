@@ -133,7 +133,8 @@ html {
 
 .pin {
   position: absolute;
-  width: 40px; /* has to be px or breaks placement */
+  width: 40px;
+  /* has to be px or breaks placement */
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
@@ -427,7 +428,7 @@ h3 {
   padding: 4px 4px;
 }
 
-#editPin > input {
+#editPin>input {
   font-size: 24px;
 }
 

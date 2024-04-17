@@ -8,6 +8,7 @@ const state = {
   display: {
     categories: [],
   },
+  editMode: false,
 }
 
 function setMap (map) {
@@ -32,6 +33,7 @@ function setMapData (data) {
       visible: true,
       focused: false,
       name: category.name,
+      raw: category,
       groups: [],
     };
     state.display.categories.push(c);
@@ -44,6 +46,7 @@ function setMapData (data) {
         icon: group.icon,
         description: group.description,
         category: c,
+        raw: group,
         data: [],
       };
       c.groups.push(g);
@@ -55,6 +58,7 @@ function setMapData (data) {
           description: pin.description,
           type: 'point',
           points: [[pin.x, pin.y]],
+          raw: pin,
           category: c,
           group: g,
         };
@@ -181,4 +185,29 @@ function addPin (category, group, name, coords) {
 
   g.data.push(p);
   createPinOnMap(c, g, p);
+}
+
+function toggleEditMode () {
+  state.editMode = !state.editMode;
+
+  const els = document.getElementsByClassName('edit-mode');
+  for (const el of els) {
+    if (state.editMode) {
+      el.classList.remove('hidden');
+    } else {
+      el.classList.add('hidden');
+    }
+  }
+}
+
+function editCategoryName (category, name) {
+  category.name = name;
+  category.el.querySelector('.category-title').textContent = name;
+  category.raw.name = name;
+}
+
+function editGroupName (group, name) {
+  group.name = name;
+  group.el.querySelector('.group-title').textContent = name;
+  group.raw.name = name;
 }

@@ -47,4 +47,20 @@
   padding: 4px;
   margin-right: 4px;
   align-self: center;
+  cursor: pointer;
+}
+
+.edit-mode.hidden {
+  display: none;
+}
+
+.category-edit-button,
+.group-edit-button {
+  margin-right: 0px;
+  margin-left: auto;
+  color: #666;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  cursor: pointer;
 }
