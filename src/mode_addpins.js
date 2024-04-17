@@ -35,9 +35,7 @@ function newPinPrompt(event) {
   console.log(pin);
 
   clearMap();
-  data.forEach(pin => {
-      createPinOnMap(pin);
-  });
+  createAllPinsOnMap(data);
   clearFilterDrawer()
   createPinsAndCategoriesInMenu(data);
 

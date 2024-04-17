@@ -40,10 +40,7 @@ async function fetchCommunityPinsForCurrentMap() {
     //     data = displayData.mapData;
     //     console.log("Data Picked To Show: ", data);
     //     createPinsAndCategoriesInMenu(data);
-    //     data.forEach(pin => {
-    //         createPinOnMap(pin);
-            
-    //     });
+    //     createAllPinsOnMap(data);
     // }
 }
 
@@ -87,9 +84,7 @@ function createSelectBox(availableDataForMap) {
             console.log("Data Picked To Show: ", data);
 
             clearMap();
-            data.forEach(pin => {
-                createPinOnMap(pin);
-            });
+            createAllPinsOnMap(data);
             clearFilterDrawer()
             createPinsAndCategoriesInMenu(data);
 

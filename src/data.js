@@ -100,63 +100,66 @@ async function fetchMapDataFromSupabase(currentMap) {
         console.log("Data Picked To Show: ", data);
 
         createPinsAndCategoriesInMenu(data);
-        // data.forEach(pin => {
-        //     createPinOnMap(pin);
-        // });
+        createAllPinsOnMap(data);
     }
 }
 
-// Create a SINGLE PIN at correct places. So when you update need to get them all again, should fix that.
-function createPinOnMap(pin) {
-        // console.log(pin)
-        // console.log(currentMapUrl)
-        var pinElement = document.createElement('div');
-        pinElement.classList.add('pin');
-        pinElement.style.left = pin.coords.x.replace('%%', '%');
-        pinElement.style.top = pin.coords.y.replace('%%', '%');
-        pinElement.title = pin.title;
-      
-        var pinImage = document.createElement('img');
-        pinImage.src = pin.pinImg; // Use pinImg property for pin image
-        
-        pinImage.alt = pin.title;
-      
-        var popup = createPopup(pin);
-      
-        pinElement.appendChild(pinImage);
-        pinElement.appendChild(popup);
-        document.getElementById('map').appendChild(pinElement);
-      
-        pinElement.addEventListener('mouseenter', function() {
-          popup.classList.add('active');
-          updateNamatamaText(pin);
-        });
-      
-        pinElement.addEventListener('mouseleave', function() {
-            popup.classList.remove('active');
-            clearNamatamaText();
-        });
-      
-        pinElement.addEventListener('click', function() {
-            // togglePopup(popup);
-            // updateSidebar(); // Update the sidebar when pin visibility changes
-        });
-      
-        // Create URL for the pin and replace unwanted characters
-        var pinUrl = window.location.origin + window.location.pathname + '#' + currentMapUrl.toLowerCase() + '?category=' + encodeURIComponent(pin.category) + '&title=' + encodeURIComponent(pin.title) + '&x=' + encodeURIComponent(pin.coords.x + '%') + '&y=' + encodeURIComponent(pin.coords.y + '%') + '&pinImg=' + encodeURIComponent(pin.pinImg) + '&dataImg=' + encodeURIComponent(pin.dataImg);
-      
-        // Add a click event listener to copy the URL to clipboard
-        pinElement.addEventListener('click', function() {
-            navigator.clipboard.writeText(pinUrl)
-                .then(function() {
-                    console.log('URL copied to clipboard: ' + pinUrl);
-                    // alert('URL copied to clipboard: ' + pinUrl);
-                })
-                .catch(function(err) {
-                    console.error('Failed to copy URL to clipboard: ', err);
-                });
-        });
+// Create all pins on the map.
+function createAllPinsOnMap(data) {
+    for (const category of data.categories) {
+        for (const group of category.groups) {
+            for (const pin of group.data) {
+                createPinOnMap(category, group, pin);
+            }
+        }
+    }
+}
 
+// Create a single pin on the map.
+function createPinOnMap(category, group, pin) {
+    console.log('pin:', pin)
+    // console.log(currentMapUrl)
+    const pinElement = document.createElement('div');
+    pinElement.classList.add('pin');
+    pinElement.style.left = pin.x.replace('%%', '%');
+    pinElement.style.top = pin.y.replace('%%', '%');
+    pinElement.title = pin.name;
+    
+    const pinImage = document.createElement('img');
+    pinImage.src = group.icon;
+    
+    pinImage.alt = pin.name;
+    
+    const popup = createPopup(pin);
+    
+    pinElement.appendChild(pinImage);
+    pinElement.appendChild(popup);
+    document.getElementById('map').appendChild(pinElement);
+    
+    pinElement.onmouseenter = () => {
+        popup.classList.add('active');
+        updateNamatamaText(pin);
+    };
+    
+    pinElement.onmouseleave = () => {
+        popup.classList.remove('active');
+        clearNamatamaText();
+    };
+    
+    // Create URL for the pin and replace unwanted characters
+    const pinUrl = window.location.origin + window.location.pathname + '#' + currentMapUrl.toLowerCase() + '?category=' + encodeURIComponent(pin.category) + '&title=' + encodeURIComponent(pin.name) + '&x=' + encodeURIComponent(pin.x + '%') + '&y=' + encodeURIComponent(pin.y + '%') + '&pinImg=' + encodeURIComponent(group.icon) + '&dataImg=' + encodeURIComponent(pin.image);
+    
+    // Add a click event listener to copy the URL to clipboard
+    pinElement.onclick = () => {
+        navigator.clipboard.writeText(pinUrl)
+            .then(() => {
+                console.log('URL copied to clipboard: ' + pinUrl);
+                // alert('URL copied to clipboard: ' + pinUrl);
+            })
+            .catch((err) => {
+                console.error('Failed to copy URL to clipboard: ', err);
+            });
+    };
 }
 
 // Create Pin Menu items from all Pins in data. Also used to Update / Rebuild
@@ -278,9 +281,7 @@ function deletePin(pinIndex) {
         data.splice(pinIndex, 1); // Remove one element at pinIndex
         console.log("Pin deleted successfully.");
         clearMap();
-        data.forEach(pin => {
-            createPinOnMap(pin);
-        });
+        createAllPinsOnMap(data);
         clearFilterDrawer()
         createPinsAndCategoriesInMenu(data);
 
@@ -313,9 +314,7 @@ function savePinEdit(index) {
     data[index].dataImg = editDataImg;
   
     clearMap();
-    data.forEach(pin => {
-        createPinOnMap(pin);
-    });
+    createAllPinsOnMap(data);
     clearFilterDrawer()
     createPinsAndCategoriesInMenu(data);
   
@@ -326,9 +325,7 @@ function savePinEdit(index) {
   function blankMap() {
     data = [];
     clearMap();
-    data.forEach(pin => {
-        createPinOnMap(pin);
-    });
+    createAllPinsOnMap(data);
     clearFilterDrawer()
     createPinsAndCategoriesInMenu(data);
   }

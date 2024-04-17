@@ -9,10 +9,8 @@ function loadPinsFromFile(event) {
                 data = JSON.parse(contents);
 
                 clearMap();
-                data.forEach(pin => {
-                  createPinOnMap(pin);
-                  });
-             clearFilterDrawer()
+                createAllPinsOnMap(data);
+                clearFilterDrawer()
                 createPinsAndCategoriesInMenu(data);
                 
             } catch (error) {
