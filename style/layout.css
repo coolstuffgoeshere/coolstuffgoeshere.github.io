@@ -52,4 +52,5 @@ nav {
 
 #details-panel {
   grid-area: details;
+  z-index: 10;
 }

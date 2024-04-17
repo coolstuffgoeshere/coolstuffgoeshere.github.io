@@ -9,7 +9,6 @@ html {
   font-family: "Saira Extra Condensed";
   font-weight: 300;
   font-size: 20px;
-  line-height: 21px;
   font-style: italic;
   overflow: hidden;
 }
@@ -199,7 +198,6 @@ button {
   background: none;
   color: white;
   font-size: 20px;
-  line-height: 20px;
   padding: 4px 10px;
   cursor: pointer;
 }
@@ -269,21 +267,6 @@ h3 {
   .logo {
     padding: 6px 30px 6px 10px;
     width: 50%;
-  }
-
-  .logo .title {
-    font-size: 36px;
-    line-height: 26px;
-  }
-
-  .logo .subtitle {
-    font-size: 23px;
-    line-height: 20px;
-  }
-
-  .logo .version {
-    font-size: 18px;
-    line-height: 14px;
   }
 
   .toggle-button {

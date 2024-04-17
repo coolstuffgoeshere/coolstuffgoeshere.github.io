@@ -22,14 +22,11 @@
 .drawer .title {
   font-size: 60px;
   font-weight: 600;
-  padding: 30px 0;
-  /* margin-bottom: 30px; */
 }
 
 .drawer .item {
   font-size: 30px;
   font-weight: 100;
-  padding: 15px 0;
   font-style: normal;
 }
 
