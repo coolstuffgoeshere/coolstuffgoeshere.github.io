@@ -176,24 +176,18 @@ function createPinsAndCategoriesInMenu(data) {
         const categoryHeader = document.createElement('div');
         categoryHeader.classList.add('category-header');
         categoryEl.appendChild(categoryHeader);
+        
+        const groupEyes = [];
 
-        const categoryEye = document.createElement('div');
-        categoryEye.classList.add('toggle-icon', 'mdi', 'mdi-eye');
-        const categoryTitle = document.createElement('div');
-        categoryTitle.classList.add('category-title');
-        categoryTitle.textContent = category.name;
-        categoryHeader.appendChild(categoryEye);
-        categoryHeader.appendChild(categoryTitle);
-         
         // Groups
         for (const group of category.groups) {
             const groupEl = document.createElement('div');
             groupEl.classList.add('group');
             categoryEl.appendChild(groupEl);
 
-            const groupEye = document.createElement('div');
-            groupEye.classList.add('toggle-icon', 'mdi', 'mdi-eye');
-
+            const groupEye = createToggleEye();
+            groupEyes.push(groupEye);
+            
             const groupIcon = document.createElement('img');
             groupIcon.classList.add('group-icon');
             groupIcon.src = group.icon; // TODO: use a default icon if null
@@ -206,6 +200,15 @@ function createPinsAndCategoriesInMenu(data) {
             groupEl.appendChild(groupIcon);
             groupEl.appendChild(groupTitle);
         }
+
+        // Header content
+        const categoryEye = createToggleEye(null, groupEyes);
+        const categoryTitle = document.createElement('div');
+        categoryTitle.classList.add('category-title');
+        categoryTitle.textContent = category.name;
+        categoryHeader.appendChild(categoryEye);
+        categoryHeader.appendChild(categoryTitle);
+        
 
         // categories[category].forEach(function(pin) {
         //     var pinCheckbox = document.createElement('input');

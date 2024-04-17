@@ -16,6 +16,12 @@
   font-weight: 600;
 }
 
+.menu-filters .category:has(.category-header .toggle-icon:not([checked])) .category-title,
+.menu-filters .group:has(.toggle-icon:not([checked])) .group-icon,
+.menu-filters .group:has(.toggle-icon:not([checked])) .group-title {
+  opacity: 0.5;
+}
+
 .menu-filters .group {
   display: flex;
   flex-direction: row;
