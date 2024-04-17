@@ -1,3 +1,7 @@
 #map-container {
   overflow: hidden;
 }
+
+#map .pin.hidden {
+  display: none;
+}

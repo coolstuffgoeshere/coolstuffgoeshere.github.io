@@ -1,32 +1,32 @@
-function loadPinsFromFile(event) {
+function loadPinsFromFile (event) {
 
   var file = event.target.files[0];
-        var reader = new FileReader();
+  var reader = new FileReader();
 
-        reader.onload = function(event) {
-            var contents = event.target.result;
-            try {
-                data = JSON.parse(contents);
+  reader.onload = function (event) {
+    var contents = event.target.result;
+    try {
+      data = JSON.parse(contents);
 
-                clearMap();
-                createAllPinsOnMap(data);
-                clearFilterDrawer()
-                createPinsAndCategoriesInMenu(data);
-                
-            } catch (error) {
-                console.error("Error parsing JSON:", error);
-                alert("Error parsing JSON file.");
-            }
-        };
+      clearMap();
+      createAllPinsOnMap(data);
+      clearFilterMenu()
+      createPinsAndCategoriesInMenu(data);
 
-        reader.readAsText(file);
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+      alert("Error parsing JSON file.");
+    }
+  };
 
-      }
+  reader.readAsText(file);
 
-function savePinsToFile() {
-  var currentFile = currentMapUrl;
+}
+
+function savePinsToFile () {
+  var currentFile = state.currentMap.urlName;
   var json = JSON.stringify(data, null, 2);
-  var blob = new Blob([json], {type: "application/json"});
+  var blob = new Blob([json], { type: "application/json" });
   var url = URL.createObjectURL(blob);
 
   var a = document.createElement("a");

@@ -4,23 +4,24 @@
 //     } else {
 //         clearFilterDrawer();
 //         clearMap();
-        
+
 //     }
 // });
 
-document.getElementById('load-community-map').addEventListener('click', function() {
+document.getElementById('load-community-map').addEventListener('click', function () {
     fetchCommunityPinsForCurrentMap();
 });
 
 
-async function fetchCommunityPinsForCurrentMap() {
+async function fetchCommunityPinsForCurrentMap () {
     // Fetch community pins data for the current map from MapDataPublic
+    const currentMapName = state.currentMap.name;
     let supaFiles = await supabase.from("MapDataPublic").select("*");
     console.log("PUBLIC data found:");
     console.log(supaFiles.data);
-    console.log("Current Map is: " + currentMap);
+    console.log("Current Map is: " + currentMapName);
 
-    const availableDataForMap = supaFiles.data.filter(item => item.mapUsed === currentMap).map(item => ({
+    const availableDataForMap = supaFiles.data.filter(item => item.mapUsed === currentMapName).map(item => ({
         map: item.mapUsed,
         dataName: item.name,
         mapData: item.mapData,
@@ -29,9 +30,6 @@ async function fetchCommunityPinsForCurrentMap() {
     console.log(availableDataForMap);
 
     createSelectBox(availableDataForMap);
-
-    
-
 
     // Finish up
 
@@ -45,7 +43,7 @@ async function fetchCommunityPinsForCurrentMap() {
 }
 
 
-function createSelectBox(availableDataForMap) {
+function createSelectBox (availableDataForMap) {
 
 
     const pinEditDiv = document.getElementById('pinEditDiv'); // use that pin edit div to display this info.
@@ -66,20 +64,20 @@ function createSelectBox(availableDataForMap) {
     console.log(userChoice);
 
     // Add Listener for value
-    selectBox.addEventListener("change", function() {
+    selectBox.addEventListener("change", function () {
         userChoice = this.value;
         console.log("User Changed To Choice:");
         console.log(userChoice);
     });
-    
+
     // Append the select element to the divCommunity
     pinEditDiv.appendChild(selectBox);
 
     loadButton = document.createElement("button");
-    loadButton.addEventListener('click', function(event) {
+    loadButton.addEventListener('click', function (event) {
         console.log(userChoice);
         const displayData = availableDataForMap.find(item => item.dataName === userChoice);
-                if (displayData) {
+        if (displayData) {
             const data = displayData.mapData;
             console.log("Data Picked To Show: ", data);
 
