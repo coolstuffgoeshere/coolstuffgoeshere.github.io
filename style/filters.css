@@ -1,11 +1,19 @@
 .menu-filters .category {
-  margin-bottom: 45px;
+  padding-bottom: 20px;
+  margin-bottom: 25px;
+  transition: background-color 60ms ease-in-out;
+  cursor: default;
 }
 
 .menu-filters .category-header {
-  margin: 20px 0;
+  margin: 10px;
   display: flex;
   flex-direction: row;
+}
+
+.menu-filters .category:has(.category-header:hover),
+.menu-filters .category:hover:not(:has(.group:hover)) {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .menu-filters .category-title {
@@ -24,14 +32,20 @@
 .menu-filters .group {
   display: flex;
   flex-direction: row;
-  margin: 10px 0px;
-  padding-left: 30px;
+  padding: 5px;
+  padding-left: 40px;
+  transition: background-color 60ms ease-in-out;
+}
+
+.menu-filters .group:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .menu-filters .group-icon {
   width: 24px;
   height: 24px;
   margin-right: 10px;
+  align-self: center;
 }
 
 .menu-filters .group-title {

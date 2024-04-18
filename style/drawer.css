@@ -12,7 +12,7 @@
 .drawer {
   background-color: rgba(13, 12, 14, 0.9);
   min-height: calc(100% - 40px);
-  padding: 20px;
+  padding: 20px 0;
   color: white;
   pointer-events: all;
   /* Allows for clicking the items in the drawer once open */
@@ -22,6 +22,7 @@
 .drawer .title {
   font-size: 60px;
   font-weight: 600;
+  padding: 0 20px;
 }
 
 .drawer .item {

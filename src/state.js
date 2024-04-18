@@ -5,6 +5,8 @@ const state = {
   currentMap: null,
   mapData: null,
   userMapData: null,
+  focus: null,
+  highlight: null,
   display: {
     categories: [],
   },
@@ -31,9 +33,9 @@ function setMapData (data) {
   for (const category of data.categories) {
     const c = {
       visible: true,
-      focused: false,
       name: category.name,
       raw: category,
+      ui: {},
       groups: [],
     };
     state.display.categories.push(c);
@@ -41,24 +43,24 @@ function setMapData (data) {
     for (const group of category.groups) {
       const g = {
         visible: true,
-        focused: false,
         name: group.name,
         icon: group.icon,
         description: group.description,
         category: c,
         raw: group,
+        ui: {},
         data: [],
       };
       c.groups.push(g);
 
       for (const pin of group.data) {
         const p = {
-          focused: false,
           name: pin.name,
           description: pin.description,
           type: 'point',
           points: [[pin.x, pin.y]],
           raw: pin,
+          ui: {},
           category: c,
           group: g,
         };
@@ -83,7 +85,7 @@ function setCategoryVisibility (c, visible) {
   if (c.visible == visible) return;
 
   c.visible = visible;
-  c.toggleEl.setChecked(visible);
+  c.ui.toggleEl.setChecked(visible);
 }
 
 function toggleGroupVisibility (g) {
@@ -100,14 +102,12 @@ function setGroupVisibility (g, visible) {
   if (g.visible == visible) return;
 
   g.visible = visible;
-  g.toggleEl.setChecked(visible);
+  g.ui.toggleEl.setChecked(visible);
 
-  for (const p of g.data) {
-    if (visible) {
-      p.el.classList.remove('hidden');
-    } else {
-      p.el.classList.add('hidden');
-    }
+  if (visible) {
+    g.ui.mapEl.classList.remove('hidden');
+  } else {
+    g.ui.mapEl.classList.add('hidden');
   }
 }
 
@@ -179,6 +179,7 @@ function addPin (category, group, name, coords) {
     description: '',
     type: 'point',
     points: [[coords.x, coords.y]],
+    ui: {},
     category: c,
     group: g,
   };
@@ -202,12 +203,38 @@ function toggleEditMode () {
 
 function editCategoryName (category, name) {
   category.name = name;
-  category.el.querySelector('.category-title').textContent = name;
+  category.ui.menuTitleEl.textContent = name;
   category.raw.name = name;
 }
 
 function editGroupName (group, name) {
   group.name = name;
-  group.el.querySelector('.group-title').textContent = name;
+  group.ui.menuTitleEl.textContent = name;
   group.raw.name = name;
 }
+
+// function focusCategory (category) {
+//   if (state.focus) {
+//     state.focus.el.classList.remove('focused');
+//   }
+
+//   state.focus = category;
+//   category.el.classList.add('focused');
+
+//   for (const g of category.groups) {
+//     for (const p of g.data) {
+//       p.el.classList.add('focused');
+//     }
+//   }
+// }
+
+// function unfocus () {
+//   if (!state.focus) return;
+
+//   if (state.focus.type === 'category') {
+//     state.focus.data.el.classList.remove('focused');
+//   } else if (state.focus.type === 'group') {
+//     state.focus.data.el.classList.remove('focused');
+//   }
+//   state.focus = null;
+// }

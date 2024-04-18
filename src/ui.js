@@ -46,21 +46,23 @@ function buildFiltersMenu () {
   // console.log(data)
 
   for (const category of state.display.categories) {
-    category.el = document.createElement('div');
-    category.el.classList.add('category');
-    filterDrawer.appendChild(category.el);
+    const categoryEl = document.createElement('div');
+    category.ui.menuEl = categoryEl;
+    categoryEl.classList.add('category');
+    filterDrawer.appendChild(categoryEl);
 
     // Header
     const categoryHeader = document.createElement('div');
     categoryHeader.classList.add('category-header');
-    category.el.appendChild(categoryHeader);
+    categoryEl.appendChild(categoryHeader);
 
     const categoryEye = createToggleEye();
     categoryEye.onclick = () => toggleCategoryVisibility(category);
-    category.toggleEl = categoryEye;
+    category.ui.toggleEl = categoryEye;
     const categoryTitle = document.createElement('div');
     categoryTitle.classList.add('category-title');
     categoryTitle.textContent = category.name;
+    category.ui.menuTitleEl = categoryTitle;
     const categoryEdit = document.createElement('div');
     categoryEdit.classList.add('mdi', 'mdi-pencil', 'category-edit-button', 'edit-mode');
     if (!state.editMode) categoryEdit.classList.add('hidden');
@@ -72,13 +74,14 @@ function buildFiltersMenu () {
 
     // Groups
     for (const group of category.groups) {
-      group.el = document.createElement('div');
-      group.el.classList.add('group');
-      category.el.appendChild(group.el);
+      const groupEl = document.createElement('div');
+      group.ui.menuEl = groupEl;
+      groupEl.classList.add('group');
+      category.ui.menuEl.appendChild(groupEl);
 
       const groupEye = createToggleEye();
       groupEye.onclick = () => toggleGroupVisibility(group);
-      group.toggleEl = groupEye;
+      group.ui.toggleEl = groupEye;
 
       const groupIcon = document.createElement('img');
       groupIcon.classList.add('group-icon');
@@ -87,16 +90,17 @@ function buildFiltersMenu () {
       const groupTitle = document.createElement('div');
       groupTitle.classList.add('group-title');
       groupTitle.textContent = group.name;
+      group.ui.menuTitleEl = groupTitle;
 
       const groupEdit = document.createElement('div');
       groupEdit.classList.add('mdi', 'mdi-pencil', 'group-edit-button', 'edit-mode');
       if (!state.editMode) groupEdit.classList.add('hidden');
       groupEdit.onclick = () => editGroupPopup(group);
 
-      group.el.appendChild(groupEye);
-      group.el.appendChild(groupIcon);
-      group.el.appendChild(groupTitle);
-      group.el.appendChild(groupEdit);
+      groupEl.appendChild(groupEye);
+      groupEl.appendChild(groupIcon);
+      groupEl.appendChild(groupTitle);
+      groupEl.appendChild(groupEdit);
     }
 
     // categories[category].forEach(function(pin) {
@@ -146,8 +150,13 @@ function clearMap () {
 function buildMapPins () {
   for (const category of state.display.categories) {
     for (const group of category.groups) {
+      const groupEl = document.createElement('div');
+      groupEl.classList.add('group');
+      group.ui.mapEl = groupEl;
+      map.appendChild(groupEl);
+
       for (const pin of group.data) {
-        pin.el = createPinOnMap(category, group, pin);
+        createPinOnMap(category, group, pin);
       }
     }
   }
@@ -157,12 +166,14 @@ function buildMapPins () {
 function createPinOnMap (category, group, pin) {
   console.log('pin:', pin)
   // console.log(currentMapUrl)
-  const pinElement = document.createElement('div');
-  pinElement.classList.add('pin');
+  const pinEl = document.createElement('div');
+  pin.ui.mapEl = pinEl;
+
+  pinEl.classList.add('pin');
   const [x, y] = pin.points[0];
-  pinElement.style.left = x.replace('%%', '%');
-  pinElement.style.top = y.replace('%%', '%');
-  pinElement.title = pin.name;
+  pinEl.style.left = x.replace('%%', '%');
+  pinEl.style.top = y.replace('%%', '%');
+  pinEl.title = pin.name;
 
   const pinImage = document.createElement('img');
   pinImage.src = group.icon || 'assets/icons/fried-egg.png';
@@ -171,16 +182,16 @@ function createPinOnMap (category, group, pin) {
 
   const popup = createPopup(pin);
 
-  pinElement.appendChild(pinImage);
-  pinElement.appendChild(popup);
-  document.getElementById('map').appendChild(pinElement);
+  pinEl.appendChild(pinImage);
+  pinEl.appendChild(popup);
+  document.getElementById('map').appendChild(pinEl);
 
-  pinElement.onmouseenter = () => {
+  pinEl.onmouseenter = () => {
     popup.classList.add('active');
     updateNamatamaText(pin);
   };
 
-  pinElement.onmouseleave = () => {
+  pinEl.onmouseleave = () => {
     popup.classList.remove('active');
     clearNamatamaText();
   };
@@ -189,7 +200,7 @@ function createPinOnMap (category, group, pin) {
   const pinUrl = window.location.origin + window.location.pathname + '#' + state.currentMap.urlName.toLowerCase() + '?category=' + encodeURIComponent(pin.category) + '&title=' + encodeURIComponent(pin.name) + '&x=' + encodeURIComponent(pin.x + '%') + '&y=' + encodeURIComponent(pin.y + '%') + '&pinImg=' + encodeURIComponent(group.icon) + '&dataImg=' + encodeURIComponent(pin.image);
 
   // Add a click event listener to copy the URL to clipboard
-  pinElement.onclick = () => {
+  pinEl.onclick = () => {
     navigator.clipboard.writeText(pinUrl)
       .then(() => {
         console.log('URL copied to clipboard: ' + pinUrl);
@@ -200,7 +211,7 @@ function createPinOnMap (category, group, pin) {
       });
   };
 
-  return pinElement;
+  group.ui.mapEl.appendChild(pinEl);
 }
 
 
