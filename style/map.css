@@ -15,3 +15,12 @@
 #map .pin {
   pointer-events: all;
 }
+
+#map:has(.group.focus) .group:not(.focus):not(.highlight) {
+  display: none;
+}
+
+#map:has(.group.highlight) .group:not(.highlight):not(.focus),
+#map:has(.group.focus) .group:not(.focus).highlight {
+  opacity: 0.5;
+}

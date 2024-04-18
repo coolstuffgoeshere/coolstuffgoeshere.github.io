@@ -101,6 +101,10 @@ function buildFiltersMenu () {
       groupEl.appendChild(groupIcon);
       groupEl.appendChild(groupTitle);
       groupEl.appendChild(groupEdit);
+
+      groupEl.onclick = () => toggleGroupFocus(group);
+      groupEl.onmouseenter = () => setGroupHighlight(group, true);
+      groupEl.onmouseleave = () => setGroupHighlight(group, false);
     }
 
     // categories[category].forEach(function(pin) {

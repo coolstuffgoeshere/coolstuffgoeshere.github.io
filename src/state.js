@@ -5,8 +5,6 @@ const state = {
   currentMap: null,
   mapData: null,
   userMapData: null,
-  focus: null,
-  highlight: null,
   display: {
     categories: [],
   },
@@ -33,6 +31,8 @@ function setMapData (data) {
   for (const category of data.categories) {
     const c = {
       visible: true,
+      highlighted: false,
+      focused: false,
       name: category.name,
       raw: category,
       ui: {},
@@ -43,6 +43,8 @@ function setMapData (data) {
     for (const group of category.groups) {
       const g = {
         visible: true,
+        highlighted: false,
+        focused: false,
         name: group.name,
         icon: group.icon,
         description: group.description,
@@ -56,6 +58,8 @@ function setMapData (data) {
       for (const pin of group.data) {
         const p = {
           name: pin.name,
+          highlighted: false,
+          focused: false,
           description: pin.description,
           type: 'point',
           points: [[pin.x, pin.y]],
@@ -213,28 +217,42 @@ function editGroupName (group, name) {
   group.raw.name = name;
 }
 
-// function focusCategory (category) {
-//   if (state.focus) {
-//     state.focus.el.classList.remove('focused');
-//   }
+function toggleGroupFocus (g) {
+  if (!g.focused) {
+    for (const c of state.display.categories) {
+      for (const gg of c.groups) {
+        setGroupFocus(gg, false);
+      }
+    }
+  }
 
-//   state.focus = category;
-//   category.el.classList.add('focused');
+  setGroupFocus(g, !g.focused);
+}
 
-//   for (const g of category.groups) {
-//     for (const p of g.data) {
-//       p.el.classList.add('focused');
-//     }
-//   }
-// }
+function setGroupFocus (g, focused) {
+  if (g.focused == focused) return;
 
-// function unfocus () {
-//   if (!state.focus) return;
+  g.focused = focused;
 
-//   if (state.focus.type === 'category') {
-//     state.focus.data.el.classList.remove('focused');
-//   } else if (state.focus.type === 'group') {
-//     state.focus.data.el.classList.remove('focused');
-//   }
-//   state.focus = null;
-// }
+  if (focused) {
+    g.ui.menuEl.classList.add('focus');
+    g.ui.mapEl.classList.add('focus');
+  } else {
+    g.ui.menuEl.classList.remove('focus');
+    g.ui.mapEl.classList.remove('focus');
+  }
+}
+
+function setGroupHighlight (g, highlighted) {
+  if (g.highlighted == highlighted) return;
+
+  g.highlighted = highlighted;
+
+  if (highlighted) {
+    g.ui.menuEl.classList.add('highlight');
+    g.ui.mapEl.classList.add('highlight');
+  } else {
+    g.ui.menuEl.classList.remove('highlight');
+    g.ui.mapEl.classList.remove('highlight');
+  }
+}

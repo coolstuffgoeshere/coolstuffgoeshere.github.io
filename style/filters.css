@@ -37,8 +37,12 @@
   transition: background-color 60ms ease-in-out;
 }
 
-.menu-filters .group:hover {
+.menu-filters .group.highlight {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-filters .group.focus {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .menu-filters .group-icon {
