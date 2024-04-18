@@ -32,9 +32,9 @@
   opacity: 0.5;
 }
 
-#map .group.highlight .pin,
-#map .pin.highlight,
-#map:not(:has(.pin.highlight)) .pin.focus {
+#map .group.highlight .pin img,
+#map .pin.highlight img,
+#map:not(:has(.pin.highlight)) .pin.focus img {
   animation: pulse 1s ease-in-out infinite;
   -webkit-animation: pulse 1s ease-in-out infinite;
 }

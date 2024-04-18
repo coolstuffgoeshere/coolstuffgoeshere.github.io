@@ -433,6 +433,7 @@ h3 {
   border: 3px solid color-mix(in srgb, var(--color-primary) 60%, black);
   border-radius: 10px;
   padding: 10px;
+  cursor: pointer;
 }
 
 .drawer[name="settings"] .item {
