@@ -281,7 +281,10 @@ function buildDetailsPanels () {
 
         itemEl.appendChild(itemNameEl);
 
-        itemEl.onclick = () => togglePinFocus(pin);
+        itemEl.onclick = () => {
+          togglePinFocus(pin);
+          setPinHighlightOnMap(pin, false);
+        }
         itemEl.onmouseenter = () => setPinHighlightOnMap(pin, true);
         itemEl.onmouseleave = () => setPinHighlightOnMap(pin, false);
 

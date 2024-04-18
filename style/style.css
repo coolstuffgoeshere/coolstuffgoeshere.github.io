@@ -296,7 +296,7 @@ h3 {
   transform-origin: bottom right;
   /* Scale from the bottom right corner */
   animation: 2s rollIn forwards;
-  z-index: 9;
+  z-index: 11;
 
 }
 

@@ -250,14 +250,16 @@ function editPinImage (pin, image) {
 function clearFocus () {
   const hasPinFocus = state.display.categories.some(
     c => c.groups.some(
-      g => g.data.some(p => p.focused)
+      g => g.data.some(p => p.focused || p.highlighted)
     )
   );
 
   if (hasPinFocus) {
     togglePinFocus(null);
+    togglePinHighlight(null);
   } else {
     toggleGroupFocus(null);
+    toggleGroupHighlight(null);
   }
 }
 

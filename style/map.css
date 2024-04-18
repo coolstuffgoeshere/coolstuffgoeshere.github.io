@@ -27,7 +27,7 @@
   opacity: 0.5;
 }
 
-#map:has(.pin.highlight) .pin:not(.highlight):not(.focus),
-#map:has(.pin.focus) .pin:not(.focus).highlight {
+#map:has(.pin.highlight) .pin:not(.focus):not(.highlight),
+#map:has(.pin.focus) .pin:not(.focus):not(.highlight) {
   opacity: 0.5;
 }
