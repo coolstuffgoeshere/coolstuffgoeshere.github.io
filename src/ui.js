@@ -1,3 +1,5 @@
+const detailsPanel = document.getElementById('details-panel');
+
 function createToggleEye () {
   const attr = 'checked';
   const iconOn = 'mdi-eye';
@@ -190,32 +192,101 @@ function createPinOnMap (category, group, pin) {
   pinEl.appendChild(popup);
   document.getElementById('map').appendChild(pinEl);
 
-  pinEl.onmouseenter = () => {
-    popup.classList.add('active');
-    updateNamatamaText(pin);
-  };
+  // pinEl.onmouseenter = () => {
+  //   popup.classList.add('active');
+  //   updateNamatamaText(pin);
+  // };
 
-  pinEl.onmouseleave = () => {
-    popup.classList.remove('active');
-    clearNamatamaText();
-  };
+  // pinEl.onmouseleave = () => {
+  //   popup.classList.remove('active');
+  //   clearNamatamaText();
+  // };
+
+  pinEl.onclick = () => togglePinFocus(pin);
+  pinEl.onmouseenter = () => setPinHighlight(pin, true);
+  pinEl.onmouseleave = () => setPinHighlight(pin, false);
 
   // Create URL for the pin and replace unwanted characters
   const pinUrl = window.location.origin + window.location.pathname + '#' + state.currentMap.urlName.toLowerCase() + '?category=' + encodeURIComponent(pin.category) + '&title=' + encodeURIComponent(pin.name) + '&x=' + encodeURIComponent(pin.x + '%') + '&y=' + encodeURIComponent(pin.y + '%') + '&pinImg=' + encodeURIComponent(group.icon) + '&dataImg=' + encodeURIComponent(pin.image);
 
   // Add a click event listener to copy the URL to clipboard
-  pinEl.onclick = () => {
-    navigator.clipboard.writeText(pinUrl)
-      .then(() => {
-        console.log('URL copied to clipboard: ' + pinUrl);
-        // alert('URL copied to clipboard: ' + pinUrl);
-      })
-      .catch((err) => {
-        console.error('Failed to copy URL to clipboard: ', err);
-      });
-  };
+  // pinEl.onclick = () => {
+  //   navigator.clipboard.writeText(pinUrl)
+  //     .then(() => {
+  //       console.log('URL copied to clipboard: ' + pinUrl);
+  //       // alert('URL copied to clipboard: ' + pinUrl);
+  //     })
+  //     .catch((err) => {
+  //       console.error('Failed to copy URL to clipboard: ', err);
+  //     });
+  // };
 
   group.ui.mapEl.appendChild(pinEl);
+}
+
+function buildDetailsPanels () {
+  for (const category of state.display.categories) {
+    for (const group of category.groups) {
+      const groupEl = document.createElement('div');
+      group.ui.detailsEl = groupEl;
+      groupEl.classList.add('details-header');
+
+      const iconEl = document.createElement('img');
+      iconEl.classList.add('group-icon');
+      iconEl.src = group.icon || 'assets/icons/fried-egg.png';
+
+      const nameEl = document.createElement('div');
+      nameEl.classList.add('group-name');
+      nameEl.textContent = group.name;
+
+      const descriptionEl = document.createElement('div');
+      descriptionEl.classList.add('group-description');
+      descriptionEl.textContent = group.description;
+
+      groupEl.appendChild(iconEl);
+      groupEl.appendChild(nameEl);
+      groupEl.appendChild(descriptionEl);
+
+      for (const pin of group.data) {
+        // Item for the list of pins in that group.
+        const itemEl = document.createElement('div');
+        pin.ui.detailsItemEl = itemEl;
+        itemEl.classList.add('group-item');
+
+        const itemNameEl = document.createElement('div');
+        itemNameEl.classList.add('name');
+        itemNameEl.textContent = pin.name;
+
+        itemEl.appendChild(itemNameEl);
+
+        itemEl.onclick = () => togglePinFocus(pin);
+        itemEl.onmouseenter = () => setPinHighlightOnMap(pin, true);
+        itemEl.onmouseleave = () => setPinHighlightOnMap(pin, false);
+
+        // Details about that specific pin.
+        const infoEl = document.createElement('div');
+        pin.ui.detailsInfoEl = infoEl;
+        infoEl.classList.add('details-item');
+
+        const infoNameEl = document.createElement('div');
+        infoNameEl.classList.add('name');
+        infoNameEl.textContent = pin.name;
+        infoEl.appendChild(infoNameEl);
+
+        const infoDescriptionEl = document.createElement('div');
+        infoDescriptionEl.classList.add('description');
+        infoDescriptionEl.textContent = pin.description;
+        infoEl.appendChild(infoDescriptionEl);
+
+        if (pin.image) {
+          const infoImageEl = document.createElement('img');
+          infoImageEl.classList.add('image');
+          infoImageEl.src = pin.image;
+          infoEl.appendChild(infoImageEl);
+        }
+      }
+    }
+  }
 }
 
 

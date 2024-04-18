@@ -24,3 +24,8 @@
 #map:has(.group.focus) .group:not(.focus).highlight {
   opacity: 0.5;
 }
+
+#map:has(.pin.highlight) .pin:not(.highlight):not(.focus),
+#map:has(.pin.focus) .pin:not(.focus).highlight {
+  opacity: 0.5;
+}

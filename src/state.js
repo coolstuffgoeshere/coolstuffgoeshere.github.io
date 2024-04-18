@@ -1,4 +1,3 @@
-
 // State of the app used to render the UI.
 const state = {
   maps: [],
@@ -75,6 +74,7 @@ function setMapData (data) {
 
   buildFiltersMenu();
   buildMapPins();
+  buildDetailsPanels();
 }
 
 function toggleCategoryVisibility (c) {
@@ -221,15 +221,22 @@ function toggleGroupFocus (g) {
   if (!g.focused) {
     for (const c of state.display.categories) {
       for (const gg of c.groups) {
-        setGroupFocus(gg, false);
+        setGroupFocusNoUI(gg, false);
       }
     }
   }
 
-  setGroupFocus(g, !g.focused);
+  setGroupFocusNoUI(g, !g.focused);
+  refreshDetailsPanel();
 }
 
 function setGroupFocus (g, focused) {
+  if (g.focused == focused) return;
+  setGroupFocusNoUI(g, focused);
+  refreshDetailsPanel();
+}
+
+function setGroupFocusNoUI (g, focused) {
   if (g.focused == focused) return;
 
   g.focused = focused;
@@ -254,5 +261,122 @@ function setGroupHighlight (g, highlighted) {
   } else {
     g.ui.menuEl.classList.remove('highlight');
     g.ui.mapEl.classList.remove('highlight');
+  }
+
+  refreshDetailsPanel();
+}
+
+function togglePinFocus (pin) {
+  if (!pin.focused) {
+    for (const c of state.display.categories) {
+      for (const g of c.groups) {
+        for (const p of g.data) {
+          setPinFocusNoUI(p, false);
+        }
+      }
+    }
+  }
+
+  setPinFocusNoUI(pin, !pin.focused);
+  refreshDetailsPanel();
+}
+
+function setPinFocusNoUI (pin, focused) {
+  if (pin.focused == focused) return;
+
+  pin.focused = focused;
+
+  if (focused) {
+    pin.ui.mapEl.classList.add('focus');
+  } else {
+    pin.ui.mapEl.classList.remove('focus');
+  }
+}
+
+function setPinHighlight (pin, highlighted) {
+  if (pin.highlighted == highlighted) return;
+
+  // Unhighlight all pins first.
+  if (highlighted) {
+    for (const c of state.display.categories) {
+      for (const g of c.groups) {
+        for (const p of g.data) {
+          setPinHighlightNoUI(pin, false);
+        }
+      }
+    }
+  }
+
+  setPinHighlightNoUI(pin, highlighted);
+  refreshDetailsPanel();
+}
+
+function setPinHighlightNoUI (pin, highlighted) {
+  if (pin.highlighted == highlighted) return;
+
+  pin.highlighted = highlighted;
+  setPinHighlightOnMap(pin, highlighted);
+}
+
+function setPinHighlightOnMap (pin, highlighted) {
+  if (highlighted) {
+    pin.ui.mapEl.classList.add('highlight');
+  } else {
+    pin.ui.mapEl.classList.remove('highlight');
+  }
+}
+
+function refreshDetailsPanel () {
+  detailsPanel.innerHTML = '';
+
+  const { group, pin } = findGroupPinToDetail();
+
+  if (!group) return;
+
+  detailsPanel.appendChild(group.ui.detailsEl);
+
+  if (pin) {
+    detailsPanel.appendChild(pin.ui.detailsInfoEl);
+  } else {
+    const groupItemEl = document.createElement('div');
+    groupItemEl.classList.add('details-group-items');
+
+    for (const p of group.data) {
+      groupItemEl.appendChild(p.ui.detailsItemEl);
+    }
+
+    detailsPanel.appendChild(groupItemEl);
+  }
+}
+
+function findGroupPinToDetail () {
+  // First check if any group or pin is highlighted.
+  for (const c of state.display.categories) {
+    for (const g of c.groups) {
+      for (const p of g.data) {
+        if (p.highlighted) {
+          return { group: g, pin: p };
+        }
+      }
+
+      if (g.highlighted) {
+        return { group: g, pin: null };
+      }
+    }
+  }
+
+  // Else check if any group is focused.\
+  for (const c of state.display.categories) {
+    for (const g of c.groups) {
+      for (const p of g.data) {
+        if (p.focused) {
+          return { group: g, pin: p };
+        }
+      }
+
+      if (g.focused) {
+        return { group: g, pin: null };
+      }
+    }
   }
 }
