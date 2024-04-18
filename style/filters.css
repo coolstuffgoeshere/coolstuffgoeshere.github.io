@@ -67,10 +67,6 @@
   cursor: pointer;
 }
 
-.edit-mode.hidden {
-  display: none;
-}
-
 .category-edit-button,
 .group-edit-button {
   margin-right: 0px;

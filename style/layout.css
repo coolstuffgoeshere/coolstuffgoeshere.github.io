@@ -50,7 +50,7 @@ nav {
   height: 100%;
 }
 
-#details-panel {
+#details-panel-container {
   grid-area: details;
   z-index: 10;
 }

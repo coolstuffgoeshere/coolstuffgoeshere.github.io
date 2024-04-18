@@ -1,4 +1,4 @@
-const detailsPanel = document.getElementById('details-panel');
+const detailsPanelContainer = document.getElementById('details-panel-container');
 
 function createToggleEye () {
   const attr = 'checked';
@@ -67,8 +67,7 @@ function buildFiltersMenu () {
     category.ui.menuTitleEl = categoryTitle;
     const categoryEdit = document.createElement('div');
     categoryEdit.classList.add('mdi', 'mdi-pencil', 'category-edit-button', 'edit-mode');
-    if (!state.editMode) categoryEdit.classList.add('hidden');
-    categoryEdit.onclick = () => editCategoryPopup(category);
+    categoryEdit.onclick = () => editCategoryNamePopup(category);
 
     categoryHeader.appendChild(categoryEye);
     categoryHeader.appendChild(categoryTitle);
@@ -96,8 +95,7 @@ function buildFiltersMenu () {
 
       const groupEdit = document.createElement('div');
       groupEdit.classList.add('mdi', 'mdi-pencil', 'group-edit-button', 'edit-mode');
-      if (!state.editMode) groupEdit.classList.add('hidden');
-      groupEdit.onclick = () => editGroupPopup(group);
+      groupEdit.onclick = () => editGroupNamePopup(group);
 
       groupEl.appendChild(groupEye);
       groupEl.appendChild(groupIcon);
@@ -247,6 +245,30 @@ function buildDetailsPanels () {
       groupEl.appendChild(nameEl);
       groupEl.appendChild(descriptionEl);
 
+      // Edit mode stuff.
+      const editGroupEl = document.createElement('div');
+      editGroupEl.classList.add('edit-mode');
+      groupEl.appendChild(editGroupEl);
+
+      const editIconEl = document.createElement('div');
+      editIconEl.classList.add('button', 'secondary');
+      editIconEl.textContent = 'Edit Icon URL';
+      editIconEl.onclick = () => editGroupIconPopup(group);
+
+      const editGroupNameEl = document.createElement('div');
+      editGroupNameEl.classList.add('button', 'secondary');
+      editGroupNameEl.textContent = 'Edit Name';
+      editGroupNameEl.onclick = () => editGroupNamePopup(group);
+
+      const editGroupDescriptionEl = document.createElement('div');
+      editGroupDescriptionEl.classList.add('button', 'secondary');
+      editGroupDescriptionEl.textContent = 'Edit Description';
+      editGroupDescriptionEl.onclick = () => editGroupDescriptionPopup(group);
+
+      editGroupEl.appendChild(editIconEl);
+      editGroupEl.appendChild(editGroupNameEl);
+      editGroupEl.appendChild(editGroupDescriptionEl);
+
       for (const pin of group.data) {
         // Item for the list of pins in that group.
         const itemEl = document.createElement('div');
@@ -278,12 +300,34 @@ function buildDetailsPanels () {
         infoDescriptionEl.textContent = pin.description;
         infoEl.appendChild(infoDescriptionEl);
 
-        if (pin.image) {
-          const infoImageEl = document.createElement('img');
-          infoImageEl.classList.add('image');
-          infoImageEl.src = pin.image;
-          infoEl.appendChild(infoImageEl);
-        }
+        const infoImageEl = document.createElement('img');
+        infoImageEl.classList.add('image');
+        infoImageEl.src = pin.image || '';
+        infoEl.appendChild(infoImageEl);
+
+        // Edit mode stuff.
+        const editPinEl = document.createElement('div');
+        editPinEl.classList.add('edit-mode');
+        infoEl.appendChild(editPinEl);
+
+        const editPinNameEl = document.createElement('div');
+        editPinNameEl.classList.add('button', 'secondary');
+        editPinNameEl.textContent = 'Edit Name';
+        editPinNameEl.onclick = () => editPinNamePopup(pin);
+
+        const editPinDescriptionEl = document.createElement('div');
+        editPinDescriptionEl.classList.add('button', 'secondary');
+        editPinDescriptionEl.textContent = 'Edit Description';
+        editPinDescriptionEl.onclick = () => editPinDescriptionPopup(pin);
+
+        const editImageEl = document.createElement('div');
+        editImageEl.classList.add('button', 'secondary');
+        editImageEl.textContent = 'Edit Image URL';
+        editImageEl.onclick = () => editPinImagePopup(pin);
+
+        editPinEl.appendChild(editPinNameEl);
+        editPinEl.appendChild(editPinDescriptionEl);
+        editPinEl.appendChild(editImageEl);
       }
     }
   }
@@ -321,16 +365,61 @@ function showPinEdit (pin) {
       </div>`;
 }
 
-function editCategoryPopup (category) {
+function editCategoryNamePopup (category) {
   const name = prompt(`Modify category name`, category.name);
   if (!name) return;
 
   editCategoryName(category, name);
 }
 
-function editGroupPopup (group) {
+function editGroupNamePopup (group) {
   const name = prompt(`Modify group name`, group.name);
   if (!name) return;
 
   editGroupName(group, name);
+}
+
+function editGroupIconPopup (group) {
+  const icon = prompt(`Modify group image URL`, group.icon);
+
+  if (icon === null) return;
+
+  if (icon === '') {
+    icon = null;
+  }
+
+  editGroupIcon(group, icon);
+}
+
+function editGroupDescriptionPopup (group) {
+  const description = prompt(`Modify group description`, group.description);
+  if (!description) return;
+
+  editGroupDescription(group, description);
+}
+
+function editPinNamePopup (pin) {
+  const name = prompt(`Modify pin name`, pin.name);
+  if (!name) return;
+
+  editPinName(pin, name);
+}
+
+function editPinDescriptionPopup (pin) {
+  const description = prompt(`Modify pin description`, pin.description);
+  if (!description) return;
+
+  editPinDescription(pin, description);
+}
+
+function editPinImagePopup (pin) {
+  const image = prompt(`Modify pin image URL`, pin.image);
+
+  if (image === null) return;
+
+  if (image === '') {
+    image = null;
+  }
+
+  editPinImage(pin, image);
 }

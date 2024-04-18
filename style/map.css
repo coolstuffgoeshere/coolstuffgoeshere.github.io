@@ -14,10 +14,12 @@
 
 #map .pin {
   pointer-events: all;
+  transition: opacity 50ms ease-in-out;
 }
 
-#map:has(.group.focus) .group:not(.focus):not(.highlight) {
-  display: none;
+#map:has(.group.focus) .group:not(.focus):not(.highlight) .pin {
+  pointer-events: none;
+  opacity: 0;
 }
 
 #map:has(.group.highlight) .group:not(.highlight):not(.focus),

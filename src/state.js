@@ -60,6 +60,7 @@ function setMapData (data) {
           highlighted: false,
           focused: false,
           description: pin.description,
+          image: pin.image,
           type: 'point',
           points: [[pin.x, pin.y]],
           raw: pin,
@@ -194,15 +195,7 @@ function addPin (category, group, name, coords) {
 
 function toggleEditMode () {
   state.editMode = !state.editMode;
-
-  const els = document.getElementsByClassName('edit-mode');
-  for (const el of els) {
-    if (state.editMode) {
-      el.classList.remove('hidden');
-    } else {
-      el.classList.add('hidden');
-    }
-  }
+  app.classList.toggle('edit-mode');
 }
 
 function editCategoryName (category, name) {
@@ -211,14 +204,65 @@ function editCategoryName (category, name) {
   category.raw.name = name;
 }
 
+function editGroupIcon (group, icon) {
+  const iconUrl = icon || 'assets/icon/fried-egg.png';
+
+  group.icon = icon;
+  group.ui.menuEl.querySelector('.group-icon').src = iconUrl;
+  group.ui.detailsEl.querySelector('.group-icon').src = iconUrl;
+  group.raw.icon = icon;
+}
+
 function editGroupName (group, name) {
   group.name = name;
   group.ui.menuTitleEl.textContent = name;
+  group.ui.detailsEl.querySelector('.group-name').textContent = name;
   group.raw.name = name;
 }
 
+function editGroupDescription (group, description) {
+  group.description = description;
+  group.ui.detailsEl.querySelector('.group-description').textContent = description;
+  group.raw.description = description;
+}
+
+function editPinName (pin, name) {
+  pin.name = name;
+  pin.ui.mapEl.title = name;
+  pin.ui.mapEl.querySelector('img').alt = name;
+  pin.ui.detailsItemEl.querySelector('.name').textContent = name;
+  pin.ui.detailsInfoEl.querySelector('.name').textContent = name;
+  pin.raw.name = name;
+}
+
+function editPinDescription (pin, description) {
+  pin.description = description;
+  pin.ui.detailsInfoEl.querySelector('.description').textContent = description;
+  pin.raw.description = description;
+}
+
+function editPinImage (pin, image) {
+  pin.image = image;
+  pin.ui.detailsInfoEl.querySelector('.image').src = image || '';
+  pin.raw.image = image;
+}
+
+function clearFocus () {
+  const hasPinFocus = state.display.categories.some(
+    c => c.groups.some(
+      g => g.data.some(p => p.focused)
+    )
+  );
+
+  if (hasPinFocus) {
+    togglePinFocus(null);
+  } else {
+    toggleGroupFocus(null);
+  }
+}
+
 function toggleGroupFocus (g) {
-  if (!g.focused) {
+  if (!g || !g.focused) {
     for (const c of state.display.categories) {
       for (const gg of c.groups) {
         setGroupFocusNoUI(gg, false);
@@ -226,7 +270,10 @@ function toggleGroupFocus (g) {
     }
   }
 
-  setGroupFocusNoUI(g, !g.focused);
+  if (g) {
+    setGroupFocusNoUI(g, !g.focused);
+  }
+
   refreshDetailsPanel();
 }
 
@@ -267,7 +314,7 @@ function setGroupHighlight (g, highlighted) {
 }
 
 function togglePinFocus (pin) {
-  if (!pin.focused) {
+  if (!pin || !pin.focused) {
     for (const c of state.display.categories) {
       for (const g of c.groups) {
         for (const p of g.data) {
@@ -277,7 +324,10 @@ function togglePinFocus (pin) {
     }
   }
 
-  setPinFocusNoUI(pin, !pin.focused);
+  if (pin) {
+    setPinFocusNoUI(pin, !pin.focused);
+  }
+
   refreshDetailsPanel();
 }
 
@@ -327,26 +377,29 @@ function setPinHighlightOnMap (pin, highlighted) {
 }
 
 function refreshDetailsPanel () {
-  detailsPanel.innerHTML = '';
+  const panel = document.createElement('div');
+  panel.classList.add('details-panel');
 
   const { group, pin } = findGroupPinToDetail();
 
-  if (!group) return;
+  if (group) {
+    panel.appendChild(group.ui.detailsEl);
 
-  detailsPanel.appendChild(group.ui.detailsEl);
+    if (pin) {
+      panel.appendChild(pin.ui.detailsInfoEl);
+    } else {
+      const groupItemEl = document.createElement('div');
+      groupItemEl.classList.add('details-group-items');
 
-  if (pin) {
-    detailsPanel.appendChild(pin.ui.detailsInfoEl);
-  } else {
-    const groupItemEl = document.createElement('div');
-    groupItemEl.classList.add('details-group-items');
+      for (const p of group.data) {
+        groupItemEl.appendChild(p.ui.detailsItemEl);
+      }
 
-    for (const p of group.data) {
-      groupItemEl.appendChild(p.ui.detailsItemEl);
+      panel.appendChild(groupItemEl);
     }
-
-    detailsPanel.appendChild(groupItemEl);
   }
+
+  detailsPanelContainer.replaceChild(panel, detailsPanelContainer.firstChild);
 }
 
 function findGroupPinToDetail () {
@@ -379,4 +432,6 @@ function findGroupPinToDetail () {
       }
     }
   }
+
+  return { group: null, pin: null };
 }

@@ -31,6 +31,10 @@ html {
   font-weight: 600;
 }
 
+#app:not(.edit-mode) .edit-mode {
+  display: none;
+}
+
 .menu {
   display: flex;
   flex-wrap: wrap;
@@ -422,4 +426,21 @@ h3 {
   font-size: 18px;
   margin: 20px 0px;
   color: white;
+}
+
+.button {
+  background-color: var(--color-primary);
+  border: 3px solid color-mix(in srgb, var(--color-primary) 60%, black);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.drawer[name="settings"] .item {
+  padding: 10px 20px;
+}
+
+
+.drawer[name="settings"] .item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: 300;
 }
