@@ -36,4 +36,12 @@
   cursor: pointer;
 }
 
+.map-choice {
+  padding: 5px 22px;
+}
+
+.map-choice:hover {
+  font-weight: 300;
+}
+
 @media (max-width: 768px) {}

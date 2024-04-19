@@ -38,7 +38,7 @@ function buildMapMenu () {
   for (const map of state.maps) {
     const choice = document.createElement('div');
     choice.textContent = map.name;
-    choice.classList.add('item');
+    choice.classList.add('item', 'map-choice');
     choice.onclick = () => setMap(map);
     mapChoices.appendChild(choice);
   }
