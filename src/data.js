@@ -52,7 +52,7 @@ async function fetchMapDataFromSupabase (currentMap) {
         mapData: item.mapData,
     }));
 
-    availableDataForMap.find(item => item.dataName === 'default').mapData = rawData;
+    // availableDataForMap.find(item => item.dataName === 'default').mapData = rawData;
 
     console.log(availableDataForMap);
 
