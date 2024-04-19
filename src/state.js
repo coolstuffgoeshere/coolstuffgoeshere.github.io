@@ -397,6 +397,8 @@ function refreshDetailsPanel () {
         groupItemEl.appendChild(p.ui.detailsItemEl);
       }
 
+      groupItemEl.appendChild(group.ui.newPinEl);
+
       panel.appendChild(groupItemEl);
     }
   }

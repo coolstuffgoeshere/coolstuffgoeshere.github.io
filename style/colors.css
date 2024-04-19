@@ -1,3 +1,11 @@
 :root {
   --color-primary: #D21F3C;
+  --color-accent: #F7BB2B;
+  --color-background: #1D1A20;
+  --color-foreground: #E5E6E8;
+
+  --color-primary-shade: color-mix(in srgb, var(--color-primary) 80%, black);
+  --color-accent-shade: color-mix(in srgb, var(--color-accent) 80%, black);
+  --color-background-shade: color-mix(in srgb, var(--color-background) 80%, black);
+  --color-foreground-shade: color-mix(in srgb, var(--color-foreground) 80%, black);
 }

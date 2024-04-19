@@ -65,9 +65,21 @@ function buildFiltersMenu () {
     categoryTitle.classList.add('category-title');
     categoryTitle.textContent = category.name;
     category.ui.menuTitleEl = categoryTitle;
+
+
     const categoryEdit = document.createElement('div');
-    categoryEdit.classList.add('mdi', 'mdi-pencil', 'category-edit-button', 'edit-mode');
-    categoryEdit.onclick = () => editCategoryNamePopup(category);
+    categoryEdit.classList.add('category-edit-button', 'edit-mode');
+
+    const categoryEditName = document.createElement('div');
+    categoryEditName.classList.add('mdi', 'mdi-pencil');
+    categoryEditName.onclick = () => editCategoryNamePopup(category);
+
+    const categoryDelete = document.createElement('div');
+    categoryDelete.classList.add('mdi', 'mdi-delete');
+    categoryDelete.onclick = () => deleteCategory(category);
+
+    categoryEdit.appendChild(categoryEditName);
+    categoryEdit.appendChild(categoryDelete);
 
     categoryHeader.appendChild(categoryEye);
     categoryHeader.appendChild(categoryTitle);
@@ -94,8 +106,18 @@ function buildFiltersMenu () {
       group.ui.menuTitleEl = groupTitle;
 
       const groupEdit = document.createElement('div');
-      groupEdit.classList.add('mdi', 'mdi-pencil', 'group-edit-button', 'edit-mode');
-      groupEdit.onclick = () => editGroupNamePopup(group);
+      groupEdit.classList.add('group-edit-button', 'edit-mode');
+
+      const groupEditName = document.createElement('div');
+      groupEditName.classList.add('mdi', 'mdi-pencil');
+      groupEditName.onclick = () => editGroupNamePopup(group);
+
+      const groupDelete = document.createElement('div');
+      groupDelete.classList.add('mdi', 'mdi-delete');
+      groupDelete.onclick = () => deleteGroup(group);
+
+      groupEdit.appendChild(groupEditName);
+      groupEdit.appendChild(groupDelete);
 
       groupEl.appendChild(groupEye);
       groupEl.appendChild(groupIcon);
@@ -106,6 +128,22 @@ function buildFiltersMenu () {
       groupEl.onmouseenter = () => setGroupHighlight(group, true);
       groupEl.onmouseleave = () => setGroupHighlight(group, false);
     }
+
+    const newGroupEl = document.createElement('div');
+    newGroupEl.classList.add('button', 'button-accent', 'new-group', 'edit-mode');
+    newGroupEl.onclick = () => createNewGroupPopup(category);
+
+    const newGroupButton = document.createElement('div');
+    newGroupButton.classList.add('icon', 'mdi', 'mdi-plus');
+
+    const newGroupText = document.createElement('div');
+    newGroupText.classList.add('text');
+    newGroupText.textContent = 'NEW GROUP';
+
+    newGroupEl.appendChild(newGroupButton);
+    newGroupEl.appendChild(newGroupText);
+
+    categoryEl.appendChild(newGroupEl);
 
     // categories[category].forEach(function(pin) {
     //     var pinCheckbox = document.createElement('input');
@@ -134,6 +172,22 @@ function buildFiltersMenu () {
     //     filterDrawer.appendChild(pinItem);
     // });
   }
+
+  const newCategoryEl = document.createElement('div');
+  newCategoryEl.classList.add('button', 'button-accent', 'new-category', 'edit-mode');
+  newCategoryEl.onclick = () => createNewCategoryPopup();
+
+  const newCategoryButton = document.createElement('div');
+  newCategoryButton.classList.add('icon', 'mdi', 'mdi-plus');
+
+  const newCategoryText = document.createElement('div');
+  newCategoryText.classList.add('text');
+  newCategoryText.textContent = 'NEW CATEGORY';
+
+  newCategoryEl.appendChild(newCategoryButton);
+  newCategoryEl.appendChild(newCategoryText);
+
+  filterDrawer.appendChild(newCategoryEl);
 }
 
 function blankMap () {
@@ -328,10 +382,32 @@ function buildDetailsPanels () {
         editImageEl.textContent = 'Edit Image URL';
         editImageEl.onclick = () => editPinImagePopup(pin);
 
+        const editPinPosition = document.createElement('div');
+        editPinPosition.classList.add('button', 'secondary');
+        editPinPosition.textContent = 'Edit Position';
+        editPinPosition.onclick = () => editPinPositionPopup(pin);
+
         editPinEl.appendChild(editPinNameEl);
         editPinEl.appendChild(editPinDescriptionEl);
         editPinEl.appendChild(editImageEl);
+        editPinEl.appendChild(editPinPosition);
       }
+
+      const newPinEl = document.createElement('div');
+      newPinEl.classList.add('button', 'button-accent', 'new-pin', 'edit-mode');
+      newPinEl.onclick = () => createNewPinPopup(group);
+
+      const newPinButton = document.createElement('div');
+      newPinButton.classList.add('icon', 'mdi', 'mdi-plus');
+
+      const newPinText = document.createElement('div');
+      newPinText.classList.add('text');
+      newPinText.textContent = 'NEW PIN';
+
+      newPinEl.appendChild(newPinButton);
+      newPinEl.appendChild(newPinText);
+
+      group.ui.newPinEl = newPinEl;
     }
   }
 }

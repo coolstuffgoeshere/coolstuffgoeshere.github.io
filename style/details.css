@@ -102,5 +102,10 @@
 
 .details-item .edit-mode {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+}
+
+.new-pin {
+  margin: 20px;
 }

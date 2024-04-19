@@ -71,9 +71,41 @@
 .group-edit-button {
   margin-right: 0px;
   margin-left: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.category-edit-button div,
+.group-edit-button div {
   color: #666;
   width: 20px;
   height: 20px;
   padding: 4px;
   cursor: pointer;
+}
+
+.category-edit-button div:hover,
+.group-edit-button div:hover {
+  color: #999;
+}
+
+.new-group,
+.new-category {
+  margin-right: 10px;
+  padding-right: 20px;
+}
+
+.new-group {
+  margin-top: 10px;
+  margin-left: 40px;
+}
+
+.new-category {
+  margin-left: 20px;
+}
+
+.new-group .icon,
+.new-category .icon {
+  margin-right: 10px;
+  font-size: 24px;
 }

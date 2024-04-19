@@ -24,7 +24,7 @@
 /* Desktop layout */
 @media (min-width: 769px) {
   #app {
-    grid-template-columns: 56px 250px 1fr 500px;
+    grid-template-columns: 56px 300px 1fr 500px;
     grid-template-rows: 1fr;
     grid-template-areas: "navbar drawer . details";
   }
