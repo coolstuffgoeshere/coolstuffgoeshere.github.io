@@ -8,10 +8,7 @@ function loadPinsFromFile (event) {
     try {
       data = JSON.parse(contents);
 
-      clearMap();
-      createAllPinsOnMap(data);
-      clearFilterMenu()
-      createPinsAndCategoriesInMenu(data);
+      setMapData(data);
 
     } catch (error) {
       console.error("Error parsing JSON:", error);
@@ -25,7 +22,7 @@ function loadPinsFromFile (event) {
 
 function savePinsToFile () {
   var currentFile = state.currentMap.urlName;
-  var json = JSON.stringify(data, null, 2);
+  var json = JSON.stringify(state.userMapData, null, 2);
   var blob = new Blob([json], { type: "application/json" });
   var url = URL.createObjectURL(blob);
 

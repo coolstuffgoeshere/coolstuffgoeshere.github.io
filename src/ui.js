@@ -198,14 +198,6 @@ function buildFiltersMenu () {
   filterDrawer.appendChild(newCategoryEl);
 }
 
-function blankMap () {
-  data = [];
-  clearMap();
-  createAllPinsOnMap(data);
-  clearFilterMenu()
-  createPinsAndCategoriesInMenu(data);
-}
-
 // Clear the Map
 function clearMap () {
   document.getElementById('pinEditDiv').innerHTML = '';
@@ -242,8 +234,8 @@ function createPinOnMap (pin) {
 
   pinEl.classList.add('pin');
   const [x, y] = pin.points[0];
-  pinEl.style.left = x.replace('%%', '%');
-  pinEl.style.top = y.replace('%%', '%');
+  pinEl.style.left = `${x}%`;
+  pinEl.style.top = `${y}%`;
   pinEl.title = pin.name;
 
   const pinImage = document.createElement('img');
@@ -408,7 +400,7 @@ function buildDetailsPanels () {
         editPinEl.appendChild(editPinNameEl);
         editPinEl.appendChild(editPinDescriptionEl);
         editPinEl.appendChild(editImageEl);
-        editPinEl.appendChild(editPinPosition);
+        // editPinEl.appendChild(editPinPosition);
         editPinEl.appendChild(editDeletePin);
       }
 
@@ -548,7 +540,5 @@ function createNewPinPopup (group) {
 
   const image = prompt(`Pin image URL`);
 
-  const point = state.cursor.point.map(p => `${p * 100}%`);
-
-  newPin(group, name, description, image, point);
+  newPin(group, name, description, image, 'point', [state.cursor.point]);
 }

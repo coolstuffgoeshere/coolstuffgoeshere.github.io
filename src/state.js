@@ -23,6 +23,19 @@ map.onclick = (event) => {
   }
 }
 
+function blankMap () {
+  state.mapData = {
+    categories: [],
+  };
+  state.userMapData = {
+    categories: [],
+  };
+  state.display.categories = [];
+  clearMap();
+  clearFilterMenu()
+  refreshDetailsPanel();
+}
+
 function setMap (map) {
   state.currentMap = map;
   clearMap();
@@ -51,7 +64,7 @@ function setMapData (data) {
       const g = newGroup(c, group.name, group.icon, group.description, true);
 
       for (const pin of group.data) {
-        newPin(g, pin.name, pin.description, pin.image, [pin.x, pin.y], true);
+        newPin(g, pin.name, pin.description, pin.image, pin.type, pin.points, true);
       }
     }
   }
@@ -152,34 +165,6 @@ function savePinEdit (index) {
 
   // Clear pinEditDiv div
   document.getElementById('pinEditDiv').innerHTML = '';
-}
-
-function addPin (category, group, name, coords) {
-  const c = state.display.categories.find(c => c.name === category);
-  if (!c) {
-    console.error('couldn\'t find category:', category);
-    return;
-  }
-
-  const g = c.groups.find(g => g.name === group);
-  if (!g) {
-    console.error('couldn\'t find group:', group);
-    return;
-  }
-
-  const p = {
-    focused: false,
-    name: name,
-    description: '',
-    type: 'point',
-    points: [[coords.x, coords.y]],
-    ui: {},
-    category: c,
-    group: g,
-  };
-
-  g.data.push(p);
-  createPinOnMap(c, g, p);
 }
 
 function toggleEditMode () {
@@ -561,12 +546,13 @@ function newGroup (category, name, icon, description, noRefresh = false) {
   return g;
 }
 
-function newPin (group, name, description, image, point, noRefresh = false) {
+function newPin (group, name, description, image, type, points, noRefresh = false) {
   const raw = {
     name: name,
     description: description,
     image: image,
-    points: [point],
+    type: type,
+    points: points,
   };
   group.raw.data.push(raw);
 
@@ -576,8 +562,8 @@ function newPin (group, name, description, image, point, noRefresh = false) {
     focused: false,
     description: description,
     image: image,
-    type: 'point',
-    points: [point],
+    type: type,
+    points: points,
     raw: raw,
     ui: {},
     category: group.category,
