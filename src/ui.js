@@ -301,7 +301,7 @@ function buildDetailsPanels () {
 
       const descriptionEl = document.createElement('div');
       descriptionEl.classList.add('group-description');
-      descriptionEl.textContent = group.description;
+      descriptionEl.innerHTML = marked.parse(group.description);
 
       groupEl.appendChild(iconEl);
       groupEl.appendChild(nameEl);
@@ -364,7 +364,7 @@ function buildDetailsPanels () {
 
         const infoDescriptionEl = document.createElement('div');
         infoDescriptionEl.classList.add('description');
-        infoDescriptionEl.textContent = pin.description;
+        infoDescriptionEl.innerHTML = marked.parse(pin.description);
         infoEl.appendChild(infoDescriptionEl);
 
         const infoImageEl = document.createElement('img');
