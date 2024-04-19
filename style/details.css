@@ -9,10 +9,6 @@
   grid-template-rows: auto 1fr;
 }
 
-.details-panel:empty {
-  display: none;
-}
-
 .details-header {
   display: grid;
   padding: 20px;

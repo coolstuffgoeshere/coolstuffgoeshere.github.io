@@ -43,90 +43,98 @@ function clearFilterMenu () {
   filterDrawer.appendChild(first);
 }
 
+function buildFiltersMenuCategory (category) {
+  const categoryEl = document.createElement('div');
+  category.ui.menuEl = categoryEl;
+  categoryEl.classList.add('category');
+  filterDrawer.appendChild(categoryEl);
+
+  // Header
+  const categoryHeader = document.createElement('div');
+  categoryHeader.classList.add('category-header');
+  categoryEl.appendChild(categoryHeader);
+
+  const categoryEye = createToggleEye();
+  categoryEye.onclick = () => toggleCategoryVisibility(category);
+  category.ui.toggleEl = categoryEye;
+  const categoryTitle = document.createElement('div');
+  categoryTitle.classList.add('category-title');
+  categoryTitle.textContent = category.name;
+  category.ui.menuTitleEl = categoryTitle;
+
+
+  const categoryEdit = document.createElement('div');
+  categoryEdit.classList.add('category-edit-button', 'edit-mode');
+
+  const categoryEditName = document.createElement('div');
+  categoryEditName.classList.add('mdi', 'mdi-pencil');
+  categoryEditName.onclick = () => editCategoryNamePopup(category);
+
+  const categoryDelete = document.createElement('div');
+  categoryDelete.classList.add('mdi', 'mdi-delete');
+  categoryDelete.onclick = () => deleteCategory(category);
+
+  categoryEdit.appendChild(categoryEditName);
+  categoryEdit.appendChild(categoryDelete);
+
+  categoryHeader.appendChild(categoryEye);
+  categoryHeader.appendChild(categoryTitle);
+  categoryHeader.appendChild(categoryEdit);
+}
+
+function buildFiltersMenuGroup (group) {
+  const groupEl = document.createElement('div');
+  group.ui.menuEl = groupEl;
+  groupEl.classList.add('group');
+  group.category.ui.menuEl.appendChild(groupEl);
+
+  const groupEye = createToggleEye();
+  groupEye.onclick = () => toggleGroupVisibility(group);
+  group.ui.toggleEl = groupEye;
+
+  const groupIcon = document.createElement('img');
+  groupIcon.classList.add('group-icon');
+  groupIcon.src = group.icon || 'assets/icons/fried-egg.png';
+
+  const groupTitle = document.createElement('div');
+  groupTitle.classList.add('group-title');
+  groupTitle.textContent = group.name;
+  group.ui.menuTitleEl = groupTitle;
+
+  const groupEdit = document.createElement('div');
+  groupEdit.classList.add('group-edit-button', 'edit-mode');
+
+  const groupEditName = document.createElement('div');
+  groupEditName.classList.add('mdi', 'mdi-pencil');
+  groupEditName.onclick = () => editGroupNamePopup(group);
+
+  const groupDelete = document.createElement('div');
+  groupDelete.classList.add('mdi', 'mdi-delete');
+  groupDelete.onclick = () => deleteGroup(group);
+
+  groupEdit.appendChild(groupEditName);
+  groupEdit.appendChild(groupDelete);
+
+  groupEl.appendChild(groupEye);
+  groupEl.appendChild(groupIcon);
+  groupEl.appendChild(groupTitle);
+  groupEl.appendChild(groupEdit);
+
+  groupEl.onclick = () => toggleGroupFocus(group);
+  groupEl.onmouseenter = () => setGroupHighlight(group, true);
+  groupEl.onmouseleave = () => setGroupHighlight(group, false);
+}
+
 function buildFiltersMenu () {
   clearFilterMenu()
   // console.log(data)
 
   for (const category of state.display.categories) {
-    const categoryEl = document.createElement('div');
-    category.ui.menuEl = categoryEl;
-    categoryEl.classList.add('category');
-    filterDrawer.appendChild(categoryEl);
-
-    // Header
-    const categoryHeader = document.createElement('div');
-    categoryHeader.classList.add('category-header');
-    categoryEl.appendChild(categoryHeader);
-
-    const categoryEye = createToggleEye();
-    categoryEye.onclick = () => toggleCategoryVisibility(category);
-    category.ui.toggleEl = categoryEye;
-    const categoryTitle = document.createElement('div');
-    categoryTitle.classList.add('category-title');
-    categoryTitle.textContent = category.name;
-    category.ui.menuTitleEl = categoryTitle;
-
-
-    const categoryEdit = document.createElement('div');
-    categoryEdit.classList.add('category-edit-button', 'edit-mode');
-
-    const categoryEditName = document.createElement('div');
-    categoryEditName.classList.add('mdi', 'mdi-pencil');
-    categoryEditName.onclick = () => editCategoryNamePopup(category);
-
-    const categoryDelete = document.createElement('div');
-    categoryDelete.classList.add('mdi', 'mdi-delete');
-    categoryDelete.onclick = () => deleteCategory(category);
-
-    categoryEdit.appendChild(categoryEditName);
-    categoryEdit.appendChild(categoryDelete);
-
-    categoryHeader.appendChild(categoryEye);
-    categoryHeader.appendChild(categoryTitle);
-    categoryHeader.appendChild(categoryEdit);
+    buildFiltersMenuCategory(category);
 
     // Groups
     for (const group of category.groups) {
-      const groupEl = document.createElement('div');
-      group.ui.menuEl = groupEl;
-      groupEl.classList.add('group');
-      category.ui.menuEl.appendChild(groupEl);
-
-      const groupEye = createToggleEye();
-      groupEye.onclick = () => toggleGroupVisibility(group);
-      group.ui.toggleEl = groupEye;
-
-      const groupIcon = document.createElement('img');
-      groupIcon.classList.add('group-icon');
-      groupIcon.src = group.icon || 'assets/icons/fried-egg.png';
-
-      const groupTitle = document.createElement('div');
-      groupTitle.classList.add('group-title');
-      groupTitle.textContent = group.name;
-      group.ui.menuTitleEl = groupTitle;
-
-      const groupEdit = document.createElement('div');
-      groupEdit.classList.add('group-edit-button', 'edit-mode');
-
-      const groupEditName = document.createElement('div');
-      groupEditName.classList.add('mdi', 'mdi-pencil');
-      groupEditName.onclick = () => editGroupNamePopup(group);
-
-      const groupDelete = document.createElement('div');
-      groupDelete.classList.add('mdi', 'mdi-delete');
-      groupDelete.onclick = () => deleteGroup(group);
-
-      groupEdit.appendChild(groupEditName);
-      groupEdit.appendChild(groupDelete);
-
-      groupEl.appendChild(groupEye);
-      groupEl.appendChild(groupIcon);
-      groupEl.appendChild(groupTitle);
-      groupEl.appendChild(groupEdit);
-
-      groupEl.onclick = () => toggleGroupFocus(group);
-      groupEl.onmouseenter = () => setGroupHighlight(group, true);
-      groupEl.onmouseleave = () => setGroupHighlight(group, false);
+      buildFiltersMenuGroup(group);
     }
 
     const newGroupEl = document.createElement('div');
@@ -143,7 +151,7 @@ function buildFiltersMenu () {
     newGroupEl.appendChild(newGroupButton);
     newGroupEl.appendChild(newGroupText);
 
-    categoryEl.appendChild(newGroupEl);
+    category.ui.menuEl.appendChild(newGroupEl);
 
     // categories[category].forEach(function(pin) {
     //     var pinCheckbox = document.createElement('input');
@@ -205,23 +213,27 @@ function clearMap () {
   map.innerHTML = ''; // Clear all child elements (pins) from the map
 }
 
+function buildMapGroup (group) {
+  const groupEl = document.createElement('div');
+  groupEl.classList.add('group');
+  group.ui.mapEl = groupEl;
+  map.appendChild(groupEl);
+}
+
 function buildMapPins () {
   for (const category of state.display.categories) {
     for (const group of category.groups) {
-      const groupEl = document.createElement('div');
-      groupEl.classList.add('group');
-      group.ui.mapEl = groupEl;
-      map.appendChild(groupEl);
+      buildMapGroup(group);
 
       for (const pin of group.data) {
-        createPinOnMap(category, group, pin);
+        createPinOnMap(pin);
       }
     }
   }
 }
 
 // Create a single pin on the map.
-function createPinOnMap (category, group, pin) {
+function createPinOnMap (pin) {
   console.log('pin:', pin)
   // console.log(currentMapUrl)
   const pinEl = document.createElement('div');
@@ -234,7 +246,7 @@ function createPinOnMap (category, group, pin) {
   pinEl.title = pin.name;
 
   const pinImage = document.createElement('img');
-  pinImage.src = group.icon || 'assets/icons/fried-egg.png';
+  pinImage.src = pin.group.icon || 'assets/icons/fried-egg.png';
 
   pinImage.alt = pin.name;
 
@@ -259,7 +271,7 @@ function createPinOnMap (category, group, pin) {
   pinEl.onmouseleave = () => setPinHighlight(pin, false);
 
   // Create URL for the pin and replace unwanted characters
-  const pinUrl = window.location.origin + window.location.pathname + '#' + state.currentMap.urlName.toLowerCase() + '?category=' + encodeURIComponent(pin.category) + '&title=' + encodeURIComponent(pin.name) + '&x=' + encodeURIComponent(pin.x + '%') + '&y=' + encodeURIComponent(pin.y + '%') + '&pinImg=' + encodeURIComponent(group.icon) + '&dataImg=' + encodeURIComponent(pin.image);
+  const pinUrl = window.location.origin + window.location.pathname + '#' + state.currentMap.urlName.toLowerCase() + '?category=' + encodeURIComponent(pin.category) + '&title=' + encodeURIComponent(pin.name) + '&x=' + encodeURIComponent(pin.x + '%') + '&y=' + encodeURIComponent(pin.y + '%') + '&pinImg=' + encodeURIComponent(pin.group.icon) + '&dataImg=' + encodeURIComponent(pin.image);
 
   // Add a click event listener to copy the URL to clipboard
   // pinEl.onclick = () => {
@@ -273,7 +285,7 @@ function createPinOnMap (category, group, pin) {
   //     });
   // };
 
-  group.ui.mapEl.appendChild(pinEl);
+  pin.group.ui.mapEl.appendChild(pinEl);
 }
 
 function buildDetailsPanels () {
@@ -507,4 +519,33 @@ function editPinImagePopup (pin) {
   }
 
   editPinImage(pin, image);
+}
+
+function createNewCategoryPopup () {
+  const name = prompt(`Category name`);
+  if (!name) return;
+
+  newCategory(name);
+}
+
+function createNewGroupPopup (category) {
+  const name = prompt(`Group name`);
+  if (!name) return;
+
+  const icon = prompt(`Group icon URL`);
+
+  const description = prompt(`Group description`);
+
+  newGroup(category, name, icon, description);
+}
+
+function createNewPinPopup (group) {
+  const name = prompt(`Pin name`);
+  if (!name) return;
+
+  const description = prompt(`Pin description`);
+
+  const image = prompt(`Pin image URL`);
+
+  newPin(group, name, description, image, state.cursor.point);
 }

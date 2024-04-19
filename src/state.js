@@ -25,50 +25,19 @@ function setMapData (data) {
   }
 
   state.mapData = data;
-  state.userMapData = JSON.parse(JSON.stringify(data)); // Deep copy.
+  state.userMapData = {
+    categories: [],
+  };
+  // state.userMapData = JSON.parse(JSON.stringify(data)); // Deep copy.
 
   for (const category of data.categories) {
-    const c = {
-      visible: true,
-      highlighted: false,
-      focused: false,
-      name: category.name,
-      raw: category,
-      ui: {},
-      groups: [],
-    };
-    state.display.categories.push(c);
+    const c = newCategory(category.name, true);
 
     for (const group of category.groups) {
-      const g = {
-        visible: true,
-        highlighted: false,
-        focused: false,
-        name: group.name,
-        icon: group.icon,
-        description: group.description,
-        category: c,
-        raw: group,
-        ui: {},
-        data: [],
-      };
-      c.groups.push(g);
+      const g = newGroup(c, group.name, group.icon, group.description, true);
 
       for (const pin of group.data) {
-        const p = {
-          name: pin.name,
-          highlighted: false,
-          focused: false,
-          description: pin.description,
-          image: pin.image,
-          type: 'point',
-          points: [[pin.x, pin.y]],
-          raw: pin,
-          ui: {},
-          category: c,
-          group: g,
-        };
-        g.data.push(p);
+        newPin(g, pin.name, pin.description, pin.image, [pin.x, pin.y], true);
       }
     }
   }
@@ -495,16 +464,94 @@ function deleteCategory (category) {
   refreshDetailsPanel();
 }
 
-function newCategory (name) {
+function newCategory (name, noRefresh = false) {
+  const raw = {
+    name: name,
+    groups: [],
+  };
+  state.userMapData.categories.push(raw);
 
+  const c = {
+    visible: true,
+    highlighted: false,
+    focused: false,
+    name: name,
+    raw: raw,
+    ui: {},
+    groups: [],
+  };
+  state.display.categories.push(c);
+
+  if (!noRefresh) {
+    buildFiltersMenu();
+  }
+
+  return c;
 }
 
-function newGroup (category, name, icon, description) {
+function newGroup (category, name, icon, description, noRefresh = false) {
+  const raw = {
+    name: name,
+    icon: icon,
+    description: description,
+    data: [],
+  };
+  category.raw.groups.push(raw);
 
+  const g = {
+    visible: true,
+    highlighted: false,
+    focused: false,
+    name: name,
+    icon: icon,
+    description: description,
+    category: category,
+    raw: raw,
+    ui: {},
+    data: [],
+  };
+  category.groups.push(g);
+
+  if (!noRefresh) {
+    buildFiltersMenu();
+    buildMapGroup(g);
+    buildDetailsPanels();
+  }
+
+  return g;
 }
 
-function newPin (group, name, description, image, point) {
+function newPin (group, name, description, image, point, noRefresh = false) {
+  const raw = {
+    name: name,
+    description: description,
+    image: image,
+    points: [point],
+  };
+  group.raw.data.push(raw);
 
+  const p = {
+    name: name,
+    highlighted: false,
+    focused: false,
+    description: description,
+    image: image,
+    type: 'point',
+    points: [point],
+    raw: raw,
+    ui: {},
+    category: group.category,
+    group: group,
+  };
+  group.data.push(p);
+
+  if (!noRefresh) {
+    clearMap();
+    createPinOnMap(p);
+    buildDetailsPanels();
+  }
+
+  return p;
 }
 
 function movePin (pin, point) {
