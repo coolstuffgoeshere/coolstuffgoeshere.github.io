@@ -236,25 +236,25 @@ const rawData = {
                     "description": "",
                     "data": [
                         {
-                            "title": "East - Pocket Park",
+                            "name": "East - Pocket Park",
                             "type": "point",
                             "points": [[80.04, 44.64]],
                             "image": "https://cdn.discordapp.com/attachments/1228035039695208600/1228074242747404390/image.png?ex=662ab843&is=66184343&hm=932533db0b3e8db26192354f2d0b33d0c9dfd01ba8a781058cc0f4e832dac1d1&"
                         },
                         {
-                            "title": "West - Plaza",
+                            "name": "West - Plaza",
                             "type": "point",
                             "points": [[8.56, 37.70]],
                             "image": "https://cdn.discordapp.com/attachments/1227782293129793656/1227782477058412585/image.png?ex=6629a889&is=66173389&hm=1b45dacc290191c48038d22db26f82514664661ac20a359f2918d93f3aa8d132&"
                         },
                         {
-                            "title": "South East - Park",
+                            "name": "South East - Park",
                             "type": "point",
                             "points": [[72.79, 75.22]],
                             "image": "https://cdn.discordapp.com/attachments/1227782293129793656/1227820941523025990/image.png?ex=6629cc5c&is=6617575c&hm=1e4cc3e6b6dc42d3efdbca3d9c36aaa305cd28533c16a8a514e8cd24fd7b4f3a&"
                         },
                         {
-                            "title": "Center - Shopping",
+                            "name": "Center - Shopping",
                             "type": "point",
                             "points": [[37.46, 50.70]],
                             "image": "https://cdn.discordapp.com/attachments/1227782293129793656/1227832150158741554/image.png?ex=6629d6cc&is=661761cc&hm=737ebfeb1494a86f4c4e002d5e1d0d8e595948d66f9e63857b0ffe85198d2ef8&"

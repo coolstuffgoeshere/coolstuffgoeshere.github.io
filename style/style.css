@@ -381,7 +381,7 @@ h3 {
 
 #namatamaReflection {
   position: absolute;
-  filter: blur(3px);
+  filter: blur(2px);
   bottom: -10px;
   /* Adjust as needed */
   right: 0;

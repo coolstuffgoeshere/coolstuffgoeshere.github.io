@@ -20,7 +20,8 @@
     grid-row: 1 / 3;
   }
 
-  #app:has(.details-panel:not(:empty)) .drawer {
+  /* #app:has(.details-panel .welcome) .drawer-container, */
+  #app:has(.details-panel:not(:empty)) .drawer-container {
     display: none !important;
   }
 }

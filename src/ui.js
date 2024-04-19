@@ -245,7 +245,6 @@ function createPinOnMap (pin) {
   const [x, y] = pin.points[0];
   pinEl.style.left = `${x}%`;
   pinEl.style.top = `${y}%`;
-  pinEl.title = pin.name;
 
   const pinImage = document.createElement('img');
   pinImage.src = pin.group.icon || 'assets/icons/fried-egg.png';

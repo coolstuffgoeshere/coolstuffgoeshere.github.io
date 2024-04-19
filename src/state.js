@@ -13,16 +13,35 @@ const state = {
     el: document.getElementById('map-cursor'),
   },
   isMobile: isMobile(),
-}
-
-map.onclick = (event) => {
-  if (!state.editMode) {
-    clearFocus();
-  } else {
-    const [x, y] = getPointerMapPosition(event);
-    setCursorPosition(x, y);
+  ui: {
+    welcomeEl: document.querySelector('.welcome'),
+    welcomeEditEl: document.querySelector('.welcome.edit-mode'),
   }
-}
+};
+
+(() => {
+  const panelEl = document.querySelector('.details-panel');
+
+  if (state.isMobile) {
+    panelEl.innerHTML = '';
+  }
+
+  panelEl.classList.remove('hidden');
+
+  const mapContainer = document.getElementById('map-container');
+  mapContainer.onclick = () => {
+    clearFocus();
+  }
+
+  map.onclick = (event) => {
+    if (state.editMode) {
+      event.stopPropagation();
+      const [x, y] = getPointerMapPosition(event);
+      setCursorPosition(x, y);
+    }
+  }
+})()
+
 
 function blankMap () {
   state.mapData = {
@@ -73,6 +92,7 @@ function setMapData (data) {
   buildFiltersMenu();
   buildMapPins();
   buildDetailsPanels();
+  refreshDetailsPanel();
 }
 
 function setCursorPosition (x, y) {
@@ -171,6 +191,7 @@ function savePinEdit (index) {
 function toggleEditMode () {
   state.editMode = !state.editMode;
   app.classList.toggle('edit-mode');
+  refreshDetailsPanel();
 }
 
 function editCategoryName (category, name) {
@@ -421,6 +442,12 @@ function refreshDetailsPanel () {
       groupItemEl.appendChild(group.ui.newPinEl);
 
       panel.appendChild(groupItemEl);
+    }
+  } else if (!state.isMobile) {
+    if (state.editMode) {
+      panel.appendChild(state.ui.welcomeEditEl);
+    } else {
+      panel.appendChild(state.ui.welcomeEl);
     }
   }
 

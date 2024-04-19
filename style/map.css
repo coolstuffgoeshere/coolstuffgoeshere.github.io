@@ -65,3 +65,7 @@
 #map-cursor div {
   animation: pulse 0.7s ease-in-out infinite;
 }
+
+#app.edit-mode #map {
+  cursor: crosshair;
+}

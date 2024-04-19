@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="style/colors.css?v=0027">
   <link rel="stylesheet" href="style/style.css?v=0027">
-  <link rel="stylesheet" href="style/layout.css">
+  <link rel="stylesheet" href="style/layout.css?v=0027">
   <link rel="stylesheet" href="style/map.css?v=0027">
   <link rel="stylesheet" href="style/navbar.css?v=0027">
   <link rel="stylesheet" href="style/drawer.css?v=0027">
@@ -138,15 +138,38 @@
   </nav>
 
   <div id="details-panel-container">
-    <div class="details-panel"></div>
+    <div class="details-panel hidden">
+      <div class="welcome">
+        <div class="name">WELCOME</div>
+        <div class="namatama">
+          <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" />
+          <div id="namatamaReflection">  <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" /> </div>
+        </div>
+        <div class="description">
+          <p>Hover or tap on a pin and I'll show you more details. </p>
+          <p>Use the filters to focus a group of pins or to choose what you want to see on the map. </p>
+        </div>
+      </div>
+      <div class="welcome edit-mode">
+        <div class="name">EDIT MODE</div>
+        <div class="namatama">
+          <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" />
+          <div id="namatamaReflection">  <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" /> </div>
+        </div>
+        <div class="description">
+          <p>Click on the map to move the cursor.</p>
+          <p>Creating a new pin will place it where the cursor is located.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-  <div class="namatamaContainer">
+  <!-- <div class="namatamaContainer">
     <div id="namatamaText">Hover or tap on a pin and I'll show you more details. </div>
     <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" />
     <div id="namatamaReflection">  <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" /> </div>
-  </div>
+  </div> -->
 
   <div id="pinEditDiv"></div>
 
