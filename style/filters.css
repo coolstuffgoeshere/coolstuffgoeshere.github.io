@@ -1,0 +1,111 @@
+.menu-filters .category {
+  padding-bottom: 20px;
+  margin-bottom: 25px;
+  transition: background-color 60ms ease-in-out;
+  cursor: default;
+}
+
+.menu-filters .category-header {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-filters .category:has(.category-header:hover),
+.menu-filters .category:hover:not(:has(.group:hover)) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-filters .category-title {
+  color: var(--color-primary);
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.menu-filters .category:has(.category-header .toggle-icon:not([checked])) .category-title,
+.menu-filters .group:has(.toggle-icon:not([checked])) .group-icon,
+.menu-filters .group:has(.toggle-icon:not([checked])) .group-title {
+  opacity: 0.5;
+}
+
+.menu-filters .group {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  padding-left: 40px;
+  transition: background-color 60ms ease-in-out;
+}
+
+.menu-filters .group.highlight {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-filters .group.focus {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.menu-filters .group-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  align-self: center;
+}
+
+.menu-filters .group-title {
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.menu-filters .toggle-icon {
+  color: #666;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  margin-right: 4px;
+  align-self: center;
+  cursor: pointer;
+}
+
+.category-edit-button,
+.group-edit-button {
+  margin-right: 0px;
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.category-edit-button div,
+.group-edit-button div {
+  color: #666;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.category-edit-button div:hover,
+.group-edit-button div:hover {
+  color: #999;
+}
+
+.new-group,
+.new-category {
+  margin-right: 10px;
+  padding-right: 20px;
+}
+
+.new-group {
+  margin-top: 10px;
+  margin-left: 40px;
+}
+
+.new-category {
+  margin-left: 20px;
+}
+
+.new-group .icon,
+.new-category .icon {
+  margin-right: 10px;
+  font-size: 24px;
+}

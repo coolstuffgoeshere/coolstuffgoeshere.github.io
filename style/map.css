@@ -1,3 +1,71 @@
 #map-container {
   overflow: hidden;
 }
+
+#map .group.hidden {
+  display: none;
+}
+
+#map .group {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+#map .pin {
+  pointer-events: all;
+  transition: opacity 50ms ease-in-out;
+}
+
+#map:has(.group.focus) .group:not(.focus):not(.highlight) .pin {
+  pointer-events: none;
+  opacity: 0;
+}
+
+#map:has(.group.highlight) .group:not(.highlight):not(.focus),
+#map:has(.group.focus) .group:not(.focus).highlight {
+  opacity: 0.5;
+}
+
+#map:has(.pin.highlight) .pin:not(.focus):not(.highlight),
+#map:has(.pin.focus) .pin:not(.focus):not(.highlight) {
+  opacity: 0.5;
+}
+
+#map .group.highlight .pin img,
+#map .pin.highlight img,
+#map:not(:has(.pin.highlight)) .pin.focus img {
+  animation: pulse 1s ease-in-out infinite;
+  -webkit-animation: pulse 0.7s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+#map-cursor {
+  color: white;
+  font-size: 24px;
+  line-height: 24px;
+  position: absolute;
+  margin-left: -12px;
+  margin-top: -12.5px;
+}
+
+#map-cursor div {
+  animation: pulse 0.7s ease-in-out infinite;
+}
+
+#app.edit-mode #map {
+  cursor: crosshair;
+}

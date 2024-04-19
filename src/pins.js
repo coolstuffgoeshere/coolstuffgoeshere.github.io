@@ -25,8 +25,8 @@ function createPopup(pin) {
 function updateNamatamaText(pin) {
   var namatamaText = document.getElementById('namatamaText');
   namatamaText.innerHTML = '<strong>Category:</strong> ' + pin.category + '<br>' +
-                           '<strong>Title:</strong> ' + pin.title + '<br>' +
-                           '<strong>Image:</strong> <img src="' + pin.dataImg + '" style="">';
+                           '<strong>Title:</strong> ' + pin.name + '<br>' +
+                           '<strong>Image:</strong> <img src="' + pin.image + '" style="">';
 }
 
 function clearNamatamaText() {

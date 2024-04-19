@@ -9,7 +9,6 @@ html {
   font-family: "Saira Extra Condensed";
   font-weight: 300;
   font-size: 20px;
-  line-height: 21px;
   font-style: italic;
   overflow: hidden;
 }
@@ -30,6 +29,10 @@ html {
   font-family: "Saira Extra Condensed";
   font-size: 40px;
   font-weight: 600;
+}
+
+#app:not(.edit-mode) .edit-mode {
+  display: none;
 }
 
 .menu {
@@ -133,17 +136,21 @@ html {
 
 .pin {
   position: absolute;
-  width: 40px; /* has to be px or breaks placement */
+  width: 40px;
+  /* has to be px or breaks placement */
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
   transform-origin: center;
+  margin-top: -20px;
+  margin-left: -20px;
 
 }
 
 .pin img {
   width: 100%;
   height: 100%;
+
   z-index: 99;
 }
 
@@ -198,7 +205,6 @@ button {
   background: none;
   color: white;
   font-size: 20px;
-  line-height: 20px;
   padding: 4px 10px;
   cursor: pointer;
 }
@@ -270,21 +276,6 @@ h3 {
     width: 50%;
   }
 
-  .logo .title {
-    font-size: 36px;
-    line-height: 26px;
-  }
-
-  .logo .subtitle {
-    font-size: 23px;
-    line-height: 20px;
-  }
-
-  .logo .version {
-    font-size: 18px;
-    line-height: 14px;
-  }
-
   .toggle-button {
     font-size: 12px;
   }
@@ -297,6 +288,7 @@ h3 {
 /* Namatama */
 
 .namatamaContainer {
+  display: none;
   cursor: pointer;
   position: fixed;
   bottom: 0;
@@ -308,7 +300,7 @@ h3 {
   transform-origin: bottom right;
   /* Scale from the bottom right corner */
   animation: 2s rollIn forwards;
-  z-index: 9;
+  z-index: 11;
 
 }
 
@@ -389,7 +381,7 @@ h3 {
 
 #namatamaReflection {
   position: absolute;
-  filter: blur(3px);
+  filter: blur(2px);
   bottom: -10px;
   /* Adjust as needed */
   right: 0;
@@ -427,15 +419,41 @@ h3 {
   padding: 4px 4px;
 }
 
-#editPin > input {
+#editPin>input {
   font-size: 24px;
 }
 
-#dataSelect {
+#community-map-selector:not(.active) {
+  display: none;
+}
+
+#community-map-select {
   display: block;
   background: black;
   font-family: "Saira Extra Condensed";
   font-size: 18px;
   margin: 20px 0px;
   color: white;
+}
+
+.button {
+  background-color: var(--color-primary);
+  border: 3px solid color-mix(in srgb, var(--color-primary) 60%, black);
+  border-radius: 10px;
+  padding: 0 10px;
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}
+
+.drawer[name="settings"] .item {
+  padding: 10px 20px;
+}
+
+
+.drawer[name="settings"] .item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: 300;
 }

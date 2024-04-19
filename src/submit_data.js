@@ -1,16 +1,16 @@
 // Add a click event listener to the "submitPins" button
-document.getElementById('submitPins').addEventListener('click', function() {
+document.getElementById('submitPins').addEventListener('click', function () {
     submitPinsToSupabase();
 });
 
-function submitPinsToSupabase() {
+function submitPinsToSupabase () {
     // Prompt the user to enter a name
     const name = prompt("Please enter a name for your map data:");
-    
+
     if (name) {
         // Save pins data to Supabase table
-        const mapUsed = currentMap;
-        const mapData = data;
+        const mapUsed = state.currentMap.name;
+        const mapData = state.userMapData;
 
         // Use the existing supabase client from data.js
         supabase.from("MapDataPublic").insert([{ mapUsed, name, mapData }])

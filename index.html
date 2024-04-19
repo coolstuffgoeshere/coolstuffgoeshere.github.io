@@ -13,10 +13,14 @@
 
   <link rel="stylesheet" href="style/colors.css?v=0027">
   <link rel="stylesheet" href="style/style.css?v=0027">
-  <link rel="stylesheet" href="style/layout.css">
+  <link rel="stylesheet" href="style/layout.css?v=0027">
   <link rel="stylesheet" href="style/map.css?v=0027">
   <link rel="stylesheet" href="style/navbar.css?v=0027">
   <link rel="stylesheet" href="style/drawer.css?v=0027">
+  <link rel="stylesheet" href="style/filters.css?v=0027">
+  <link rel="stylesheet" href="style/details.css?v=0027">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
 </head>
@@ -25,7 +29,11 @@
 <div id="app">
   <!-- Putting map first so that other UI stay above it -->
   <div id="map-container">
-    <div id="map"></div>
+    <div id="map">
+      <div id="map-cursor" class="edit-mode">
+        <div class="mdi mdi-crosshairs"></div>
+      </div>
+    </div>
   </div>
   
   <div class="drawer-container">
@@ -36,19 +44,57 @@
     <div name="filters" class="drawer menu-filters active" id="filter-drawer">
       <div class="title">FILTERS</div>
       <!-- Filters are injected dynamically -->
+      <!-- <div class="category">
+        <div class="category-header">
+          <div class="toggle-icon mdi mdi-eye"></div>
+          <div class="category-title">Easter Eggs</div>
+        </div>
+        <div class="group">
+          <div class="toggle-icon mdi mdi-eye"></div>
+          <img class="group-icon" src="assets/icons/wr.png">
+          <div class="group-title">White Rabbits</div>
+        </div>
+        <div class="group">
+          <div class="toggle-icon mdi mdi-eye-off-outline"></div>
+          <img class="group-icon" src="assets/icons/graffiti.png">
+          <div class="group-title">Graffitis</div>
+        </div>
+      </div>
+      <div class="category">
+        <div class="category-header">
+          <div class="toggle-icon mdi mdi-eye"></div>
+          <div class="category-title">Other</div>
+        </div>
+        <div class="group">
+          <div class="toggle-icon mdi mdi-eye"></div>
+          <img class="group-icon" src="assets/icons/wr.png">
+          <div class="group-title">Spawns</div>
+        </div>
+        <div class="group">
+          <div class="toggle-icon mdi mdi-eye"></div>
+          <img class="group-icon" src="assets/icons/graffiti.png">
+          <div class="group-title">Cashouts</div>
+        </div>
+        <div class="group">
+          <div class="toggle-icon mdi mdi-eye"></div>
+          <img class="group-icon" src="assets/icons/graffiti.png">
+          <div class="group-title">Jumppads</div>
+        </div>
+      </div> -->
     </div>
     <div name="settings" class="drawer">
       <div class="title">SETTINGS</div>
-      <div class="item" id="load-community-map">Load data from Community Maps</div>
-      <div class="item" onClick="blankMap()">Start a new blank map</div>
+      <div class="item" onclick="loadCommunityMaps()">Load data from Community Maps</div>
+      <div class="item" id="community-map-selector">
+        <label for="community-map-select">Select a map</label>
+        <select id="community-map-select"></select>
+        <button>Load</button>
+      </div>
+      <div class="item" onclick="blankMap()">Start a new blank map</div>
       <hr>
       <div class="item">
-        <input id="add-pins-mode" type="checkbox">
-        <label for="add-pins-mode">Enable adding new pins when clicking on map</label>
-      </div>
-      <div class="item">
-        <input id="edit-pins-mode" type="checkbox">
-        <label for="edit-pins-mode">Enable editing pins by clicking them in the Filter menu</label>
+        <input id="edit-mode-toggle" type="checkbox" onclick="toggleEditMode()">
+        <label for="edit-mode-toggle">Edit mode</label>
       </div>
       <div class="item" id="submitPins">Submit edited data to Community Maps</div>
       <hr>
@@ -91,17 +137,46 @@
     </div>
   </nav>
 
-  <div id="details"></div>
+  <div id="details-panel-container">
+    <div class="details-panel hidden">
+      <div class="welcome">
+        <div class="name">WELCOME</div>
+        <div class="namatama">
+          <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" />
+          <div id="namatamaReflection">  <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" /> </div>
+        </div>
+        <div class="description">
+          <p>Hover or tap on a pin and I'll show you more details. </p>
+          <p>Use the filters to focus a group of pins or to choose what you want to see on the map. </p>
+          <br>
+          <p style="text-align: right;">Made with ❤️ by R.Cade and Ludonope</p>
+        </div>
+      </div>
+      <div class="welcome edit-mode">
+        <div class="name">EDIT MODE</div>
+        <div class="namatama">
+          <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" />
+          <div id="namatamaReflection">  <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" /> </div>
+        </div>
+        <div class="description">
+          <p>Click on the map to move the cursor.</p>
+          <p>Creating a new pin will place it where the cursor is located.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-  <div class="namatamaContainer">
+  <!-- <div class="namatamaContainer">
     <div id="namatamaText">Hover or tap on a pin and I'll show you more details. </div>
     <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" />
     <div id="namatamaReflection">  <img id="namatamaImg" src="assets/img/MapaTama.svg" alt="" /> </div>
-  </div>
+  </div> -->
 
-  <div id="pinEditDiv"></div>
+  <!-- <div id="pinEditDiv"></div> -->
 
+  <script src="src/ui.js?v=0027"></script>
+  <script src="src/state.js?v=0027"></script>
   <script src="src/data.js?v=0027"></script>
   <script src="src/pins.js?v=0027"></script>
   <script src="src/mode_addpins.js?v=0027"></script>

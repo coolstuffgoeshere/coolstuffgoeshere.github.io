@@ -5,30 +5,29 @@
 .drawer-container {
   height: 100%;
   overflow-y: auto;
-  pointer-events: none; /* Stops the drawer container from blocking the map */
+  pointer-events: none;
+  /* Stops the drawer container from blocking the map */
 }
 
 .drawer {
   background-color: rgba(13, 12, 14, 0.9);
   min-height: calc(100% - 40px);
-  padding: 20px;
+  padding: 20px 0;
   color: white;
-  pointer-events: all; /* Allows for clicking the items in the drawer once open */
-
-
+  pointer-events: all;
+  /* Allows for clicking the items in the drawer once open */
+  border-right: 1px solid #29262B;
 }
 
 .drawer .title {
   font-size: 60px;
   font-weight: 600;
-  padding: 30px 0;
-  /* margin-bottom: 30px; */
+  padding: 0 20px;
 }
 
 .drawer .item {
   font-size: 30px;
   font-weight: 100;
-  padding: 15px 0;
   font-style: normal;
 }
 
@@ -37,6 +36,4 @@
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  
-}
+@media (max-width: 768px) {}
