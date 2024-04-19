@@ -209,7 +209,7 @@ function buildFiltersMenu () {
 
 // Clear the Map
 function clearMap () {
-  document.getElementById('pinEditDiv').innerHTML = '';
+  // document.getElementById('pinEditDiv').innerHTML = '';
   const map = document.getElementById('map');
   map.innerHTML = ''; // Clear all child elements (pins) from the map
 }
