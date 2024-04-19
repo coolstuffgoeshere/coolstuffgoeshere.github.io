@@ -218,7 +218,7 @@ function editGroupName (group, name) {
 
 function editGroupDescription (group, description) {
   group.description = description;
-  group.ui.detailsEl.querySelector('.group-description').textContent = description;
+  group.ui.detailsEl.querySelector('.group-description').innerHTML = marked.parse(description || '');
   group.raw.description = description;
 }
 
@@ -233,7 +233,7 @@ function editPinName (pin, name) {
 
 function editPinDescription (pin, description) {
   pin.description = description;
-  pin.ui.detailsInfoEl.querySelector('.description').textContent = description;
+  pin.ui.detailsInfoEl.querySelector('.description').innerHTML = marked.parse(description || '');
   pin.raw.description = description;
 }
 

@@ -19,6 +19,8 @@
     "icon name"
     "description description";
   align-items: center;
+  overflow-y: auto;
+  max-height: 50vh;
 }
 
 @media (max-width: 768px) {
