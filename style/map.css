@@ -36,7 +36,7 @@
 #map .pin.highlight img,
 #map:not(:has(.pin.highlight)) .pin.focus img {
   animation: pulse 1s ease-in-out infinite;
-  -webkit-animation: pulse 1s ease-in-out infinite;
+  -webkit-animation: pulse 0.7s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -51,4 +51,17 @@
   100% {
     transform: scale(1);
   }
+}
+
+#map-cursor {
+  color: white;
+  font-size: 24px;
+  line-height: 24px;
+  position: absolute;
+  margin-left: -12px;
+  margin-top: -12.5px;
+}
+
+#map-cursor div {
+  animation: pulse 0.7s ease-in-out infinite;
 }

@@ -26,10 +26,14 @@
 </head>
 <body>
 
-<div id="app" class="edit-mode">
+<div id="app">
   <!-- Putting map first so that other UI stay above it -->
   <div id="map-container">
-    <div id="map" onclick="clearFocus()"></div>
+    <div id="map">
+      <div id="map-cursor" class="edit-mode">
+        <div class="mdi mdi-crosshairs"></div>
+      </div>
+    </div>
   </div>
   
   <div class="drawer-container">

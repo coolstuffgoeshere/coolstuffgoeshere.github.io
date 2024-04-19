@@ -8,6 +8,19 @@ const state = {
     categories: [],
   },
   editMode: false,
+  cursor: {
+    point: [0.5, 0.5],
+    el: document.getElementById('map-cursor'),
+  }
+}
+
+map.onclick = (event) => {
+  if (!state.editMode) {
+    clearFocus();
+  } else {
+    const [x, y] = getPointerMapPosition(event);
+    setCursorPosition(x, y);
+  }
 }
 
 function setMap (map) {
@@ -15,6 +28,7 @@ function setMap (map) {
   clearMap();
   document.getElementById('map').style.backgroundImage = `url(${map.mapImage})`;
   fetchMapDataFromSupabase(map.name);
+  setCursorPosition(0.5, 0.5);
 }
 
 function setMapData (data) {
@@ -45,6 +59,12 @@ function setMapData (data) {
   buildFiltersMenu();
   buildMapPins();
   buildDetailsPanels();
+}
+
+function setCursorPosition (x, y) {
+  state.cursor.point = [x, y];
+  state.cursor.el.style.left = `${x * 100}%`;
+  state.cursor.el.style.top = `${y * 100}%`;
 }
 
 function toggleCategoryVisibility (c) {
@@ -268,7 +288,29 @@ function setGroupFocusNoUI (g, focused) {
   }
 }
 
+function toggleGroupHighlight (g) {
+  if (!g || !g.highlighted) {
+    for (const c of state.display.categories) {
+      for (const gg of c.groups) {
+        setGroupHighlightNoUI(gg, false);
+      }
+    }
+  }
+
+  if (g) {
+    setGroupHighlightNoUI(g, !g.highlighted);
+  }
+
+  refreshDetailsPanel();
+}
+
 function setGroupHighlight (g, highlighted) {
+  if (g.highlighted == highlighted) return;
+  setGroupHighlightNoUI(g, highlighted);
+  refreshDetailsPanel();
+}
+
+function setGroupHighlightNoUI (g, highlighted) {
   if (g.highlighted == highlighted) return;
 
   g.highlighted = highlighted;
@@ -280,8 +322,6 @@ function setGroupHighlight (g, highlighted) {
     g.ui.menuEl.classList.remove('highlight');
     g.ui.mapEl.classList.remove('highlight');
   }
-
-  refreshDetailsPanel();
 }
 
 function togglePinFocus (pin) {
@@ -546,7 +586,6 @@ function newPin (group, name, description, image, point, noRefresh = false) {
   group.data.push(p);
 
   if (!noRefresh) {
-    clearMap();
     createPinOnMap(p);
     buildDetailsPanels();
   }
