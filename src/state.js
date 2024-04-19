@@ -439,3 +439,74 @@ function findGroupPinToDetail () {
 
   return { group: null, pin: null };
 }
+
+function deletePin (pin, noRefresh = false) {
+  const g = pin.group;
+
+  if (pin.focused) {
+    togglePinFocus(null);
+  }
+  if (pin.highlighted) {
+    setPinHighlight(pin, false);
+  }
+
+  g.ui.mapEl.removeChild(pin.ui.mapEl);
+  g.data = g.data.filter(p => p !== pin);
+  g.raw.data = g.data.filter(p => p !== pin.raw);
+
+  if (!noRefresh) {
+    refreshDetailsPanel();
+  }
+}
+
+function deleteGroup (group, noRefresh = false) {
+  const c = group.category;
+
+  if (group.focused) {
+    toggleGroupFocus(null);
+  }
+  if (group.highlighted) {
+    setGroupHighlight(group, false);
+  }
+
+  for (const p of group.data) {
+    deletePin(p, true);
+  }
+
+  c.ui.menuEl.removeChild(group.ui.menuEl);
+  map.removeChild(group.ui.mapEl);
+  c.groups = c.groups.filter(g => g !== group);
+  c.raw.groups = c.groups.filter(g => g !== group.raw);
+
+  if (!noRefresh) {
+    refreshDetailsPanel();
+  }
+}
+
+function deleteCategory (category) {
+  for (const g of category.groups) {
+    deleteGroup(g, true);
+  }
+
+  filterDrawer.removeChild(category.ui.menuEl);
+  state.display.categories = state.display.categories.filter(c => c !== category);
+  state.userMapData.categories = state.userMapData.categories.filter(c => c !== category.raw);
+
+  refreshDetailsPanel();
+}
+
+function newCategory (name) {
+
+}
+
+function newGroup (category, name, icon, description) {
+
+}
+
+function newPin (group, name, description, image, point) {
+
+}
+
+function movePin (pin, point) {
+
+}

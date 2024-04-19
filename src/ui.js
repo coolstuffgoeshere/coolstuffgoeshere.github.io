@@ -387,10 +387,16 @@ function buildDetailsPanels () {
         editPinPosition.textContent = 'Edit Position';
         editPinPosition.onclick = () => editPinPositionPopup(pin);
 
+        const editDeletePin = document.createElement('div');
+        editDeletePin.classList.add('button', 'secondary');
+        editDeletePin.textContent = 'Delete Pin';
+        editDeletePin.onclick = () => deletePin(pin);
+
         editPinEl.appendChild(editPinNameEl);
         editPinEl.appendChild(editPinDescriptionEl);
         editPinEl.appendChild(editImageEl);
         editPinEl.appendChild(editPinPosition);
+        editPinEl.appendChild(editDeletePin);
       }
 
       const newPinEl = document.createElement('div');
