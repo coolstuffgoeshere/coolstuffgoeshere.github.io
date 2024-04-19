@@ -44,7 +44,7 @@
     <div name="filters" class="drawer menu-filters active" id="filter-drawer">
       <div class="title">FILTERS</div>
       <!-- Filters are injected dynamically -->
-      <div class="category">
+      <!-- <div class="category">
         <div class="category-header">
           <div class="toggle-icon mdi mdi-eye"></div>
           <div class="category-title">Easter Eggs</div>
@@ -80,12 +80,17 @@
           <img class="group-icon" src="assets/icons/graffiti.png">
           <div class="group-title">Jumppads</div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div name="settings" class="drawer">
       <div class="title">SETTINGS</div>
-      <div class="item" id="load-community-map">Load data from Community Maps</div>
-      <div class="item" onClick="blankMap()">Start a new blank map</div>
+      <div class="item" onclick="loadCommunityMaps()">Load data from Community Maps</div>
+      <div class="item" id="community-map-selector">
+        <label for="community-map-select">Select a map</label>
+        <select id="community-map-select"></select>
+        <button>Load</button>
+      </div>
+      <div class="item" onclick="blankMap()">Start a new blank map</div>
       <hr>
       <div class="item">
         <input id="edit-mode-toggle" type="checkbox" onclick="toggleEditMode()">

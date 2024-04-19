@@ -423,7 +423,11 @@ h3 {
   font-size: 24px;
 }
 
-#dataSelect {
+#community-map-selector:not(.active) {
+  display: none;
+}
+
+#community-map-select {
   display: block;
   background: black;
   font-family: "Saira Extra Condensed";

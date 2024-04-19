@@ -1,9 +1,8 @@
 .details-panel {
   background-color: rgba(13, 12, 14, 0.9);
   color: white;
-  height: 100%;
   overflow-y: auto;
-  border-left: 1px solid #29262B;
+  height: 100%;
 
   display: grid;
   grid-template-rows: auto 1fr;
@@ -11,18 +10,98 @@
 
 .details-header {
   display: grid;
-  padding: 20px;
-  padding-bottom: 40px;
+
   border-bottom: 1px solid #29262B;
 
-
-  grid-template-columns: 80px 1fr;
   grid-template-rows: auto 1fr;
-  gap: 20px;
+
   grid-template-areas:
     "icon name"
     "description description";
   align-items: center;
+}
+
+@media (max-width: 768px) {
+  #details-panel-container {
+    max-height: 50dvh;
+    padding-bottom: 56px;
+  }
+
+  .details-panel {
+    border-top: 1px solid #29262B;
+  }
+
+  .details-header {
+    padding: 10px;
+    padding-bottom: 20px;
+    grid-template-columns: 40px 1fr;
+    gap: 10px;
+  }
+
+  .details-header .group-name {
+    font-size: 40px;
+  }
+
+  .group-item {
+    padding: 0 10px;
+  }
+
+  .details-group-items .name {
+    font-size: 25px;
+  }
+
+  .details-item {
+    padding: 10px;
+    padding-top: 20px;
+  }
+
+  .details-item .name {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  .details-item .description {
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 769px) {
+  .details-panel {
+    border-left: 1px solid #29262B;
+  }
+
+  .details-header {
+    padding: 20px;
+    padding-bottom: 40px;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+  }
+
+  .details-header .group-name {
+    font-size: 60px;
+  }
+
+  .group-item {
+    padding: 0 20px;
+  }
+
+  .details-group-items .name {
+    font-size: 35px;
+  }
+
+  .details-item {
+    padding: 20px;
+    padding-top: 40px;
+  }
+
+  .details-item .name {
+    font-size: 45px;
+    margin-bottom: 20px;
+  }
+
+  .details-item .description {
+    margin-bottom: 20px;
+  }
 }
 
 .details-header .group-icon {
@@ -32,7 +111,6 @@
 
 .details-header .group-name {
   grid-area: name;
-  font-size: 60px;
   font-weight: 600;
   color: var(--color-primary);
   text-transform: uppercase;
@@ -54,7 +132,6 @@
 }
 
 .group-item {
-  padding: 0 20px;
   transition: background-color 100ms ease-in-out;
   cursor: pointer;
   border-bottom: 1px solid #1D1A20;
@@ -65,25 +142,13 @@
 }
 
 .details-group-items .name {
-  font-size: 35px;
   font-weight: 500;
 }
 
-.details-item {
-  padding: 20px;
-  padding-top: 40px;
-}
-
 .details-item .name {
-  font-size: 45px;
   font-weight: 600;
   color: var(--color-primary);
-  margin-bottom: 20px;
   text-transform: uppercase;
-}
-
-.details-item .description {
-  margin-bottom: 20px;
 }
 
 .details-item .image[src=] {

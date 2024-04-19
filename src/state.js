@@ -11,7 +11,8 @@ const state = {
   cursor: {
     point: [0.5, 0.5],
     el: document.getElementById('map-cursor'),
-  }
+  },
+  isMobile: isMobile(),
 }
 
 map.onclick = (event) => {
@@ -238,6 +239,7 @@ function clearFocus () {
 }
 
 function toggleGroupFocus (g) {
+  console.log('toggle!')
   if (!g || !g.focused) {
     for (const c of state.display.categories) {
       for (const gg of c.groups) {
@@ -254,12 +256,15 @@ function toggleGroupFocus (g) {
 }
 
 function setGroupFocus (g, focused) {
+  console.log('set!')
   if (g.focused == focused) return;
   setGroupFocusNoUI(g, focused);
   refreshDetailsPanel();
 }
 
 function setGroupFocusNoUI (g, focused) {
+  console.log('set no UI!')
+
   if (g.focused == focused) return;
 
   g.focused = focused;
@@ -274,6 +279,8 @@ function setGroupFocusNoUI (g, focused) {
 }
 
 function toggleGroupHighlight (g) {
+  console.log('toggle H!')
+
   if (!g || !g.highlighted) {
     for (const c of state.display.categories) {
       for (const gg of c.groups) {
@@ -290,6 +297,8 @@ function toggleGroupHighlight (g) {
 }
 
 function setGroupHighlight (g, highlighted) {
+  console.log('set H!')
+
   if (g.highlighted == highlighted) return;
   setGroupHighlightNoUI(g, highlighted);
   refreshDetailsPanel();
@@ -339,6 +348,24 @@ function setPinFocusNoUI (pin, focused) {
   }
 }
 
+function togglePinHighlight (pin) {
+  if (!pin || !pin.highlighted) {
+    for (const c of state.display.categories) {
+      for (const g of c.groups) {
+        for (const p of g.data) {
+          setPinHighlightNoUI(p, false);
+        }
+      }
+    }
+  }
+
+  if (pin) {
+    setPinHighlightNoUI(pin, !pin.highlighted);
+  }
+
+  refreshDetailsPanel();
+}
+
 function setPinHighlight (pin, highlighted) {
   if (pin.highlighted == highlighted) return;
 
@@ -377,7 +404,7 @@ function refreshDetailsPanel () {
   panel.classList.add('details-panel');
 
   const { group, pin } = findGroupPinToDetail();
-
+  console.log('details:', group, pin);
   if (group) {
     panel.appendChild(group.ui.detailsEl);
 
@@ -397,7 +424,10 @@ function refreshDetailsPanel () {
     }
   }
 
-  detailsPanelContainer.replaceChild(panel, detailsPanelContainer.firstChild);
+  for (const child of detailsPanelContainer.children) {
+    child.remove();
+  }
+  detailsPanelContainer.appendChild(panel);
 }
 
 function findGroupPinToDetail () {
