@@ -395,10 +395,10 @@ function buildDetailsPanels () {
         editImageEl.textContent = 'Edit Image URL';
         editImageEl.onclick = () => editPinImagePopup(pin);
 
-        const editPinPosition = document.createElement('div');
-        editPinPosition.classList.add('button', 'secondary');
-        editPinPosition.textContent = 'Edit Position';
-        editPinPosition.onclick = () => editPinPositionPopup(pin);
+        // const editPinPosition = document.createElement('div');
+        // editPinPosition.classList.add('button', 'secondary');
+        // editPinPosition.textContent = 'Edit Position';
+        // editPinPosition.onclick = () => editPinPositionPopup(pin);
 
         const editDeletePin = document.createElement('div');
         editDeletePin.classList.add('button', 'secondary');
