@@ -1,3 +1,6 @@
+const PRESS_LONGER_THAN_IS_DRAG_MS = 200;
+const PRESS_LONGER_THAN_IS_DRAG_DIST = 0.01;
+
 // State of the app used to render the UI.
 const state = {
   maps: [],
@@ -33,12 +36,52 @@ const state = {
     clearFocus();
   }
 
-  map.onclick = (event) => {
-    if (state.editMode) {
-      event.stopPropagation();
-      const [x, y] = getPointerMapPosition(event);
-      setCursorPosition(x, y);
-    }
+  let pressStartTimestamp = null;
+  let pressStartPosition = null;
+  let pressLongestDistance = 0;
+
+  map.onmousedown = (event) => {
+	if (event.button != 0) {
+		return;
+	}
+	
+	const [x, y] = getPointerMapPosition(event);
+
+	pressStartTimestamp = (new Date()).getTime();
+	pressStartPosition = {x: x, y: y};
+	pressLongestDistance = 0;
+  }
+
+  map.onmousemove = (event) => {
+	if (event.button != 0) {
+		return;
+	}
+	
+	const [x, y] = getPointerMapPosition(event);
+	const distanceFromStart = pressStartPosition ? Math.hypot(x - pressStartPosition.x, y - pressStartPosition.y) : 0;
+
+	pressLongestDistance = distanceFromStart>pressLongestDistance ? distanceFromStart : pressLongestDistance
+  }
+
+  map.onmouseup = (event) => {
+	if (event.button != 0) {
+		return;
+	}
+
+	if (!state.editMode) {
+		return;
+	}
+
+	const pressStopTimestamp = (new Date()).getTime();
+	const pressDuration = pressStopTimestamp-pressStartTimestamp;
+	if (pressDuration > PRESS_LONGER_THAN_IS_DRAG_MS && pressLongestDistance > PRESS_LONGER_THAN_IS_DRAG_DIST) {
+		return;
+	}
+
+	event.stopPropagation();
+
+	const [x, y] = pressStartPosition ? [pressStartPosition.x, pressStartPosition.y] : getPointerMapPosition(event);
+	setCursorPosition(x, y);
   }
 })()
 
