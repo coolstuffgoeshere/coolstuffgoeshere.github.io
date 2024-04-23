@@ -545,5 +545,7 @@ function createNewPinPopup (group) {
 
   const image = prompt(`Pin image URL`);
 
-  newPin(group, name, description, image, 'point', [state.cursor.point]);
+  const point = state.cursor.point.map(p => (p * 10000) / 100);
+
+  newPin(group, name, description, image, 'point', [point]);
 }
