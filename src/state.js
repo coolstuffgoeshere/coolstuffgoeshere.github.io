@@ -1,6 +1,3 @@
-const PRESS_LONGER_THAN_IS_DRAG_MS = 200;
-const PRESS_LONGER_THAN_IS_DRAG_DIST = 0.01;
-
 // State of the app used to render the UI.
 const state = {
   maps: [],
@@ -36,7 +33,6 @@ const state = {
     clearFocus();
   }
 
-  let pressStartTimestamp = null;
   let pressStartPosition = null;
   let pressLongestDistance = 0;
 
@@ -47,7 +43,6 @@ const state = {
 	
 	const [x, y] = getPointerMapPosition(event);
 
-	pressStartTimestamp = (new Date()).getTime();
 	pressStartPosition = {x: x, y: y};
 	pressLongestDistance = 0;
   }
@@ -72,9 +67,7 @@ const state = {
 		return;
 	}
 
-	const pressStopTimestamp = (new Date()).getTime();
-	const pressDuration = pressStopTimestamp-pressStartTimestamp;
-	if (pressDuration > PRESS_LONGER_THAN_IS_DRAG_MS && pressLongestDistance > PRESS_LONGER_THAN_IS_DRAG_DIST) {
+	if (pressLongestDistance > 0) {
 		return;
 	}
 
