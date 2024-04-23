@@ -547,5 +547,5 @@ function createNewPinPopup (group) {
 
   const point = state.cursor.point.map(p => (p * 100).toFixed(2));
 
-  newPin(group, name, description, image, 'point', [state.cursor.point]);
+  newPin(group, name, description, image, 'point', point);
 }
