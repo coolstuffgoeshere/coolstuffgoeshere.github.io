@@ -33,12 +33,52 @@ const state = {
     clearFocus();
   }
 
+  let pressStartPosition = null;
+  let pressLongestDistance = 0;
+
+  map.onmousedown = (event) => {
+	if (event.button != 0) {
+		return;
+	}
+	
+	const [x, y] = getPointerMapPosition(event);
+
+	pressStartPosition = {x: x, y: y};
+	pressLongestDistance = 0;
+  }
+
+  map.onmousemove = (event) => {
+	if (event.button != 0) {
+		return;
+	}
+	
+	const [x, y] = getPointerMapPosition(event);
+	const distanceFromStart = pressStartPosition ? Math.hypot(x - pressStartPosition.x, y - pressStartPosition.y) : 0;
+
+	pressLongestDistance = distanceFromStart>pressLongestDistance ? distanceFromStart : pressLongestDistance;
+  }
+
+  map.onmouseup = (event) => {
+	if (event.button != 0 | !state.editMode) {
+		return;
+	}
+
+	if (pressLongestDistance > 0) {
+		return;
+	}
+
+	const [x, y] = pressStartPosition ? [pressStartPosition.x, pressStartPosition.y] : getPointerMapPosition(event);
+	setCursorPosition(x, y);
+  }
+
   map.onclick = (event) => {
-    if (state.editMode) {
-      event.stopPropagation();
-      const [x, y] = getPointerMapPosition(event);
-      setCursorPosition(x, y);
-    }
+	if (event.button != 0 | !state.editMode) {
+		return;
+	}
+
+	// this needs to be done with .onclick or else
+	// the category in the drawer will be deselected
+	event.stopPropagation();
   }
 })()
 
