@@ -30,7 +30,7 @@
 @media (max-width: 768px) {
   #details-panel-container {
     max-height: 50dvh;
-    padding-bottom: 9px;
+    padding-bottom: 56px;
   }
 
   .details-panel {
