@@ -19,14 +19,18 @@
     "icon name"
     "description description";
   align-items: center;
-  overflow-y: auto;
-  max-height: 50vh;
+  /* overflow-y: auto;
+  max-height: 50vh; */
+}
+
+#details-panel-container {
+	max-height: 100vh;
 }
 
 @media (max-width: 768px) {
   #details-panel-container {
     max-height: 50dvh;
-    padding-bottom: 56px;
+    padding-bottom: 9px;
   }
 
   .details-panel {
@@ -126,7 +130,7 @@
   align-self: start;
 }
 
-.details-header .edit-mode {
+.details-header .edit-buttons {
   grid-column: 1 / 3;
   display: flex;
   gap: 20px;

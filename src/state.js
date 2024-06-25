@@ -35,11 +35,14 @@ const state = {
 
   let pressStartPosition = null;
   let pressLongestDistance = 0;
+  let wasMouseDragged = false;
 
   map.onmousedown = (event) => {
 	if (event.button != 0) {
 		return;
 	}
+
+	wasMouseDragged = false;
 	
 	const [x, y] = getPointerMapPosition(event);
 
@@ -51,6 +54,8 @@ const state = {
 	if (event.button != 0) {
 		return;
 	}
+
+	wasMouseDragged = true;
 	
 	const [x, y] = getPointerMapPosition(event);
 	const distanceFromStart = pressStartPosition ? Math.hypot(x - pressStartPosition.x, y - pressStartPosition.y) : 0;
@@ -67,12 +72,25 @@ const state = {
 		return;
 	}
 
+	// the cursor position should not be changed if the user is clicking on something other than the map div or cursor div
+	// there should be a better way of checking if the element is the map div, but this works for now
+	const elementBelowMouse = document.elementFromPoint(event.clientX, event.clientY);
+	const elementClassList = Array.from(elementBelowMouse.classList);
+	if (elementBelowMouse.id != "map" && !elementClassList.includes("mdi")) {
+		return;
+	}
+
 	const [x, y] = pressStartPosition ? [pressStartPosition.x, pressStartPosition.y] : getPointerMapPosition(event);
 	setCursorPosition(x, y);
   }
 
   map.onclick = (event) => {
-	if (event.button != 0 | !state.editMode) {
+	if (event.button != 0) {
+		return;
+	}
+
+	// we should not stop propagation if the mouse was clicked
+	if (!wasMouseDragged && !state.editMode) {
 		return;
 	}
 
@@ -84,6 +102,9 @@ const state = {
 
 
 function blankMap () {
+  clearMap();
+  clearFilterMenu();
+
   state.mapData = {
     categories: [],
   };
@@ -91,8 +112,10 @@ function blankMap () {
     categories: [],
   };
   state.display.categories = [];
-  clearMap();
-  clearFilterMenu()
+  
+  buildFiltersMenu();
+  buildMapPins();
+  buildDetailsPanels();
   refreshDetailsPanel();
 }
 
@@ -543,11 +566,21 @@ function deletePin (pin, noRefresh = false) {
 
   g.ui.mapEl.removeChild(pin.ui.mapEl);
   g.data = g.data.filter(p => p !== pin);
-  g.raw.data = g.data.filter(p => p !== pin.raw);
+  g.raw.data = g.raw.data.filter(p => p !== pin.raw);
 
   if (!noRefresh) {
     refreshDetailsPanel();
   }
+}
+
+function relocatePin (pin) {
+	const [cursorX, cursorY] = [state.cursor.point[0] * 100, state.cursor.point[1] * 100];
+
+	pin.points[0] = [cursorX, cursorY];
+
+	const pinEl = pin.ui.mapEl;
+	pinEl.style.left = `${cursorX}%`;
+	pinEl.style.top = `${cursorY}%`;
 }
 
 function deleteGroup (group, noRefresh = false) {
@@ -567,7 +600,7 @@ function deleteGroup (group, noRefresh = false) {
   c.ui.menuEl.removeChild(group.ui.menuEl);
   map.removeChild(group.ui.mapEl);
   c.groups = c.groups.filter(g => g !== group);
-  c.raw.groups = c.groups.filter(g => g !== group.raw);
+  c.raw.groups = c.raw.groups.filter(g => g !== group.raw);
 
   if (!noRefresh) {
     refreshDetailsPanel();

@@ -109,7 +109,7 @@ function buildFiltersMenuGroup (group) {
   group.ui.menuTitleEl = groupTitle;
 
   const groupEdit = document.createElement('div');
-  groupEdit.classList.add('group-edit-button', 'edit-mode');
+  groupEdit.classList.add('group-edit-button', 'edit-mode', 'edit-buttons');
 
   const groupEditName = document.createElement('div');
   groupEditName.classList.add('mdi', 'mdi-pencil');
@@ -309,7 +309,7 @@ function buildDetailsPanels () {
 
       // Edit mode stuff.
       const editGroupEl = document.createElement('div');
-      editGroupEl.classList.add('edit-mode');
+      editGroupEl.classList.add('edit-mode', "edit-buttons");
       groupEl.appendChild(editGroupEl);
 
       const editIconEl = document.createElement('div');
@@ -330,6 +330,24 @@ function buildDetailsPanels () {
       editGroupEl.appendChild(editIconEl);
       editGroupEl.appendChild(editGroupNameEl);
       editGroupEl.appendChild(editGroupDescriptionEl);
+
+	   // Control stuff.
+	   const controlGroupEl = document.createElement('div');
+	   controlGroupEl.classList.add('group-controls', 'edit-buttons');
+	   groupEl.appendChild(controlGroupEl);
+
+	   const controlToggleFocusEl = document.createElement('div');
+	   controlToggleFocusEl.classList.add('button', 'secondary', "group-button-focus");
+	   controlToggleFocusEl.textContent = 'Toggle Focus';
+	   controlToggleFocusEl.onclick = () => toggleGroupFocus(group);
+
+	   const controlViewListEl = document.createElement('div');
+	   controlViewListEl.classList.add('button', 'secondary', "group-button-view");
+	   controlViewListEl.textContent = 'View List';
+	   controlViewListEl.onclick = () => returnToGroupList(group);
+ 
+	   controlGroupEl.appendChild(controlToggleFocusEl);
+	   controlGroupEl.appendChild(controlViewListEl);
 
       for (const pin of group.data) {
         // Item for the list of pins in that group.
@@ -402,11 +420,17 @@ function buildDetailsPanels () {
         editDeletePin.textContent = 'Delete Pin';
         editDeletePin.onclick = () => deletePin(pin);
 
+		const editRelocatePin = document.createElement('div');
+        editRelocatePin.classList.add('button', 'secondary');
+        editRelocatePin.textContent = 'Relocate Pin';
+        editRelocatePin.onclick = () => relocatePin(pin);
+
         editPinEl.appendChild(editPinNameEl);
         editPinEl.appendChild(editPinDescriptionEl);
         editPinEl.appendChild(editImageEl);
         // editPinEl.appendChild(editPinPosition);
         editPinEl.appendChild(editDeletePin);
+		editPinEl.appendChild(editRelocatePin);
       }
 
       const newPinEl = document.createElement('div');
@@ -491,6 +515,15 @@ function editGroupDescriptionPopup (group) {
   if (!description) return;
 
   editGroupDescription(group, description);
+}
+
+function returnToGroupList (group) {
+	if (!group.focused) {
+		toggleGroupFocus(group);
+	}
+
+	togglePinFocus(null);
+    togglePinHighlight(null);
 }
 
 function editPinNamePopup (pin) {
